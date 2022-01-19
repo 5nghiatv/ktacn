@@ -45,7 +45,7 @@ Terminal 2: npm run dev
 Terminal 3: node || node test
 
 ============== 
-git init  ( user: nghia@XuanMai-Coprt - pasw: 1186)
+git init  ( email: nghia@XuanMai-Coprt -user.name "nghiatv" - pasw: 1186)
 heroku create || update (new version)
 heroku login (https://dashboard.heroku.com/apps  user: 5nghiatv@gmail.com)
 ==============

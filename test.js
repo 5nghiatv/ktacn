@@ -490,4 +490,3 @@ const { nav1 } = require('./src/_nav1.js')
 const { nav2 } = require('./src/_nav2.js')
 const nav = [...nav1, ...nav2]
 console.log(nav)
-

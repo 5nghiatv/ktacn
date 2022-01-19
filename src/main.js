@@ -45,10 +45,8 @@ import JwtService from './common/jwt.service'
 //import utility from './common/utility'
 // import Element from 'element-ui'
 //import Cookies from 'js-cookie'
-// import './styles/element-variables.scss'
 // import enLang from 'element-ui/lib/locale/lang/en'
 //import viLang from 'element-ui/lib/locale/lang/vi'
-// import '@/styles/index.scss' // global css
 // import * as filters from './filters' // global filters
 
 //app.use(VueMask)
