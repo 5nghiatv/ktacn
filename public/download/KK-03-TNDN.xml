@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<HSoThueDTu xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://kekhaithue.gdt.gov.vn/TKhaiThue">
+  <HSoKhaiThue id="ID_1">
+    <TTinChung>
+      <TTinDVu>
+        <maDVu>HTKK</maDVu>
+        <tenDVu>HỖ TRỢ KÊ KHAI THUẾ</tenDVu>
+        <pbanDVu>4.3.1</pbanDVu>
+        <ttinNhaCCapDVu>8DCF2C435255E7BCA080D44C9FE9C9EA</ttinNhaCCapDVu>
+      </TTinDVu>
+      <TTinTKhaiThue>
+        <TKhaiThue>
+          <maTKhai>03</maTKhai>
+          <tenTKhai>TỜ KHAI QUYẾT TOÁN THUẾ THU NHẬP DOANH NGHIỆP (Mẫu số 03/TNDN)</tenTKhai>
+          <moTaBMau>(Ban hành kèm theo Thông tư số 151/2014/TT-BTC  ngày 10/10/2014 của  Bộ Tài chính)</moTaBMau>
+          <pbanTKhaiXML>2.3.1</pbanTKhaiXML>
+          <loaiTKhai>C</loaiTKhai>
+          <soLan>0</soLan>
+          <KyKKhaiThue>
+            <kieuKy>Y</kieuKy>
+            <kyKKhai>2019</kyKKhai>
+            <kyKKhaiTuNgay>01/01/2019</kyKKhaiTuNgay>
+            <kyKKhaiDenNgay>31/12/2019</kyKKhaiDenNgay>
+            <kyKKhaiTuThang />
+            <kyKKhaiDenThang />
+          </KyKKhaiThue>
+          <maCQTNoiNop>70129</maCQTNoiNop>
+          <tenCQTNoiNop>Chi cục Thuế Quận Bình Thạnh</tenCQTNoiNop>
+          <ngayLapTKhai>2020-02-18</ngayLapTKhai>
+          <GiaHan>
+            <maLyDoGiaHan />
+            <lyDoGiaHan />
+          </GiaHan>
+          <nguoiKy></nguoiKy>
+          <ngayKy>2020-02-18</ngayKy>
+          <nganhNgheKD>Sản xuất và Cài đặt Phần mềm Máy tính</nganhNgheKD>
+        </TKhaiThue>
+        <NNT>
+          <mst>0304633928</mst>
+          <tenNNT></tenNNT>
+          <dchiNNT>118/63 Bạch Đằng, P24</dchiNNT>
+          <phuongXa />
+          <maHuyenNNT />
+          <tenHuyenNNT>Bình Thạnh</tenHuyenNNT>
+          <maTinhNNT />
+          <tenTinhNNT>Hồ Chí Minh</tenTinhNNT>
+          <dthoaiNNT>0903917963</dthoaiNNT>
+          <faxNNT />
+          <emailNNT>nghiatv@gmail.com</emailNNT>
+        </NNT>
+      </TTinTKhaiThue>
+    </TTinChung>
+    <CTieuTKhaiChinh>
+      <tieuMucHachToan>1052</tieuMucHachToan>
+      <doanhNghiepCoQuyMoVuaVaNho>0</doanhNghiepCoQuyMoVuaVaNho>
+      <doanhNghiepCoCSoHToanPThuoc>0</doanhNghiepCoCSoHToanPThuoc>
+      <doanhNghiepKeKhaiTTinLienKet>0</doanhNghiepKeKhaiTTinLienKet>
+      <ct_04_ma>0</ct_04_ma>
+      <ct_04_ten />
+      <ct_05>0.00</ct_05>
+      <ctA1>0</ctA1>
+      <ctB1>0</ctB1>
+      <ctB2>0</ctB2>
+      <ctB3>0</ctB3>
+      <ctB4>0</ctB4>
+      <ctB5>0</ctB5>
+      <ctB6>0</ctB6>
+      <ctB7>0</ctB7>
+      <ctB8>0</ctB8>
+      <ctB9>0</ctB9>
+      <ctB10>0</ctB10>
+      <ctB11>0</ctB11>
+      <ctB12>0</ctB12>
+      <ctB13>0</ctB13>
+      <ctB14>0</ctB14>
+      <ctC1>0</ctC1>
+      <ctC2>0</ctC2>
+      <ctC3>0</ctC3>
+      <ctC3a>0</ctC3a>
+      <ctC3b>0</ctC3b>
+      <ctC4>0</ctC4>
+      <ctC5>0</ctC5>
+      <ctC6>0</ctC6>
+      <ctC7>0</ctC7>
+      <ctC8>0</ctC8>
+      <ctC9>0</ctC9>
+      <ctC9a>0</ctC9a>
+      <ctC10>0</ctC10>
+      <ctC11>0</ctC11>
+      <ctC12>0</ctC12>
+      <ctC13>0</ctC13>
+      <ctC14>0</ctC14>
+      <ctC15>0</ctC15>
+      <ctC16>0</ctC16>
+      <ctD>0</ctD>
+      <ctD1>0</ctD1>
+      <ctD2>0</ctD2>
+      <ctD3>0</ctD3>
+      <ctE>0</ctE>
+      <ctE1>0</ctE1>
+      <ctE2>0</ctE2>
+      <ctE3>0</ctE3>
+      <ctG>0</ctG>
+      <ctG1>0</ctG1>
+      <ctG2>0</ctG2>
+      <ctG3>0</ctG3>
+      <ctH>0</ctH>
+      <ctI>0</ctI>
+      <GiaHanNopThue>
+        <ctL1>0</ctL1>
+        <ctL2_ma />
+        <ctL2_ten />
+        <ctL3 xsi:nil="true" />
+        <ctL4>0</ctL4>
+        <ctL5>0</ctL5>
+      </GiaHanNopThue>
+      <TienChamNop>
+        <CTM1>
+          <soNgay>0</soNgay>
+          <tuNgay>2020-02-01</tuNgay>
+          <denNgay xsi:nil="true" />
+        </CTM1>
+        <ctM2>0</ctM2>
+      </TienChamNop>
+      <TaiLieu_Guikem>
+        <Tailieuguikem id="ID_1">
+          <tenTaiLieu />
+        </Tailieuguikem>
+      </TaiLieu_Guikem>
+    </CTieuTKhaiChinh>
+    <PLuc>
+      <PL03_1A_TNDN>
+        <ct01>0</ct01>
+        <ct02>0</ct02>
+        <ct03>0</ct03>
+        <ct04>0</ct04>
+        <ct05>0</ct05>
+        <ct06>0</ct06>
+        <ct07>0</ct07>
+        <ct08>0</ct08>
+        <ct09>0</ct09>
+        <ct10>0</ct10>
+        <ct11>0</ct11>
+        <ct12>0</ct12>
+        <ct13>0</ct13>
+        <ct14>0</ct14>
+        <ct15>0</ct15>
+        <ct16>0</ct16>
+        <ct17>0</ct17>
+        <ct18>0</ct18>
+        <ct19>0</ct19>
+      </PL03_1A_TNDN>
+    </PLuc>
+  </HSoKhaiThue>
+</HSoThueDTu>
