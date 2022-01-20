@@ -1,12 +1,12 @@
 ### CREATE user
-POST http://localhost:8080/api/user
+POST http://localhost:8080/api/connects
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWYwNjEyNjcyOGQ4YTA1NjhlNTA1NWQiLCJpYXQiOjE1OTI4OTgwMTR9.TGYEjQ5tJc85gjTrc011yt0HdEeJ21uBlIWjBtnmRFo
 Content-Type: application/json
 
 {
     "name": "Trần Trần Dần",
-    "password": "aaaaaa",
-    "email": "aaaaaa@gmail.com"
+    "password": "111111",
+    "email": "5nghiatv@gmail.com"
 }
 
 ### UPDATE user/5eeeb190a7983b1fc40a2bea
