@@ -567,7 +567,6 @@ export default {
     readDanhmuc(models, post = false) {
       this.$store.commit('set', ['isLoading', true])
       if (post)
-<<<<<<< HEAD
         this.$apiAcn.post(models, { email: this.email }).then((data) => {
           this[models] = data.data[models]
           // this[models].forEach((item) => {
@@ -577,27 +576,6 @@ export default {
           this.getCompanyName()
           this.$store.commit('set', ['isLoading', false])
         })
-=======
-        this.$apiAcn
-          .post(models, { email: this.email || '5nghiatv@gmail.com' })
-          .then((data) => {
-            this[models] = data.data[models]
-            // this[models].forEach((item) => {
-            //   item['value'] = item._id
-            // })
-            console.log(
-              this.email || '5nghiatv@gmail.com',
-              data.data,
-              this[models],
-            )
-            this.getCompanyName()
-            this.$store.commit('set', ['isLoading', false])
-          })
-          .catch((err) => {
-            console.log(err)
-            this.$store.commit('set', ['isLoading', false])
-          })
->>>>>>> 049e40c6d5b8bd1a05fd24c150ed537ad6ea78ed
       else
         this.$apiAcn
           .get(models)
