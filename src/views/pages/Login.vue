@@ -36,13 +36,22 @@
                   </CInputGroup>
                   <CRow>
                     <CCol :xs="6">
-                      <CButton @click="login()" color="primary" class="px-4">
+                      <CButton
+                        type="submit"
+                        @click="login()"
+                        color="primary"
+                        class="px-4"
+                      >
                         Login
                       </CButton>
                     </CCol>
                     <CCol :xs="6" class="text-right">
-                      <CButton @click="changePasw()" color="link" class="px-0"
-                        >Forgot password ?</CButton
+                      <CButton
+                        type="submit"
+                        @click="changePasw()"
+                        color="link"
+                        class="px-0"
+                        >Forgot password</CButton
                       >
                     </CCol>
                   </CRow>
@@ -266,7 +275,9 @@ export default {
     }
   },
   methods: {
-    submitForm() {},
+    submitForm() {
+      console.log('Login: ', this.email)
+    },
     gioihanthoigian() {
       const selectVal = document.getElementById('mySelect').value
       var year = moment(this.fromtodate.pd_fromdate)
@@ -558,11 +569,10 @@ export default {
       if (post)
         this.$apiAcn.post(models, { email: this.email }).then((data) => {
           this[models] = data.data[models]
-          this[models].forEach((item) => {
-            item['value'] = item._id
-          })
-          //console.log(this.email,data.data);
-          //console.log(this[models])
+          // this[models].forEach((item) => {
+          //   item['value'] = item._id
+          // })
+          // console.log(this.email, data.data, this[models])
           this.getCompanyName()
           this.$store.commit('set', ['isLoading', false])
         })

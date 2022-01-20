@@ -18,10 +18,10 @@
   },
   "license": "ACN",
   "scripts": {
-    "serve": "vue-cli-service serve",
     "start": "node server.js",
     "start1": "nodemon server.js",
     "dev": "concurrently \"npm:start1\" \"npm:serve --fix\"",
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:e2e": "vue-cli-service test:e2e",

@@ -6,6 +6,7 @@ const mysql = require('mysql');
 const { createConnectSql, getAllConnectSql,getFilterConnectSql, getSingleConnectSql, updateConnectSql, deleteConnectSql } = require('./kt_connect');
 // Get all Connect - FILTER
 exports.getFilterConnect = function ( req, res){
+  console.log('getFilterConnect : __mongodb:', __mongodb,', req.body:', req.body )
   if(!__mongodb ){
       return getFilterConnectSql( req, res);
   } else {
