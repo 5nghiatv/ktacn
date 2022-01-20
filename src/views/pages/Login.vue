@@ -558,9 +558,9 @@ export default {
       if (post)
         this.$apiAcn.post(models, { email: this.email }).then((data) => {
           this[models] = data.data[models]
-          this[models].forEach((item) => {
-            item['value'] = item._id
-          })
+          // this[models].forEach((item) => {
+          //   item['value'] = item._id
+          // })
           //console.log(this.email,data.data);
           //console.log(this[models])
           this.getCompanyName()
