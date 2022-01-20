@@ -561,8 +561,7 @@ export default {
           // this[models].forEach((item) => {
           //   item['value'] = item._id
           // })
-          //console.log(this.email,data.data);
-          //console.log(this[models])
+          console.log(this.email, data.data, this[models])
           this.getCompanyName()
           this.$store.commit('set', ['isLoading', false])
         })
