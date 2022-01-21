@@ -22,7 +22,7 @@ const {
   connection,
   query,
   dbConfig,
-} = require('./data/connect/expAsync')
+} = require('./public/vfp-data/connect/expAsync')
 function createConnect() {
   return mysql.createConnection(dbConfig)
 }
@@ -40,7 +40,8 @@ const waitFor = (ms) => new Promise((r) => setTimeout(r, ms))
 //process.env.TZ = 'UTC';
 // process.env.TZ = 'GMT';
 
-const { DBFFile } = require('./data/vfp/dbffile')
+const { DBFFile } = require('./public/vfp-data/dbffile')
+//const { DBFFile } = require('dbffile')
 if (!String.prototype.hasOwnProperty('addSlashes')) {
   String.prototype.addSlashes = function () {
     return this.replace(/'/g, '').replace(/"/g, '').replace(/\\/g, '')
@@ -448,7 +449,17 @@ var req = {
 // var aa= _.findIndex(users, function(o) { return o.user == ss; });
 // console.log(aa,users[aa].user);
 
-//test("./data/vfp/data/data20");
+testRead('./public/vfp-data/data/data20')
+async function testRead(dir) {
+  var dbf = await DBFFile.open(`${dir}/ctuktoan.dbf`)
+  console.log(dbf)
+  // console.log(`DBF file contains ${dbf.recordCount} records.`);
+  // console.log(`Field names: ${dbf.fields.map(f => f.name).join(', ')}`);
+  let records = await dbf.readRecords(1)
+  for (let record of records) console.log(record)
+}
+
+//testWrite('./public/vfp-data/data/data20')
 async function test(dir) {
   var namnay = '20'
   var dbf = await DBFFile.open(`${dir}/ctuktoan.dbf`)
@@ -486,7 +497,7 @@ async function test(dir) {
 }
 
 //import nav from './src/_nav.js'
-const { nav1 } = require('./src/_nav1.js')
-const { nav2 } = require('./src/_nav2.js')
-const nav = [...nav1, ...nav2]
-console.log(nav)
+// const { nav1 } = require('./src/_nav1.js')
+// const { nav2 } = require('./src/_nav2.js')
+// const nav = [...nav1, ...nav2]
+// console.log(nav)

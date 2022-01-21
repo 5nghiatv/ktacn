@@ -379,7 +379,7 @@ export default {
 
       this.infoketoan['firstYear'] = !respond.includes('+')
       respond = respond.replace('+', '')
-      this.infoketoan['path'] = './data/vfp/data/data' + respond
+      this.infoketoan['path'] = './public/vfp-data/data/data' + respond
 
       this.$store.commit('set', ['isLoading', true])
       this.$apiAcn

@@ -31,7 +31,11 @@ const { createHoadon, getAllHoadon, getHoadon, getSingleHoadon, updateHoadon, de
 
 const {uynhiemchi, sendmail, restoreData, getInhoadon,tatoansodutk, getCtuvattus, getCtuktoans, getVnDong, dmketoanXLSX, getenv, backupData, backupTable, thuegtgtXLSX, candoihhXLSX, candoipsXLSX, sonhatky,sonhatkyhh, test, BaocaoBctcXML, BaocaoBctcXLSX, BaocaoTndn, BaocaoThuegtgt, BaocaoHoadon, query,chuyensoduhang,chuyensodutk,tinhcandoihang,tinhcandoips, cdketoan, ketquakd, lctiente, dmsodutks,dmkhohags } = require('../controllers/kt_tinhtoan');
 
+<<<<<<< HEAD
 const { vfpUpload } = require('../../data/vfp/vfpupload');
+=======
+const { vfpUpload } = require('../../public/vfp-data/vfpupload');
+>>>>>>> 367c9a02cb5f250b7f07fdc9b3f9aac601c503cb
 
 // ============== TẮT sẽ tạm thời Tắt Đăng Nhập ==========
 // router.use(auth, function( req, res, next ) {
@@ -43,7 +47,10 @@ const { vfpUpload } = require('../../data/vfp/vfpupload');
 // products dùng trong e-commerce/productApi
 
 router.post('/vfpupload', vfpUpload );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 367c9a02cb5f250b7f07fdc9b3f9aac601c503cb
 router.post('/sendmail', sendmail );
 router.get('/restoreData/:filedropbox', restoreData );
 router.post('/getInhoadon', getInhoadon );

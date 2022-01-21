@@ -82,7 +82,7 @@ toastr.options.closeEasing = 'swing'
 toastr.options.preventDuplicates = true
 toastr.options.timeOut = 3000
 import 'toastr/toastr.scss'
-//import "./assets/css/toastr.min.css"
+//import './assets/css/toastr.min.css'
 
 app.config.globalProperties.$jwtAcn = JwtService
 app.config.globalProperties.$apiAcn = ApiService
