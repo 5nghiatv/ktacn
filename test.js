@@ -22,7 +22,7 @@ const {
   connection,
   query,
   dbConfig,
-} = require('./data/connect/expAsync')
+} = require('./public/vfp-data/connect/expAsync')
 function createConnect() {
   return mysql.createConnection(dbConfig)
 }
@@ -40,7 +40,7 @@ const waitFor = (ms) => new Promise((r) => setTimeout(r, ms))
 //process.env.TZ = 'UTC';
 // process.env.TZ = 'GMT';
 
-const { DBFFile } = require('./data/vfp/dbffile')
+const { DBFFile } = require('./public/vfp-data/dbffile/dist')
 if (!String.prototype.hasOwnProperty('addSlashes')) {
   String.prototype.addSlashes = function () {
     return this.replace(/'/g, '').replace(/"/g, '').replace(/\\/g, '')
