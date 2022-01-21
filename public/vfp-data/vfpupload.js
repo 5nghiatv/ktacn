@@ -6,7 +6,8 @@ const iconv = require('iconv-lite');
 const _ = require('lodash');
 const {readFile, connection, query, dbConfig } = require('./connect/expAsync');
 dbConfig.database = process.env.DB_DATABASE_;
-const {DBFFile} = require('./dbffile');
+//yarn add dbffile (V.1.8.0)
+const {DBFFile} = require('./dbffile/dist/index.js');
 if (!String.prototype.hasOwnProperty('addSlashes')) {
     String.prototype.addSlashes = function() {
       return this.replace(/'/g, "").replace(/"/g,"").replace(/\\/g, "");
