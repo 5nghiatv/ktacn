@@ -31,7 +31,7 @@ const { createHoadon, getAllHoadon, getHoadon, getSingleHoadon, updateHoadon, de
 
 const {uynhiemchi, sendmail, restoreData, getInhoadon,tatoansodutk, getCtuvattus, getCtuktoans, getVnDong, dmketoanXLSX, getenv, backupData, backupTable, thuegtgtXLSX, candoihhXLSX, candoipsXLSX, sonhatky,sonhatkyhh, test, BaocaoBctcXML, BaocaoBctcXLSX, BaocaoTndn, BaocaoThuegtgt, BaocaoHoadon, query,chuyensoduhang,chuyensodutk,tinhcandoihang,tinhcandoips, cdketoan, ketquakd, lctiente, dmsodutks,dmkhohags } = require('../controllers/kt_tinhtoan');
 
-//const { vfpUpload } = require('../../data/vfp/vfpupload');
+const { vfpUpload } = require('../../data/vfp/vfpupload');
 
 // ============== TẮT sẽ tạm thời Tắt Đăng Nhập ==========
 // router.use(auth, function( req, res, next ) {
@@ -42,8 +42,7 @@ const {uynhiemchi, sendmail, restoreData, getInhoadon,tatoansodutk, getCtuvattus
 //router.get('/users/:filename', (req, res) => {
 // products dùng trong e-commerce/productApi
 
-//router.post('/vfpupload', vfpUpload );
-
+router.post('/vfpupload', vfpUpload );
 router.post('/sendmail', sendmail );
 router.get('/restoreData/:filedropbox', restoreData );
 router.post('/getInhoadon', getInhoadon );
