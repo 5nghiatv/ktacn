@@ -6,7 +6,7 @@ const iconv = require('iconv-lite');
 const _ = require('lodash');
 const {readFile, connection, query, dbConfig } = require('./connect/expAsync');
 dbConfig.database = process.env.DB_DATABASE_;
-const {DBFFile} = require('dbffile');
+const {DBFFile} = require('./dbffile');
 if (!String.prototype.hasOwnProperty('addSlashes')) {
     String.prototype.addSlashes = function() {
       return this.replace(/'/g, "").replace(/"/g,"").replace(/\\/g, "");
