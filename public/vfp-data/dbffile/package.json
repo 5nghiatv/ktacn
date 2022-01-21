@@ -3,7 +3,7 @@
   "_id": "dbffile@1.7.1",
   "_inBundle": false,
   "_integrity": "sha512-QZpcNIhoeyA44YrtoD9MQvsQk2Z48XRJZ6oYD6so0yQDyKTtewqx09rlQ2+BgCUgknLexU92W6me3NBzevu0yA==",
-  "_location": "/dbffile",
+  "_location": "public/vfp-data/dbffile",
   "_phantomChildren": {},
   "_requested": {
     "type": "tag",
