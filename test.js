@@ -22,7 +22,7 @@ const {
   connection,
   query,
   dbConfig,
-} = require('./public/vfp-data/connect/expAsync')
+} = require('./data/connect/expAsync')
 function createConnect() {
   return mysql.createConnection(dbConfig)
 }
@@ -40,7 +40,7 @@ const waitFor = (ms) => new Promise((r) => setTimeout(r, ms))
 //process.env.TZ = 'UTC';
 // process.env.TZ = 'GMT';
 
-const { DBFFile } = require('./public/vfp-data/dbffile')
+const { DBFFile } = require('./data/vfp/dbffile/dbf-file')
 //const { DBFFile } = require('dbffile')
 if (!String.prototype.hasOwnProperty('addSlashes')) {
   String.prototype.addSlashes = function () {
@@ -449,7 +449,7 @@ var req = {
 // var aa= _.findIndex(users, function(o) { return o.user == ss; });
 // console.log(aa,users[aa].user);
 
-testRead('./public/vfp-data/data/data20')
+testRead('./data/vfp/data/data20')
 async function testRead(dir) {
   var dbf = await DBFFile.open(`${dir}/ctuktoan.dbf`)
   console.log(dbf)
