@@ -4,7 +4,69 @@
       <CAvatar :src="avatar" size="md" />
     </CDropdownToggle>
     <CDropdownMenu class="pt-0">
-      <CDropdownHeader component="h6" class="bg-light fw-semibold py-2">
+      <CDropdownHeader tag="div" class="text-center" color="light">
+        <strong>Shopping</strong>
+      </CDropdownHeader>
+      <CDropdownItem href="#/e-commerce/cart">
+        <CIcon name="cil-cart" /> Giỏ hàng
+        <CBadge color="info" class="ml-auto">{{
+          this.$store.getters.cartProducts.length
+        }}</CBadge>
+      </CDropdownItem>
+
+      <CDropdownDivider />
+
+      <CDropdownItem href="#/e-commerce/home">
+        <CIcon name="cil-bell" /> Home
+        <CBadge color="info" class="ml-auto">{{ itemsCount }}</CBadge>
+      </CDropdownItem>
+      <CDropdownItem href="#/e-commerce/products">
+        <CIcon name="cil-Layers" /> All Products
+        <!-- <CBadge color="success" class="ml-auto">{{ itemsCount }}</CBadge> -->
+      </CDropdownItem>
+      <CDropdownItem href="#/e-commerce/transaction">
+        <CIcon name="cil-task" /> Transactions
+        <CBadge color="danger" class="ml-auto">{{ itemsCount }}</CBadge>
+      </CDropdownItem>
+      <CDropdownItem href="#/e-commerce/orders">
+        <CIcon name="cil-comment-square" /> Orders
+        <CBadge color="warning" class="ml-auto">{{ itemsCount }}</CBadge>
+      </CDropdownItem>
+
+      <!-- <CDropdownItem href="#/invoice/invoicefb">
+        <CIcon name="cilMagnifyingGlass" /> Invoices
+        <CBadge color="info" class="ml-auto">{{ itemsCount }}</CBadge>
+      </CDropdownItem> -->
+
+      <CDropdownDivider />
+      <!-- <CDropdownItem href="#/games/dicegame">
+        <CIcon name="cil-basket" /> Dice game
+        <CBadge color="secondary" class="ml-auto"></CBadge>
+      </CDropdownItem> -->
+      <CDropdownItem href="#/games/peek-a-vue-main">
+        <CIcon name="cil-basket" /> FipCard game
+        <CBadge color="secondary" class="ml-auto"></CBadge>
+      </CDropdownItem>
+      <CDropdownItem
+        href="https://coreui.io/vue/docs/4.1/getting-started/introduction.html"
+        target="_blank"
+      >
+        <CIcon name="cil-User-Female" /> Coreui-Vue-Pro
+        <CBadge color="success" class="ml-auto">{{ itemsCount }}</CBadge>
+      </CDropdownItem>
+
+      <!-- <CDropdownItem href="#/games/dragonconquer">
+        <CIcon name="cil-basket" /> Dragon conquer
+        <CBadge color="secondary" class="ml-auto"></CBadge>
+      </CDropdownItem> -->
+
+      <CDropdownDivider />
+      <CDropdownItem href="#/e-commerce/about">
+        <CIcon name="cil-User-Female" /> About
+        <CBadge color="success" class="ml-auto">{{ itemsCount }}</CBadge>
+      </CDropdownItem>
+
+      <!-- <CDropdownHeader component="h6" class="bg-light fw-semibold py-2">
         Account
       </CDropdownHeader>
       <CDropdownItem>
@@ -48,7 +110,7 @@
       <CDropdownItem>
         <CIcon icon="cil-shield-alt" /> Lock Account
       </CDropdownItem>
-      <CDropdownItem> <CIcon icon="cil-lock-locked" /> Logout </CDropdownItem>
+      <CDropdownItem> <CIcon icon="cil-lock-locked" /> Logout </CDropdownItem> -->
     </CDropdownMenu>
   </CDropdown>
 </template>

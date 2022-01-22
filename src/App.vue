@@ -36,10 +36,14 @@ export default {
     ...mapState(['cartProducts', 'loggedUser', 'settings']),
     CheckCreate: function () {
       // Chạy khi thực hiện router
-      // if (!this.$route.path.includes('/reports/'))
-      //   this.$store.state.isPrinting = false // Không in luôn faLse
+      if (!this.$route.path.includes('/reports/')) {
+        // eslint-disable-next-line
+        this.$store.state.isPrinting = false
+      } // Không in luôn faLse
       // if (this.$i18n.locale != this.$store.state.locale) {
-      //   this.$i18n.locale = this.$store.state.locale // Cho bên trên & bên phải - Khi thay router-view
+      //   {
+      //     this.$i18n.locale = this.$store.state.locale
+      //   } // Cho bên trên & bên phải - Khi thay router-view
       // }
       return true
     },

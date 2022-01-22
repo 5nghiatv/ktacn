@@ -480,6 +480,66 @@ const routes = [
           // },
         ],
       },
+      // ================ ecommerce =============
+      {
+        path: 'ecommerce',
+        redirect: '/e-commerce/home',
+        name: 'ecommerce',
+        component: {
+          render() {
+            return h(resolveComponent('router-view'))
+          },
+        },
+        children: [
+          {
+            path: '/e-commerce/home',
+            name: 'homecomerce',
+            component: () => import('@/views/e-commerce/Homecomerce'),
+          },
+          {
+            path: '/e-commerce/products',
+            name: 'products',
+            component: () => import('@/views/e-commerce/Products'),
+          },
+          {
+            path: '/e-commerce/transaction',
+            name: 'transaction',
+            component: () => import('@/views/e-commerce/Transaction'),
+          },
+          {
+            path: '/e-commerce/orders',
+            name: 'orders',
+            component: () => import('@/views/e-commerce/Orders'),
+          },
+          {
+            path: '/e-commerce/about',
+            name: 'about',
+            component: () => import('@/views/e-commerce/About'),
+          },
+          {
+            path: '/e-commerce/products/:id',
+            name: 'productDetails',
+            component: () => import('@/components/products/ProductDetail.vue'),
+          },
+          {
+            path: '/e-commerce/cart',
+            name: 'cart',
+            component: () =>
+              import('@/components/products/cart/CartProducts.vue'),
+          },
+          {
+            path: '/e-commerce/checkout',
+            name: 'checkout',
+            component: () => import('@/components/products/cart/Checkout.vue'),
+          },
+          {
+            path: '/e-commerce/success',
+            name: 'success',
+            component: () => import('@/views/e-commerce/Homecomerce'),
+            // Xử lý thành công ----> created().CardTemplate()
+          },
+        ],
+      },
     ],
   },
   {

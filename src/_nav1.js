@@ -110,10 +110,15 @@ exports.nav1 = [
   },
   {
     component: 'CNavGroup',
-    name: 'Games',
-    to: '/games',
+    name: 'e-commerce',
+    to: '/e-commerce/home',
     icon: 'cil-cursor',
     items: [
+      {
+        component: 'CNavItem',
+        name: 'e-commerce',
+        to: '/e-commerce/home',
+      },
       {
         component: 'CNavItem',
         name: 'Peek-a-vue-main',
