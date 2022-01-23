@@ -173,61 +173,36 @@ export default {
           this.todos = response.data.items
           //console.log(response.data)
           this.todos.forEach((item, index) => {
-            this.$set(
-              item,
-              'amount',
-              this.number_format(
-                item['amount'] / item['exchange_rate'],
-                0,
-                ',',
-                '.',
-              ),
+            item.amount = this.number_format(
+              item['amount'] / item['exchange_rate'],
+              0,
+              ',',
+              '.',
             )
-            this.$set(
-              item,
-              'fee',
-              this.number_format(
-                item['fee'] / item['exchange_rate'],
-                0,
-                ',',
-                '.',
-              ),
+            item.fee = this.number_format(
+              item['fee'] / item['exchange_rate'],
+              0,
+              ',',
+              '.',
             )
-            this.$set(
-              item,
-              'net',
-              this.number_format(
-                item['net'] / item['exchange_rate'],
-                0,
-                ',',
-                '.',
-              ),
+            item.net = this.number_format(
+              item['net'] / item['exchange_rate'],
+              0,
+              ',',
+              '.',
             )
-            this.$set(
-              item,
-              'exchange_rate',
-              this.number_format(
-                (1 / item['exchange_rate']) * 100,
-                0,
-                ',',
-                '.',
-              ),
+            item.exchange_rate = this.number_format(
+              (1 / item['exchange_rate']) * 100,
+              0,
+              ',',
+              '.',
             )
-
-            this.$set(
-              item,
-              'btnedit',
-              `<a class="fa fa-pencil-square-o text-info mr-1"  id=1 href="javascript:void(0)"></a> <a class="fa fa-trash-o text-warning mr-1"  id=2 href="javascript:void(0)"></a>`,
-            )
-            this.$set(
-              item,
-              'created',
-              new Date(item.created * 1000)
-                .toISOString()
-                .replace(/T/, ' ')
-                .replace(/\..+/, ''),
-            )
-            this.$set(item, 'id', index + 1)
+            item.btnedit = `<a class="fa fa-pencil-square-o text-info mr-1"  id=1 href="javascript:void(0)"></a> <a class="fa fa-trash-o text-warning mr-1"  id=2 href="javascript:void(0)"></a>`
+            item.created = new Date(item.created * 1000)
+              .toISOString()
+              .replace(/T/, ' ')
+              .replace(/\..+/, '')
+            item.id = index + 1
           })
           //console.log(this.todos);
         })

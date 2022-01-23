@@ -13,7 +13,7 @@
           margin: auto;
         "
       />
-      <div class="card-body" style="max-height: 300px">
+      <div class="card-body" style="max-height: 300px; font-size: 0.875rem">
         <h6 class="card-text">{{ item.productName }}.</h6>
         <p class="card-text">{{ item.productDescription }}.</p>
         <div class="d-flex justify-content-between align-items-center">
@@ -152,8 +152,9 @@ export default {
 
 <style>
 .card-text {
-  height: 60px !important;
+  height: 65px !important;
   overflow: hidden;
+  font-size: 15px;
 }
 .btn:not(:disabled):not(.disabled) {
   cursor: pointer;

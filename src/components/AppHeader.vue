@@ -5,7 +5,12 @@
         <CIcon icon="cil-menu" size="lg" />
       </CHeaderToggler>
       <CHeaderBrand class="mx-auto d-lg-none" to="/">
-        <CIcon :icon="logo" height="48" alt="Logo" />
+        <!-- <CIcon :icon="logo" height="48" alt="Logo" /> -->
+        <img
+          src="logo_black.png"
+          class="c-avatar-img"
+          style="width 80%; height: 60%; border-radius: 50em;"
+        />
       </CHeaderBrand>
       <CHeaderNav class="d-none d-md-flex me-auto">
         <CNavItem>
@@ -105,7 +110,7 @@ import AppHeaderDropdownAccnt from './AppHeaderDropdownAccnt'
 import AppHeaderDropdownMssgs from './AppHeaderDropdownMssgs'
 import AppHeaderDropdownNotif from './AppHeaderDropdownNotif'
 import AppHeaderDropdownTasks from './AppHeaderDropdownTasks'
-import { logo } from '@/assets/brand/logo'
+//import { logo } from '@/assets/brand/logo'
 
 export default {
   name: 'AppHeader',
@@ -118,7 +123,7 @@ export default {
   },
   setup() {
     return {
-      logo,
+      // logo,
     }
   },
 }

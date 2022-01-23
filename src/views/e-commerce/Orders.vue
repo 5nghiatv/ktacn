@@ -30,7 +30,7 @@
       :pagination-options="{
         enabled: true,
         mode: 'pages',
-        perPage: 15,
+        perPage: 30,
         position: 'top',
         perPageDropdown: [15, 30, 50, 100, 300, 500],
         dropdownAllowAll: true,
@@ -200,7 +200,7 @@ export default {
           })
         })
         .then(() => {
-          //console.log(333,this.shippings);
+          //console.log(333, this.shippings)
           this.loading = false
           this.$toastr.success('XuânMai-VueShop', 'Orders loaded Successfully')
         })
@@ -212,104 +212,30 @@ export default {
           )
         })
     },
-    getTodos__() {
-      this.loading = true
-      axios
-        .get(`${process.env.VUE_APP_BASE_URL}/${this.models}`)
-        .then((response) => {
-          this.loading = false
-          this.todos = response.data.items
 
-          this.todos.forEach((item, index) => {
-            this.$set(
-              item,
-              'amount',
-              this.number_format(
-                item['amount'] / item['exchange_rate'],
-                0,
-                ',',
-                '.',
-              ),
-            )
-            this.$set(
-              item,
-              'fee',
-              this.number_format(
-                item['fee'] / item['exchange_rate'],
-                0,
-                ',',
-                '.',
-              ),
-            )
-            this.$set(
-              item,
-              'net',
-              this.number_format(
-                item['net'] / item['exchange_rate'],
-                0,
-                ',',
-                '.',
-              ),
-            )
-            this.$set(
-              item,
-              'exchange_rate',
-              this.number_format(
-                (1 / item['exchange_rate']) * 100,
-                0,
-                ',',
-                '.',
-              ),
-            )
-
-            this.$set(
-              item,
-              'btnedit',
-              `<a class="fa fa-pencil-square-o text-info mr-1"  id=1 href="javascript:void(0)"></a> <a class="fa fa-trash-o text-warning mr-1"  id=2 href="javascript:void(0)"></a>`,
-            )
-            this.$set(
-              item,
-              'created',
-              new Date(item.created * 1000)
-                .toISOString()
-                .replace(/T/, ' ')
-                .replace(/\..+/, ''),
-            )
-            this.$set(item, 'id', index + 1)
-          })
-          //console.log(this.todos);
-        })
-        .catch((error) => {
-          console.log(error)
-          this.$toastr.error(
-            'Internal Error 500',
-            'The server encountered an unexpected condition.',
-          )
-        })
-    },
-    number_format(number, decimals, dec_point, thousands_sep) {
-      // Strip all characters but numerical ones.
-      number = (number + '').replace(/[^0-9+\-Ee.]/g, '')
-      var n = !isFinite(+number) ? 0 : +number,
-        prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-        sep = typeof thousands_sep === 'undefined' ? ',' : thousands_sep,
-        dec = typeof dec_point === 'undefined' ? '.' : dec_point,
-        s = '',
-        toFixedFix = function (n, prec) {
-          var k = Math.pow(10, prec)
-          return '' + Math.round(n * k) / k
-        }
-      // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-      s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.')
-      if (s[0].length > 3) {
-        s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep)
-      }
-      if ((s[1] || '').length < prec) {
-        s[1] = s[1] || ''
-        s[1] += new Array(prec - s[1].length + 1).join('0')
-      }
-      return s.join(dec)
-    },
+    // number_format(number, decimals, dec_point, thousands_sep) {
+    //   // Strip all characters but numerical ones.
+    //   number = (number + '').replace(/[^0-9+\-Ee.]/g, '')
+    //   var n = !isFinite(+number) ? 0 : +number,
+    //     prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+    //     sep = typeof thousands_sep === 'undefined' ? ',' : thousands_sep,
+    //     dec = typeof dec_point === 'undefined' ? '.' : dec_point,
+    //     s = '',
+    //     toFixedFix = function (n, prec) {
+    //       var k = Math.pow(10, prec)
+    //       return '' + Math.round(n * k) / k
+    //     }
+    //   // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+    //   s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.')
+    //   if (s[0].length > 3) {
+    //     s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep)
+    //   }
+    //   if ((s[1] || '').length < prec) {
+    //     s[1] = s[1] || ''
+    //     s[1] += new Array(prec - s[1].length + 1).join('0')
+    //   }
+    //   return s.join(dec)
+    // },
     mySreach(row, col, cellValue, searchTerm) {
       //placeholder: 'Nhập nội dung tìm hoặc >0',
       //searchFn: mySreach

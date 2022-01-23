@@ -1,9 +1,9 @@
 <template>
   <div class="home-component">
-    <div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid" style="padding: 0rem 0rem">
       <div class="container">
         <img alt="Vue logo" src="../../assets/logo.png" width="100px" />
-        <h3 class="display-5">
+        <h3 class="display-5" style="font-size: 30px">
           <span style="color: #42b983">Xuân Mai - VueShop</span>
         </h3>
         <!-- <p class="lead">A ShoppingCart (Ecommerce) Application using Vue.js.</p> -->

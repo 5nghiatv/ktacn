@@ -70,7 +70,7 @@
                     checked
                   />
                   <label for="scales"
-                    >Thanh toán bằng tiền mặt khi nhận hàng</label
+                    >&nbsp;Thanh toán bằng tiền mặt khi nhận hàng</label
                   >
                 </div>
               </div>
