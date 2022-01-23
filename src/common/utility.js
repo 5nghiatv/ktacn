@@ -22,7 +22,8 @@ export default {
     //this.$i18n.locale = this.$store.state.locale
   },
   created: function () {
-    //console.log("Printing from the Mixin")
+    this.googletheme = this.theme === 'default' ? '' : 'nocturnal'
+    // console.log("Printing from the Mixin", this.googletheme)
   },
   methods: {
     displayMessage() {

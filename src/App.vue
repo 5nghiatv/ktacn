@@ -32,6 +32,14 @@ export default {
     // this.$i18n.locate = info.locate // Cho bên bên trái & hệ thống ( this.$i18n.locate)
     // this.$store.state.locale = info.locate // Dành cho bên trên & phải (this.$store.state.locale)
   },
+  // watch: {
+  //   items: {
+  //     handler(val, oldVal) {
+  //       console.log(oldVal + ' --> ' + val)
+  //     },
+  //     deep: true,
+  //   },
+  // },
   computed: {
     ...mapState(['cartProducts', 'loggedUser', 'settings']),
     CheckCreate: function () {
@@ -74,17 +82,9 @@ export default {
       location.reload()
     },
   },
-  watch: {
-    items: {
-      handler(val, oldVal) {
-        console.log(oldVal + ' --> ' + val)
-      },
-      deep: true,
-    },
-  },
   setup() {
     const store = useStore()
-
+    //console.log(111, 'setup:', store.state.loggedUser)
     watch(store.state, () => {
       store.state.theme === 'dark'
         ? document.body.classList.add('dark-theme')

@@ -531,25 +531,24 @@ export default {
                     this.$toastr.success('', cmess)
                   }
                 })
-                .then(() => {
-                  //alert(11111)
-                  this.$router.push('/')
+                .then(async () => {
                   this.$store.commit('set', ['isLoading', false])
+                  await this.$router.push('/')
+                  location.reload()
                 })
               // console.log(data.data.token) ;
               // console.log(this.$jwtAcn.getDateTime()) ;
             })
             .catch((error) => {
               let mess = 'Lỗi hệ thống, hãy đăng nhập lần sau.'
-              // switch (error.response.status) {
-              //   case 404:
-              //     mess = 'This user is not registered ...'
-              //     break
-              //   case 401:
-              //     mess = 'Access denied, Incorrect username or password ...'
-              //     break
-              // }
-              //this.$message({ message: mess,  type: 'error',  duration: 3000  })
+              switch (error.response.status || '') {
+                case 404:
+                  mess = 'This user is not registered ...'
+                  break
+                case 401:
+                  mess = 'Access denied, Incorrect username or password ...'
+                  break
+              }
               this.$toastr.error('', mess)
               console.log(error)
               this.$store.commit('set', ['isLoading', false])

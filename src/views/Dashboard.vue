@@ -283,13 +283,9 @@ export default {
       googletheme: '',
     }
   },
+  beforeCreate: function () {},
   computed: {
     ...mapState(['theme']),
-  },
-  watch: {
-    theme() {
-      this.googletheme = this.theme === 'default' ? '' : 'nocturnal'
-    },
   },
   methods: {
     ...mapActions('myDocument', ['GET_DM_KHOHANG']),

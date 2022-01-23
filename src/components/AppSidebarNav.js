@@ -61,7 +61,6 @@ const AppSidebarNav = defineComponent({
       const { nav1 } = require('@/_nav1.js')
       nav = [...nav1]
     }
-    //console.log(store.state.isAdmin, nav)
     // ======== New add
 
     const route = useRoute()

@@ -20,7 +20,8 @@
           <CNavLink href="#/users/0">Users</CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="#/pages/login">Settings</CNavLink>
+          <!-- <CNavLink href="#" @click="logout">Settings</CNavLink> -->
+          <CNavLink href="#" @click="logout">Settings</CNavLink>
         </CNavItem>
       </CHeaderNav>
       <CHeaderNav class="ms-auto me-4">
@@ -111,6 +112,7 @@ import AppHeaderDropdownMssgs from './AppHeaderDropdownMssgs'
 import AppHeaderDropdownNotif from './AppHeaderDropdownNotif'
 import AppHeaderDropdownTasks from './AppHeaderDropdownTasks'
 //import { logo } from '@/assets/brand/logo'
+import { useStore } from 'vuex'
 
 export default {
   name: 'AppHeader',
@@ -122,8 +124,18 @@ export default {
     AppHeaderDropdownTasks,
   },
   setup() {
+    const store = useStore()
+    const logout = () => {
+      //if(!confirm('Đăng xuất và thiết lập thông tin - chứng từ - Doanh nhiệp ? ')){ return;}
+      store.dispatch('logout')
+      //delete window.axios.defaults.headers.common['Authorization']
+      console.log('loggout !!!')
+      //this.$router.push('/page/login')
+      location.reload()
+    }
     return {
       // logo,
+      logout,
     }
   },
 }

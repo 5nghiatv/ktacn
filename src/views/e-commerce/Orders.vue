@@ -21,8 +21,8 @@
         enabled: true,
         collapsable: true,
       }"
-      theme=""
-      @on-cell-click="onCellClick"
+      :theme="googletheme"
+      v-on:cell-click="onCellClick"
       styleClass="vgt-table condensed bordered striped"
       max-height="20000px"
       :fixed-header="false"

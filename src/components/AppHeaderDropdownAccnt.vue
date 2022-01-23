@@ -52,7 +52,7 @@
         target="_blank"
       >
         <CIcon name="cil-User-Female" /> Coreui-Vue-Pro
-        <CBadge color="success" class="ml-auto">{{ itemsCount }}</CBadge>
+        <CBadge color="info" class="ml-auto">{{ itemsCount }}</CBadge>
       </CDropdownItem>
 
       <!-- <CDropdownItem href="#/games/dragonconquer">
@@ -116,10 +116,16 @@
 </template>
 
 <script>
-import avatar from '@/assets/images/avatars/8.jpg'
+import avatar1 from '@/assets/images/avatars/8.jpg'
+import avatar2 from '@/assets/images/avatars/6.jpg'
+import { useStore } from 'vuex'
+
 export default {
   name: 'AppHeaderDropdownAccnt',
   setup() {
+    const store = useStore()
+    const avatar = store.state.isAdmin ? avatar1 : avatar2
+
     return {
       avatar: avatar,
       itemsCount: 42,
