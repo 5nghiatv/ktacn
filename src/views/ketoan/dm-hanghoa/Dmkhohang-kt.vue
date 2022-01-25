@@ -148,14 +148,12 @@
           <CFormInput
             size="sm"
             id="pd_fromdate"
-            readonly
-            v-model="infoketoan.fromtodate.tungay"
+            :placeholder="infoketoan.fromtodate.tungay"
           />
           <CFormInput
             size="sm"
             id="pd_todate"
-            readonly
-            v-model="infoketoan.fromtodate.denngay"
+            :placeholder="infoketoan.fromtodate.denngay"
           />
         </CInputGroup>
       </CCol>
@@ -684,11 +682,6 @@ export default {
 </script>
 
 <style scoped>
-#pd_fromdate,
-#pd_todate {
-  background-color: aliceblue;
-}
-
 select {
   width: 250px;
   height: 35px;
