@@ -16,7 +16,7 @@ dotenv.config();
 
 // Get all Tenhang
 exports.getAllTenhang = function ( req, res){
-  var query = 'SELECT * FROM tenhang ORDER BY mahang' ;
+  var query = 'SELECT *,mahang as value FROM tenhang ORDER BY mahang' ;
   var mysqlConnection = createConnect(req, res);
   mysqlConnection.connect((err) => {
       if (!err){

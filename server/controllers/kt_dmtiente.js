@@ -16,7 +16,7 @@ dotenv.config();
 
 // Get all Dmtiente
 exports.getAllDmtiente = function ( req, res){
-  var query = 'SELECT * FROM dmtiente ORDER BY loaitien' ;
+  var query = 'SELECT *,loaitien as value FROM dmtiente ORDER BY loaitien' ;
   var mysqlConnection = createConnect(req, res);
   mysqlConnection.connect((err) => {
       if (!err){

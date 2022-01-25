@@ -37,29 +37,28 @@
                     </CInputGroup>
                   </CCol>
                   <CCol md="5">
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <label>MST</label>
-                        <select
-                          style="width: 290px"
-                          :is-valid="testValidator('masothue')"
-                          v-model="hoadon.masothue"
-                          :required="true"
-                          size="1"
-                        >
-                          <option
-                            v-bind:value="customer.maso"
-                            v-for="customer in customers_"
-                            :selected="customer.maso == hoadon.masothue"
-                          >
-                            <div>
-                              {{ customer.maso }} ... 
-                              {{ customer.company }}
-                            </div>
-                          </option>
-                        </select>
-                      </div>
-                    </form>
+                    <Multiselect
+                      v-model="hoadon.masothue"
+                      placeholder="Select your character"
+                      :searchable="true"
+                      trackBy="value"
+                      label="value"
+                      class="multiselect-blue form-control is-valid"
+                      :options="danhmucCustomer"
+                      :is-valid="testValidator('masothue')"
+                    >
+                      <template v-slot:singlelabel="{ value }">
+                        <div class="multiselect-single-label">
+                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                          {{ value.value }}
+                        </div>
+                      </template>
+
+                      <template v-slot:option="{ option }">
+                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                        {{ option.value }} {{ option.company }}
+                      </template>
+                    </Multiselect>
                   </CCol>
                 </CRow>
                 <CRow>
@@ -99,7 +98,7 @@
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Cộng Tiền</CInputGroupText>
                       <CFormInput
-                        id="congtien"
+                        class="congtien"
                         :disabled="true"
                         v-model="TotalHd_Tien"
                         v-mask-decimal.br="0"
@@ -136,7 +135,6 @@
                         :disabled="true"
                         v-model="TotalHd_Thue"
                         v-mask-decimal.br="0"
-                        prepend="Cộng Thuế"
                       />
                     </CInputGroup>
                   </CCol>
@@ -218,54 +216,52 @@
               <div v-if="ischitiet == 2">
                 <CRow>
                   <CCol md="4">
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <label>Mã hàng</label>
-                        <select
-                          id="focus_vt"
-                          :is-valid="testValidator('mahang')"
-                          v-model="ctuvattu.mahang"
-                          :required="true"
-                          size="1"
-                        >
-                          <option
-                            v-for="tenhang in tenhangs"
-                            v-bind:value="tenhang.mahang"
-                            :selected="tenhang.mahang == ctuvattu.mahang"
-                          >
-                            <div>
-                              {{ tenhang.mahang }} ... 
-                              {{ tenhang.tenhang }}
-                            </div>
-                          </option>
-                        </select>
-                      </div>
-                    </form>
+                    <Multiselect
+                      v-model="ctuvattu.mahang"
+                      placeholder="Select your character"
+                      :searchable="true"
+                      trackBy="value"
+                      label="value"
+                      class="multiselect-blue form-control is-valid"
+                      :options="danhmucTenhang"
+                      :is-valid="testValidator('mahang')"
+                    >
+                      <template v-slot:singlelabel="{ value }">
+                        <div class="multiselect-single-label">
+                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                          {{ value.value }}
+                        </div>
+                      </template>
+
+                      <template v-slot:option="{ option }">
+                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                        {{ option.value }} {{ option.tenhang }}
+                      </template>
+                    </Multiselect>
                   </CCol>
                   <CCol md="4">
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <label>Kho hàng</label>
-                        <select
-                          style="width: 245px"
-                          :is-valid="testValidator('makho')"
-                          v-model="ctuvattu.makho"
-                          :required="true"
-                          size="1"
-                        >
-                          <option
-                            v-for="dmtenkho in dmtenkhos"
-                            v-bind:value="dmtenkho.makho"
-                            :selected="dmtenkho.makho == ctuvattu.makho"
-                          >
-                            <div>
-                              {{ dmtenkho.makho }} ... 
-                              {{ dmtenkho.tengoi }}
-                            </div>
-                          </option>
-                        </select>
-                      </div>
-                    </form>
+                    <Multiselect
+                      v-model="ctuvattu.makho"
+                      placeholder="Select your character"
+                      :searchable="true"
+                      trackBy="value"
+                      label="value"
+                      class="multiselect-blue form-control is-valid"
+                      :options="danhmucKhohang"
+                      :is-valid="testValidator('makho')"
+                    >
+                      <template v-slot:singlelabel="{ value }">
+                        <div class="multiselect-single-label">
+                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                          {{ value.value }}
+                        </div>
+                      </template>
+
+                      <template v-slot:option="{ option }">
+                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                        {{ option.value }} {{ option.tengoi }}
+                      </template>
+                    </Multiselect>
                   </CCol>
                   <CCol md="1">
                     <CButton
@@ -339,7 +335,7 @@
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Cộng tiền</CInputGroupText>
                       <CFormInput
-                        id="congtien"
+                        class="congtien"
                         :disabled="true"
                         style="text-align: right"
                         v-model="TotalCtuvattu"
@@ -418,52 +414,52 @@
                 </CRow>
                 <CRow>
                   <CCol md="4">
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <label>TK Nợ </label>
-                        <select
-                          :is-valid="testValidator('tkno')"
-                          v-model="chitiet.tkno"
-                          :required="true"
-                          size="1"
-                        >
-                          <option
-                            v-for="dmtkhoan in dmtkhoans"
-                            v-bind:value="dmtkhoan.sotk"
-                            :selected="dmtkhoan.sotk == chitiet.tkno"
-                          >
-                            <div>
-                              {{ dmtkhoan.sotk }} ... 
-                              {{ dmtkhoan.tentk }}
-                            </div>
-                          </option>
-                        </select>
-                      </div>
-                    </form>
+                    <Multiselect
+                      v-model="chitiet.tkno"
+                      placeholder="Select your character"
+                      :searchable="true"
+                      trackBy="value"
+                      label="value"
+                      class="multiselect-blue form-control is-valid"
+                      :options="danhmucTaikhoan"
+                      :is-valid="testValidator('tkno')"
+                    >
+                      <template v-slot:singlelabel="{ value }">
+                        <div class="multiselect-single-label">
+                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                          {{ value.value }}
+                        </div>
+                      </template>
+
+                      <template v-slot:option="{ option }">
+                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                        {{ option.value }} {{ option.tentk }}
+                      </template>
+                    </Multiselect>
                   </CCol>
                   <CCol md="4">
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <label>TK Có </label>
-                        <select
-                          :is-valid="testValidator('tkco')"
-                          v-model="chitiet.tkco"
-                          :required="true"
-                          size="1"
-                        >
-                          <option
-                            v-for="dmtkhoan in dmtkhoans"
-                            v-bind:value="dmtkhoan.sotk"
-                            :selected="dmtkhoan.sotk == chitiet.tkco"
-                          >
-                            <div>
-                              {{ dmtkhoan.sotk }} ... 
-                              {{ dmtkhoan.tentk }}
-                            </div>
-                          </option>
-                        </select>
-                      </div>
-                    </form>
+                    <Multiselect
+                      v-model="chitiet.tkco"
+                      placeholder="Select your character"
+                      :searchable="true"
+                      trackBy="value"
+                      label="value"
+                      class="multiselect-blue form-control is-valid"
+                      :options="danhmucTaikhoan"
+                      :is-valid="testValidator('tkco')"
+                    >
+                      <template v-slot:singlelabel="{ value }">
+                        <div class="multiselect-single-label">
+                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                          {{ value.value }}
+                        </div>
+                      </template>
+
+                      <template v-slot:option="{ option }">
+                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                        {{ option.value }} {{ option.tentk }}
+                      </template>
+                    </Multiselect>
                   </CCol>
                   <CCol md="1">
                     <CButton
@@ -478,11 +474,10 @@
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Cộng tiền</CInputGroupText>
                       <CFormInput
-                        id="congtien"
+                        class="congtien"
                         :disabled="true"
                         v-model="TotalChitiet"
                         v-mask-decimal.br="0"
-                        prepend="Cộng tiền"
                       />
                     </CInputGroup>
                   </CCol>
@@ -584,53 +579,52 @@
                 </CRow>
                 <CRow>
                   <CCol md="4">
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <label>TK Nợ </label>
-                        <select
-                          :is-valid="testValidator('tkno')"
-                          v-model="todo.tkno"
-                          :required="true"
-                          size="1"
-                        >
-                          <option
-                            v-for="dmtkhoan in dmtkhoans"
-                            v-bind:value="dmtkhoan.sotk"
-                            :selected="dmtkhoan.sotk == todo.tkno"
-                          >
-                            <div>
-                              {{ dmtkhoan.sotk }} ... 
-                              {{ dmtkhoan.tentk }}
-                            </div>
-                          </option>
-                        </select>
-                      </div>
-                    </form>
-                  </CCol>
+                    <Multiselect
+                      v-model="todo.tkno"
+                      placeholder="Select your character"
+                      :searchable="true"
+                      trackBy="value"
+                      label="value"
+                      class="multiselect-blue form-control is-valid"
+                      :options="danhmucTaikhoan"
+                      :is-valid="testValidator('tkno')"
+                    >
+                      <template v-slot:singlelabel="{ value }">
+                        <div class="multiselect-single-label">
+                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                          {{ value.value }}
+                        </div>
+                      </template>
 
+                      <template v-slot:option="{ option }">
+                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                        {{ option.value }} {{ option.tentk }}
+                      </template>
+                    </Multiselect>
+                  </CCol>
                   <CCol md="4">
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <label>TK Có </label>
-                        <select
-                          :is-valid="testValidator('tkco')"
-                          v-model="todo.tkco"
-                          :required="true"
-                          size="1"
-                        >
-                          <option
-                            v-for="dmtkhoan in dmtkhoans"
-                            v-bind:value="dmtkhoan.sotk"
-                            :selected="dmtkhoan.sotk == todo.tkco"
-                          >
-                            <div>
-                              {{ dmtkhoan.sotk }} ... 
-                              {{ dmtkhoan.tentk }}
-                            </div>
-                          </option>
-                        </select>
-                      </div>
-                    </form>
+                    <Multiselect
+                      v-model="todo.tkco"
+                      placeholder="Select your character"
+                      :searchable="true"
+                      trackBy="value"
+                      label="value"
+                      class="multiselect-blue form-control is-valid"
+                      :options="danhmucTaikhoan"
+                      :is-valid="testValidator('tkco')"
+                    >
+                      <template v-slot:singlelabel="{ value }">
+                        <div class="multiselect-single-label">
+                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                          {{ value.value }}
+                        </div>
+                      </template>
+
+                      <template v-slot:option="{ option }">
+                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                        {{ option.value }} {{ option.tentk }}
+                      </template>
+                    </Multiselect>
                   </CCol>
 
                   <CCol md="4">
@@ -938,7 +932,9 @@ import Modal from './modal/Modal.vue'
 import CustomerForm from './modal/CustomerForm'
 import AccountForm from './modal/AccountForm'
 import ProductForm from './modal/ProductForm'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
+//import dmtkhoan from '@/container/dmtkhoan'
+import Multiselect from '@vueform/multiselect'
 
 export default {
   name: 'Chungtu',
@@ -951,6 +947,8 @@ export default {
     CustomerForm,
     AccountForm,
     ProductForm,
+    //dmtkhoan,
+    Multiselect,
   },
   data() {
     return {
@@ -1123,10 +1121,11 @@ export default {
       console.log('Creating new product: ', product)
       apiService
         .createTodo('tenhang', product)
-        .then((r) => {
+        .then(async (r) => {
           if (r.status === 201) {
             this.$toastr.success('', 'Tạo mặt hàng mới thành công.')
-            this.readDanhmuc('tenhangs')
+            await this.getDanhmuc('GET_DM_TENHANG')
+            await this.setChitiet(0) // for update
           } else this.$toastr.warning('', 'Tạo mặt hàng mới KHÔNG thành công.')
         })
         .catch((err) => {
@@ -1144,10 +1143,11 @@ export default {
       console.log('Creating new customer: ', customer)
       apiService
         .createTodo('customer_', customer)
-        .then((r) => {
+        .then(async (r) => {
           if (r.status === 201) {
             this.$toastr.success('', 'Tạo khách hàng mới thành công.')
-            this.readDanhmuc('customers_')
+            await this.getDanhmuc('GET_DM_CUSTOMER')
+            await this.setChitiet(0) // for update
           } else
             this.$toastr.warning('', 'Tạo khách hàng mới KHÔNG thành công.')
         })
@@ -1162,10 +1162,11 @@ export default {
       console.log('Creating new account: ', account)
       apiService
         .createTodo('dmtkhoan', account)
-        .then((r) => {
+        .then(async (r) => {
           if (r.status === 201) {
             this.$toastr.success('', 'Tạo tài khoản mới thành công.')
-            this.readDanhmuc('dmtkhoans')
+            await this.getDanhmuc('GET_DM_TAIKHOAN')
+            await this.setChitiet(0) // for update dmtkhoan
           } else this.$toastr.warning('', 'Tạo tài khoản KHÔNG mới thành công.')
         })
         .catch((err) => {
@@ -1876,6 +1877,8 @@ export default {
       if (this.ischitiet == 3) {
         if (field == 'sohd')
           return (this.Validator.sohd = this.hoadon.sohd != '')
+        if (field == 'diengiai')
+          return (this.Validator.diengiai = this.hoadon.diengiai != '')
         if (field == 'ngay')
           return (this.Validator.ngay = this.hoadon.ngay != '')
         if (field == 'masothue')
@@ -1885,6 +1888,7 @@ export default {
           return (this.Validator.thuesuat = this.hoadon.thuesuat != '')
         passe =
           this.Validator.sohd &&
+          this.Validator.diengiai &&
           this.Validator.ngay &&
           this.Validator.masothue &&
           this.Validator.thuesuat
@@ -2016,7 +2020,7 @@ export default {
         this.ctuvattu = {
           id: '',
           mahang: '',
-          makho: this.dmtenkhos[0].makho,
+          makho: this.danhmucKhohang[0].makho || '',
           soluong: '',
           sotien: '',
         }
@@ -2453,6 +2457,30 @@ export default {
           //this.listLoading = false ;
         })
     },
+    async getDanhmuc(danhmuc) {
+      switch (danhmuc) {
+        case 'GET_DM_TAIKHOAN':
+          await this.GET_DM_TAIKHOAN()
+          break
+        case 'GET_DM_CUSTOMER':
+          await this.GET_DM_CUSTOMER()
+          break
+        case 'GET_DM_TENHANG':
+          await this.GET_DM_TENHANG()
+          break
+        case 'GET_DM_KHOHANG':
+          await this.GET_DM_KHOHANG()
+          break
+        default:
+        // default statements
+      }
+    },
+    ...mapActions('myDocument', [
+      'GET_DM_TAIKHOAN',
+      'GET_DM_CUSTOMER',
+      'GET_DM_TENHANG',
+      'GET_DM_KHOHANG',
+    ]),
   },
   created() {
     this.infoketoan = this.$jwtAcn.getKetoan()
@@ -2465,15 +2493,19 @@ export default {
   },
 
   mounted() {
-    // this.getTodos(this.models);
-    // this.readCdketoan()
-    this.readDanhmuc('dmtkhoans')
-    this.readDanhmuc('dmtientes')
-    this.readDanhmuc('customers_')
-    this.readDanhmuc('tenhangs')
-    this.readDanhmuc('dmtenkhos')
+    this.getDanhmuc('GET_DM_TAIKHOAN')
+    this.getDanhmuc('GET_DM_CUSTOMER')
+    this.getDanhmuc('GET_DM_TENHANG')
+    this.getDanhmuc('GET_DM_KHOHANG')
+
+    // this.readDanhmuc('dmtkhoans') // Sẽ thay thế ở trên
+    // this.readDanhmuc('dmtientes')
+    // this.readDanhmuc('customers_')
+    // this.readDanhmuc('tenhangs')
+    // this.readDanhmuc('dmtenkhos')
+
     this.readTodos() // sau khi có pd_fromdate
-    //console.log(111,this);
+    //console.log(111, this.danhmucTenhang)
 
     // this.$apiAcn.query('/query' ,{
     //      "query": 'select * from ctuktoan' })
@@ -2498,6 +2530,12 @@ export default {
   },
   computed: {
     ...mapState(['settings']),
+    ...mapState('myDocument', [
+      'danhmucTaikhoan',
+      'danhmucCustomer',
+      'danhmucTenhang',
+      'danhmucKhohang',
+    ]),
     // Khi biến trong 1 hàm (computed) thay đổi thì Nó sẽ tự chạy , vd: this.settings.FirstMonth, this.ischitiet
     maxDateforInput() {
       if (this.settings.FirstMonth) {
@@ -2592,7 +2630,7 @@ export default {
 
 <style scoped>
 #congthue,
-#congtien {
+.congtien {
   color: cornflowerblue;
   text-align: right;
 }
@@ -2649,5 +2687,25 @@ label {
 <style>
 table.vgt-table {
   /* font-size: 14px !important; */
+}
+</style>
+
+<style src="@vueform/multiselect/themes/default.css"></style>
+<style>
+.multiselect-green {
+  --ms-tag-bg: #d1fae5;
+  --ms-tag-color: #059669;
+}
+
+.multiselect-blue {
+  --ms-tag-bg: #dbeafe;
+  --ms-tag-color: #2563eb;
+}
+.multiselect-option {
+  width: 530px;
+}
+.multiselect-dropdown {
+  width: 550px;
+  height: 550px;
 }
 </style>

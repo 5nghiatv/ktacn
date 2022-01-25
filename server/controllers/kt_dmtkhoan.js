@@ -16,7 +16,7 @@ dotenv.config();
 
 // Get all Dmtkhoan
 exports.getAllDmtkhoan = function ( req, res){
-  var query = 'SELECT * FROM dmtkhoan ORDER BY sotk' ;
+  var query = 'SELECT *,sotk as value FROM dmtkhoan ORDER BY sotk' ;
   var mysqlConnection = createConnect(req, res);
   mysqlConnection.connect((err) => {
       if (!err){

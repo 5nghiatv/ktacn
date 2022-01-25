@@ -41,7 +41,7 @@ export const myDocument = {
       state.danhmucCustomer = payload
     },
     SET_DM_TENHANG(state, payload) {
-      state.danhmucCustomer = payload
+      state.danhmucTenhang = payload
     },
     SET_DM_KHOHANG(state, payload) {
       state.danhmucKhohang = payload

@@ -16,7 +16,7 @@ dotenv.config();
 
 // Get all Dmtenkho
 exports.getAllDmtenkho = function ( req, res){
-  var query = 'SELECT * FROM dmtenkho ORDER BY makho' ;
+  var query = 'SELECT *,makho as value FROM dmtenkho ORDER BY makho' ;
   var mysqlConnection = createConnect(req, res);
   mysqlConnection.connect((err) => {
       if (!err){

@@ -16,7 +16,7 @@ dotenv.config();
 
 // Get all Customer
 exports.getAllCustomer_ = function ( req, res){
-  var query = 'SELECT * FROM customer ORDER BY maso' ;
+  var query = 'SELECT *,maso as value FROM customer ORDER BY maso' ;
   var mysqlConnection = createConnect(req, res);
   mysqlConnection.connect((err) => {
       if (!err){

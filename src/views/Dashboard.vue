@@ -1,5 +1,7 @@
 <template>
   <div>
+    <!-- <dmtkhoan :sotk="tkno" /> <dmtkhoan :sotk="tkco" />
+    <br /> -->
     <WidgetsStatsA />
     <!-- <CRow>
       <CCol :md="12">
@@ -270,6 +272,7 @@ import WidgetsStatsA from './widgets/WidgetsStatsTypeA.vue'
 import { onMounted, onUpdated, onUnmounted } from 'vue'
 //import { onBeforeMount, onMounted, ref, inject } from "vue"
 import { mapState, mapActions } from 'vuex'
+//import dmtkhoan from '@/container/dmtkhoan'
 
 export default {
   name: 'Dashboard',
@@ -277,26 +280,39 @@ export default {
     // MainChartExample,
     WidgetsStatsA,
     // WidgetsStatsD,
+    //dmtkhoan,
   },
   data() {
     return {
       googletheme: '',
+      tkno: '5111',
+      tkco: '8111',
     }
   },
-  beforeCreate: function () {},
+  async mounted() {
+    // this.$refs.multiselect.$el.focus()
+    // await this.GET_DM_TAIKHOAN()
+    // await this.danhmucTaikhoan.forEach((element) => {
+    //   element.value = element.sotk
+    // })
+    //console.log(this.danhmucTaikhoan)
+  },
   computed: {
+    ...mapState('myDocument', ['danhmucTaikhoan']),
     ...mapState(['theme']),
   },
+
+  beforeCreate: function () {},
   methods: {
-    ...mapActions('myDocument', ['GET_DM_KHOHANG']),
+    ...mapActions('myDocument', ['GET_DM_TAIKHOAN']),
   },
-  async mounted() {
-    //console.log(111, this.$store, this.theme)
-    // const store = useStore()
-    // await store.dispatch('myDocument/GET_DM_KHOHANG')
-    // this.todos = store.state.myDocument.danhmucKhohang
-    // console.log(222, 'Mounted: ', this.$store.state, this.todos)
-  },
+  // async mounted() {
+  //   //console.log(111, this.$store, this.theme)
+  //   // const store = useStore()
+  //   // await store.dispatch('myDocument/GET_DM_KHOHANG')
+  //   // this.todos = store.state.myDocument.danhmucKhohang
+  //   // console.log(222, 'Mounted: ', this.$store.state, this.todos)
+  // },
   setup() {
     //const store = useStore()
     onMounted(async () => {
