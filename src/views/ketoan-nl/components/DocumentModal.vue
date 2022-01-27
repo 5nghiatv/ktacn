@@ -53,7 +53,12 @@
           </div>
           <div class="input flex flex-column">
             <label for="inputsotien">Số tiền</label>
-            <input required v-mask="maskn" v-model="sotien" type="text" />
+            <input
+              required
+              v-mask-decimal.br="0"
+              v-model="sotien"
+              type="text"
+            />
           </div>
         </div>
         <div class="input flex flex-column">
@@ -67,22 +72,64 @@
         </div>
         <div class="location-details flex">
           <label class="typo__label">Tài khoản Nợ</label>
+          <Multiselect
+            v-model="tkno"
+            placeholder="Select your character"
+            :searchable="true"
+            trackBy="value"
+            label="value"
+            class="multiselect-blue form-control is-valid"
+            :options="danhmucTaikhoan"
+          >
+            <template v-slot:singlelabel="{ value }">
+              <div class="multiselect-single-label">
+                <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                {{ value.value }}
+              </div>
+            </template>
+            <template v-slot:option="{ option }">
+              <!-- <img class="character-option-icon" :src="option.icon" /> -->
+              {{ option.value }} {{ option.tentk }}
+            </template>
+          </Multiselect>
+
+          <!-- <label class="typo__label">Tài khoản Nợ</label>
           <VueMultiSelect
             @getCurrentList="getCurrentListNo"
             :currentOpt="0"
             :modelOpt="tkno"
             :titleOpt="2"
-          />
+          /> -->
         </div>
 
         <div class="location-details flex">
           <label class="typo__label">Tài khoản Có</label>
-          <VueMultiSelect
+          <Multiselect
+            v-model="tkco"
+            placeholder="Select your character"
+            :searchable="true"
+            trackBy="value"
+            label="value"
+            class="multiselect-blue form-control is-valid"
+            :options="danhmucTaikhoan"
+          >
+            <template v-slot:singlelabel="{ value }">
+              <div class="multiselect-single-label">
+                <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                {{ value.value }}
+              </div>
+            </template>
+            <template v-slot:option="{ option }">
+              <!-- <img class="character-option-icon" :src="option.icon" /> -->
+              {{ option.value }} {{ option.tentk }}
+            </template>
+          </Multiselect>
+          <!-- <VueMultiSelect
             @getCurrentList="getCurrentListCo"
             :currentOpt="0"
             :modelOpt="tkco"
             :titleOpt="2"
-          />
+          /> -->
         </div>
       </div>
 
@@ -123,28 +170,21 @@
 // });
 // import db from "../firebase/firebaseInit";
 // let db = window.firebase.firestore();
-import ModalPublic from './ModalPublic'
+//import ModalPublic from './ModalPublic'
 import Loading from './Loading'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import moment from 'moment'
-const { configMask, numberFormat, setColorNumber } = require('../utility')
-import createNumberMask from 'text-mask-addons/dist/createNumberMask'
-const currencyMask = createNumberMask(configMask)
-// import Multiselect from 'vue-multiselect';
-// import Multiselect from '../utility/vue-multiselect';
-import VueMultiSelect from '../components/VueMultiSelect'
-
+const { numberFormat, setColorNumber } = require('../utility')
+import Multiselect from '@vueform/multiselect'
 export default {
   name: 'documentModal',
   components: {
     Loading,
-    ModalPublic,
-    // Multiselect,
-    VueMultiSelect,
+    //ModalPublic,
+    Multiselect,
   },
   data() {
     return {
-      maskn: currencyMask,
       soct: null,
       ngay: moment(new Date()).format('DD-MM-YYYY'),
       diengiai: null,
@@ -159,11 +199,11 @@ export default {
   },
   mounted() {
     //console.log(this.danhmucTaikhoan);
-    this.options = this.danhmucTaikhoan
-    this.tkno = this.danhmucTaikhoan.filter((item) => item.sotk === this.tkno)
-    this.tkco = this.danhmucTaikhoan.filter((item) => item.sotk === this.tkco)
-    if (this.tkno.length > 0) this.tkno = this.tkno[0]
-    if (this.tkco.length > 0) this.tkco = this.tkco[0]
+    // this.options = this.danhmucTaikhoan
+    // this.tkno = this.danhmucTaikhoan.filter((item) => item.sotk === this.tkno)
+    // this.tkco = this.danhmucTaikhoan.filter((item) => item.sotk === this.tkco)
+    // if (this.tkno.length > 0) this.tkno = this.tkno[0]
+    // if (this.tkco.length > 0) this.tkco = this.tkco[0]
   },
   created() {
     if (this.editInvoice) {
@@ -279,10 +319,9 @@ export default {
             soct: this.soct,
             ngay: moment(this.ngay, 'DD-MM-YYYY').format('YYYY-MM-DD'),
             diengiai: this.diengiai,
-            tkno: this.tkno.sotk, // new new
-            tkco: this.tkco.sotk,
-            // sotien: this.sotien.replace(/\,/g, ''),
-            sotien: this.sotien.replace(/\./g, '').replace(/\,/g, '.'),
+            tkno: this.tkno, // new new
+            tkco: this.tkco,
+            sotien: this.sotien,
             // ngoaite: newdata.ngoaite,
           },
         })
@@ -302,10 +341,10 @@ export default {
             ngay: moment(this.ngay, 'DD-MM-YYYY').format('YYYY-MM-DD'),
             // moment(this.ngay).format('YYYY-MM-DD'),
             diengiai: this.diengiai,
-            tkno: this.tkno.sotk, // new new
-            tkco: this.tkco.sotk,
+            tkno: this.tkno, // new new
+            tkco: this.tkco,
             //sotien: this.sotien.replace(/\,/g, ''),
-            sotien: this.sotien.replace(/\./g, '').replace(/\,/g, '.'),
+            sotien: this.sotien.split('.').join('').split(',').join('.'),
             //ngoaite: this.ngoaite,
           },
           routeId: this.$route.params.ctid,

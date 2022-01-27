@@ -101,4 +101,11 @@ export default {
 <style lang="scss">
 // Import Main styles for this application
 @import 'styles/style';
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm,
+.container {
+  max-width: 1440px !important;
+}
 </style>

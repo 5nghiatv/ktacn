@@ -1,6 +1,6 @@
 <template>
   <header class="flex">
-    <div @click="$store.commit('toggleSidebarDesktop')" class="branding flex">
+    <div @click="$store.commit('toggleSidebar')" class="branding flex">
       <img src="../assets/file-invoice-dollar-solid.png" alt="" />
     </div>
   </header>

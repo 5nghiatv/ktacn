@@ -3,10 +3,10 @@
     <!-- Header -->
     <div class="header flex">
       <div class="left flex flex-column">
-        <h1>Documents</h1>
+        <h2>Documents</h2>
         <span :title="this.dateFromto"
-          >There are <strong> {{ documentData.length }} </strong>total
-          documents</span
+          >There are
+          <strong> {{ documentData.length }} </strong> documents</span
         >
       </div>
       <div class="right flex" :class="{ disable: showDocumentView }">
@@ -27,7 +27,7 @@
           class="flex"
         >
           <CCol col="1" style="float: right">
-            <el-select
+            <select
               class="filter"
               size="small"
               title="Lọc chuyển chứng từ-Tài khoản -> Excel"
@@ -36,14 +36,14 @@
               clearable
               style="margin-right: 5px; width: 70px"
             >
-              <el-option
+              <option
                 class="filter"
                 v-for="item in paternOptions"
                 :key="item"
                 :label="item"
                 :value="item"
               />
-            </el-select>
+            </select>
           </CCol>
         </div>
         <div v-if="patern == 'TK'" class="filter flex">
@@ -175,6 +175,7 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 const { setColorNumber } = require('../utility')
 import moment from 'moment'
 import JwtService from '@/common/jwt.service'
+import _ from 'lodash'
 
 export default {
   name: 'HomeDocument',
@@ -324,7 +325,7 @@ export default {
                 ) // chỉ để thông báo
                 this.$apiAcn
                   .post('/query', { query: query })
-                  .then((ret) => {
+                  .then(() => {
                     this.$toastr.success(
                       '',
                       'COPY ( ' +
@@ -356,7 +357,7 @@ export default {
       this.$store.commit('set', ['isLoading', true])
       this.$apiAcn
         .post('/tatoansodutk', this.infoketoan)
-        .then(async (data) => {
+        .then(async () => {
           await this.GET_DOCUMENTS(true)
           this.$store.commit('set', ['isLoading', false])
           this.$toastr.success(
@@ -388,7 +389,7 @@ export default {
           pd_fromdate: this.infoketoan.fromtodate.pd_fromdate,
           pd_todate: this.infoketoan.fromtodate.pd_todate,
         })
-        .then(async (data) => {
+        .then(async () => {
           await this.GET_DOCUMENTS(true)
           this.$toastr.success('', title + ' thực hiện THÀNH CÔNG.')
           this.$store.commit('set', ['isLoading', false])
@@ -411,7 +412,10 @@ export default {
             this.$store.commit('set', ['isLoading', false])
           })
           .catch((error) => {
-            this.$toastr.error('', 'ERROR Download file : ' + filename)
+            this.$toastr.error(
+              '',
+              'ERROR Download file : ' + this.infoketoan['filename'],
+            )
             console.log(error)
             this.$store.commit('set', ['isLoading', false])
           })
@@ -512,6 +516,7 @@ export default {
         return this.getPagination()
       }
       if (!this.filteredInvoice) {
+        // eslint-disable-next-line
         this.documentFilter = this.documentData
         this.setPagination()
         return this.getPagination()
@@ -542,13 +547,16 @@ export default {
 
       var orderby = this.orderInvoice ? 'asc' : 'desc'
       if (this.filteredInvoice === 'Chứng từ') {
+        // eslint-disable-next-line
         this.documentFilter = _.orderBy(
           this.documentData,
           ['soct', 'ngay_'],
           [orderby],
         )
       }
+      // eslint-disable-next-line
       if (this.filteredInvoice === 'Ngày tháng') {
+        // eslint-disable-next-line
         this.documentFilter = _.sortBy(
           this.documentData,
           ['ngay_', 'soct'],
@@ -556,6 +564,7 @@ export default {
         )
       }
       if (this.filteredInvoice === 'Số tiền') {
+        // eslint-disable-next-line
         this.documentFilter = _.sortBy(
           this.documentData,
           ['sotien_', 'ngay_'],
@@ -568,6 +577,7 @@ export default {
         this.filteredInvoice === 'Paid' ||
         this.filteredInvoice === 'Pending'
       ) {
+        // eslint-disable-next-line
         this.documentFilter = this.documentData.filter((document) => {
           if (this.filteredInvoice === 'Draft')
             return this.setColorNumber('draft', document.sotien)
@@ -599,6 +609,7 @@ export default {
   color: #fff;
 
   .header {
+    background-color: #2a2b36;
     margin-bottom: 25px; //65px;
     .left {
       flex: 1;

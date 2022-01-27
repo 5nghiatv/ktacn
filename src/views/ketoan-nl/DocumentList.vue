@@ -9,6 +9,8 @@
           <!-- Chú ý: Chữ in & thường -->
           <transition name="invoice">
             <DocListModal v-if="docListModal" />
+          </transition>
+          <transition name="invoice">
             <DocumentModal v-if="documentModal" />
           </transition>
           <!-- <router-view /> -->
@@ -97,7 +99,26 @@ export default {
 }
 </script>
 
-<style src="./utility/vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style src="@vueform/multiselect/themes/default.css"></style>
+<style>
+.multiselect-green {
+  --ms-tag-bg: #d1fae5;
+  --ms-tag-color: #059669;
+}
+
+.multiselect-blue {
+  --ms-tag-bg: #dbeafe;
+  --ms-tag-color: #2563eb;
+}
+.multiselect-option {
+  width: 530px;
+}
+.multiselect-dropdown {
+  width: 550px;
+  height: 550px;
+}
+</style>
+
 <style type="text/css">
 .__multiselect__content-wrapper,
 .__multiselect__option,
@@ -150,10 +171,10 @@ export default {
 .appinv {
   background-color: #141625;
   min-height: 100vh;
+
   @media (min-width: 900px) {
     flex-direction: row !important;
   }
-
   .appinv-content {
     padding: 0 20px;
     flex: 1;

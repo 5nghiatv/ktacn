@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Multiselect from '../utility/vue-multiselect'
+import Multiselect from '@vueform/multiselect'
 import { mapActions, mapMutations, mapState } from 'vuex'
 
 export default {

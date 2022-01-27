@@ -473,11 +473,11 @@ const routes = [
             name: 'Lctiente',
             component: () => import('@/views/ketoan/bc-ketoan/Lctiente-kt'),
           },
-          // {
-          //   path: '/documents',
-          //   name: 'Documents',
-          //   component: () => import('@/views/ketoan-nl/DocumentList'),
-          // },
+          {
+            path: '/documents',
+            name: 'Documents',
+            component: () => import('@/views/ketoan-nl/DocumentList'),
+          },
         ],
       },
       // ================ ecommerce =============
