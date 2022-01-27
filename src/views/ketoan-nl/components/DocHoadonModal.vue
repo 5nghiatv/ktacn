@@ -156,7 +156,7 @@
                 <div class="location-details flex">
                   <label class="typo__label"></label>
                   <Multiselect
-                    v-model="item.maso"
+                    v-model="item.masothue"
                     placeholder="Nhập mã số thuế"
                     :searchable="true"
                     trackBy="value"
@@ -205,6 +205,19 @@
               </td>
               <!-- <td class="total flex"><input type="text" value="item.giaban+ item.thuegtgt" disabled/></td> -->
               <div class="table-items flex">
+                <a
+                  @click="deleteItem(item.id)"
+                  class="fa fa-trash-o text-warning mr-1"
+                  id="2"
+                ></a>
+                <a
+                  @click="copyItem(item.id)"
+                  class="fa fa-plus text-info mr-1"
+                  id="1"
+                ></a>
+              </div>
+
+              <!-- <div class="table-items flex">
                 <img
                   @click="deleteItem(item.id)"
                   src="../assets/icon-delete.svg"
@@ -217,7 +230,7 @@
                   src="../assets/icon-plus.svg"
                   alt=""
                 />
-              </div>
+              </div> -->
             </tr>
           </table>
 
@@ -475,7 +488,7 @@ export default {
 
     async updateInvoice() {
       var isValid = true
-      var checkmaso = await this.chitietItem.filter((item) => !item.maso)
+      var checkmaso = await this.chitietItem.filter((item) => !item.masothue)
       if (checkmaso.length > 0)
         return this.$toastr.warning('', 'Vui lòng nhập mã số thuế.')
       await this.chitietItem.forEach((element) => {
@@ -485,7 +498,7 @@ export default {
       //await this.closeInvoice();  // Sau kiểm tra mới được & trước chỉnh sửa số liệu
       await this.chitietItem.forEach((element) => {
         element.ngay = moment(element.ngay, 'DD-MM-YYYY').format('YYYY-MM-DD')
-        element.masothue = element.maso // Chú ý masothue & maso
+        //element.masothue = element.maso // Chú ý masothue & maso
       })
       const ret = await this.UPDATE_HOADON({
         chitietItem: this.chitietItem,

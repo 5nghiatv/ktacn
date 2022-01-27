@@ -203,9 +203,9 @@
             class="item flex"
           >
             <p>{{ item.tenhang }}</p>
-            <p>{{ item.mahang.mahang || item.mahang }}</p>
+            <p>{{ item.mahang }}</p>
             <p>{{ item.donvi }}</p>
-            <p>{{ item.makho.makho || item.makho }}</p>
+            <p>{{ item.makho }}</p>
             <p>{{ item.soluong }}</p>
             <p>{{ numberFormat(item.sotien) }}</p>
           </div>
@@ -416,7 +416,7 @@ export default {
                   )
           break
         case 3:
-          console.log(111, this.documentDataHoadon)
+          //console.log(111, this.documentDataHoadon)
           if (this.documentDataHoadon && this.documentDataHoadon.length != 0)
             this.congChitiet.hoadon = this.documentDataHoadon.reduce(
               (a, b) =>

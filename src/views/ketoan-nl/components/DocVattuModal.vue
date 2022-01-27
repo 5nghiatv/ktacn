@@ -203,6 +203,19 @@
                 />
               </td>
               <div class="table-items flex">
+                <a
+                  @click="deleteItem(item.id)"
+                  class="fa fa-trash-o text-warning mr-1"
+                  id="2"
+                ></a>
+                <a
+                  @click="copyItem(item.id)"
+                  class="fa fa-plus text-info mr-1"
+                  id="1"
+                ></a>
+              </div>
+
+              <!-- <div class="table-items flex">
                 <img
                   @click="deleteItem(item.id)"
                   src="../assets/icon-delete.svg"
@@ -215,7 +228,7 @@
                   src="../assets/icon-plus.svg"
                   alt=""
                 />
-              </div>
+              </div> -->
             </tr>
           </table>
 
@@ -442,7 +455,7 @@ export default {
       this.chitietItem.push({
         ctid: this.currentDocumentArray[0].ctid,
         mahang: '',
-        makho: makho[0],
+        makho: makho,
         soluong: null,
         sotien: null,
       })

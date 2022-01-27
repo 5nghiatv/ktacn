@@ -154,27 +154,6 @@
                       {{ option.value }} {{ option.tentk }}
                     </template>
                   </Multiselect>
-
-                  <!-- <multiselect
-                    v-model="item.tkno"
-                    placeholder="Nhập số hoặc tên tài khoản"
-                    label="sotk"
-                    track-by="sotk"
-                    :options="options"
-                    :option-width="300"
-                    :custom-label="customLabel"
-                    :show-labels="false"
-                  >
-                    <template v-slot:option="props">
-                      <span class="option__title">{{ props.option.sotk }}</span>
-                      <div class="option__desc">
-                        <span class="option__small">{{
-                          props.option.tentk
-                        }}</span>
-                      </div>
-                    </template>
-                  </multiselect> -->
-                  <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
                 </div>
               </td>
               <td class="item20">
@@ -198,27 +177,6 @@
                       {{ option.value }} {{ option.tentk }}
                     </template>
                   </Multiselect>
-
-                  <!-- <multiselect
-                    v-model="item.tkco"
-                    placeholder="Nhập số hoặc tên tài khoản"
-                    label="sotk"
-                    track-by="sotk"
-                    :preselect-first="true"
-                    :options="options"
-                    :custom-label="customLabel"
-                    :show-labels="false"
-                  >
-                    <template v-slot:option="props">
-                      <span class="option__title">{{ props.option.sotk }}</span>
-                      <div class="option__desc">
-                        <span class="option__small">{{
-                          props.option.tentk
-                        }}</span>
-                      </div>
-                    </template>
-                  </multiselect> -->
-                  <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
                 </div>
               </td>
 
@@ -232,20 +190,32 @@
                 />
               </td>
 
-              <div class="table-items flex">
+              <!-- <div class="table-items flex">
                 <img
                   @click="deleteItem(item.id)"
                   src="../assets/icon-delete.svg"
-                  alt=""
+                  alt="-"
                 />
-              </div>
+              </div> -->
               <div class="table-items flex">
+                <a
+                  @click="deleteItem(item.id)"
+                  class="fa fa-trash-o text-warning mr-1"
+                  id="2"
+                ></a>
+                <a
+                  @click="copyItem(item.id)"
+                  class="fa fa-plus text-info mr-1"
+                  id="1"
+                ></a>
+              </div>
+              <!-- <div>  
                 <img
                   @click="copyItem(item.id)"
                   src="../assets/icon-plus.svg"
-                  alt=""
+                  alt="+"
                 />
-              </div>
+              </div> -->
             </tr>
           </table>
 
@@ -544,7 +514,7 @@ export default {
   &::-webkit-scrollbar {
     display: none;
   }
-  @media (min-width: 900px) {
+  @media (min-width: 1040px) {
     left: 90px;
   }
 
