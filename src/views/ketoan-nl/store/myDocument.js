@@ -1,5 +1,6 @@
 import ApiService from '@/common/api.service'
 import JwtService from '@/common/jwt.service'
+const { numberFormat } = require('../utility')
 import moment from 'moment'
 import { ref } from 'vue'
 
@@ -59,7 +60,7 @@ export const myDocument = {
       state.documentDataHoadon = payload
     },
     SET_DOCUMENT_DATA(state, payload) {
-      //console.log(111,"data old-new:",state.documentData,payload);
+      //console.log(111, 'data old-new:', state.documentData, payload)
       state.documentData = payload
     },
     DOCUMENTS_LOADED(state) {
@@ -176,6 +177,7 @@ export const myDocument = {
             item.ngay_ = moment(item.ngay).format('YYYYMMDD')
             item.sotien_ = item.sotien
             item.ngay = moment(item.ngay).format('DD-MM-YYYY')
+            item.sotien = numberFormat(item.sotien, 0, ',', '.')
             // Vue.set(item, 'ngay_', moment(item.ngay).format('YYYYMMDD')) // For Oder in HomeDocument
             // Vue.set(item, 'sotien_', item.sotien)
             // Vue.set(item, 'ngay', moment(item.ngay).format('DD-MM-YYYY'))
@@ -193,7 +195,7 @@ export const myDocument = {
         })
     },
     async UPDATE_DOCUMENT({ dispatch, commit }, { chungtu, routeId }) {
-      var query =
+      let query =
         'UPDATE ctuktoan SET soct = "' +
         chungtu.soct +
         '", ngay = "' +
@@ -208,7 +210,8 @@ export const myDocument = {
         chungtu.sotien +
         ' WHERE id=' +
         chungtu.id
-      let ret = dispatch('runMysql', query)
+
+      let ret = await dispatch('runMysql', query, query)
       if (ret) {
         await dispatch('GET_DOCUMENTS', true)
         await commit('SET_CURRENT_DOCUMENT', routeId)
@@ -285,10 +288,10 @@ export const myDocument = {
       )
         .then((data) => {
           let chitiets = data.data.chitiets
-          // chitiets.forEach((item, index) => {
-          //   // this.$set(item, "sotien",this.number_format(item['sotien'],0,',','.'));
-          //   // this.$set(item, "ngoaite",this.number_format(item['ngoaite'],2,',','.'));
-          // })
+          chitiets.forEach((item) => {
+            item.sotien = numberFormat(item.sotien, 0, ',', '.')
+            // this.$set(item, "ngoaite",this.number_format(item['ngoaite'],2,',','.'));
+          })
           return chitiets
         })
         .then((dat) => {
@@ -307,7 +310,7 @@ export const myDocument = {
       // =====================  Nhớ có dấu ; ở cuối
       /* eslint-disable */
       await chitietItem.forEach((reqbody) => {
-        reqbody.sotien = reqbody.sotien.replace(/\./g, '').replace(/\,/g, '.')
+        reqbody.sotien = reqbody.sotien.split('.').join('').split(',').join('.')
         query =
           query +
           'INSERT INTO chitiet (`id`, `ctid`, `diengiai`, `tkno`, `tkco`, `sotien`,`matkno`,`matkco`,`ngoaite`,`ctkhac`) ' +
@@ -351,8 +354,10 @@ export const myDocument = {
             var tenhang = state.danhmucTenhang.filter(
               (document) => document.mahang == item.mahang,
             )
-            Vue.set(item, 'tenhang', tenhang[0].tenhang)
-            Vue.set(item, 'donvi', tenhang[0].donvi)
+            item.tenhang = tenhang[0].tenhang
+            item.donvi = tenhang[0].donvi
+            item.sotien = numberFormat(item.sotien, 0, ',', '.')
+            item.soluong = numberFormat(item.soluong, 2, ',', '.')
             // this.$set(item, "ngoaite",this.number_format(item['ngoaite'],2,',','.'));
           })
           return chitiets
@@ -369,8 +374,12 @@ export const myDocument = {
       var query = "DELETE FROM ctuvattu WHERE ctid = '" + ctid + "';"
       // =====================  Nhớ có dấu ; ở cuối
       await chitietItem.forEach((reqbody) => {
-        reqbody.sotien = reqbody.sotien.replace(/\./g, '').replace(/\,/g, '.')
-        reqbody.soluong = reqbody.soluong.replace(/\./g, '').replace(/\,/g, '.')
+        reqbody.sotien = reqbody.sotien.split('.').join('').split(',').join('.')
+        reqbody.soluong = reqbody.soluong
+          .split('.')
+          .join('')
+          .split(',')
+          .join('.')
         query =
           query +
           'INSERT INTO ctuvattu (`id`, `ctid`, `mahang`, `makho`, `soluong`, `sotien`, `dongia`,`vtkhac`,`ngoaite`,`doituong`,`giaban`,`thue`,`soluong2`,`doituong2`) ' +
@@ -399,7 +408,9 @@ export const myDocument = {
           chitiets.forEach((item) => {
             // this.$set(item, "sotien",this.number_format(item['sotien'],0,',','.'));
             // this.$set(item, "ngoaite",this.number_format(item['ngoaite'],2,',','.'));
-            Vue.set(item, 'ngay', moment(item.ngay).format('DD-MM-YYYY'))
+            item.ngay = moment(item.ngay).format('DD-MM-YYYY')
+            item.giaban = numberFormat(item.giaban, 0, ',', '.')
+            item.thuegtgt = numberFormat(item.thuegtgt, 0, ',', '.')
           })
           return chitiets
         })
@@ -416,10 +427,12 @@ export const myDocument = {
       var query = "DELETE FROM hoadon WHERE ctid = '" + ctid + "';"
       // =====================  Nhớ có dấu ; ở cuối
       await chitietItem.forEach((reqbody) => {
-        reqbody.giaban = reqbody.giaban.replace(/\./g, '').replace(/\,/g, '.')
+        reqbody.giaban = reqbody.giaban.split('.').join('').split(',').join('.')
         reqbody.thuegtgt = reqbody.thuegtgt
-          .replace(/\./g, '')
-          .replace(/\,/g, '.')
+          .split('.')
+          .join('')
+          .split(',')
+          .join('.')
         query =
           query +
           'INSERT INTO hoadon (`id`,`ctid`,`sohd`,`ngay`,`diengiai`,`masothue`,`thuesuat`,`giaban`,`thuegtgt`,`mausohd`,`mamauhd`,`sohdong`,`ngayhdong`,' +
@@ -613,7 +626,7 @@ export const myDocument = {
     },
 
     // async runMysql({}, query) {
-    async runMysql(query) {
+    async runMysql({}, query) {
       var success = false
       await ApiService.post('/query', { query: query })
         .then((ret) => {

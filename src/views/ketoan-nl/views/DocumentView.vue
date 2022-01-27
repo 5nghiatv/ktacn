@@ -1,16 +1,23 @@
 <template>
   <div v-if="currentDocument" class="document-view container">
-    <transition name="invoice">
-      <DocumentModal @refreshDoc="refreshDoc" v-if="documentModal" />
-      <DocChitietModal @refreshDoc="tinhchenhlech" v-if="docChitietModal" />
-      <DocVattuModal @refreshDoc="tinhchenhlech" v-if="docVattuModal" />
-      <DocHoadonModal @refreshDoc="tinhchenhlech" v-if="docHoadonModal" />
-    </transition>
     <!-- <router-link class="nav-link flex" :to="{ name: 'Documents' }">
       <img src="../assets/icon-arrow-left.svg" alt="" /> Go Back Documents
     </router-link> -->
     <!-- Header -->
     <div class="header flex">
+      <transition name="invoice">
+        <DocumentModal @refreshDoc="refreshDoc" v-if="documentModal" />
+      </transition>
+      <transition name="invoice">
+        <DocChitietModal @refreshDoc="tinhchenhlech" v-if="docChitietModal" />
+      </transition>
+      <transition name="invoice">
+        <DocVattuModal @refreshDoc="tinhchenhlech" v-if="docVattuModal" />
+      </transition>
+      <transition name="invoice">
+        <DocHoadonModal @refreshDoc="tinhchenhlech" v-if="docHoadonModal" />
+      </transition>
+
       <ModalPublic @resSubmit="resSubmit" v-if="modalActiveNew" />
 
       <div class="left flex">
@@ -169,8 +176,8 @@
             class="item flex"
           >
             <p>{{ item.diengiai }}</p>
-            <p>{{ item.tkno.sotk || item.tkno }}</p>
-            <p>{{ item.tkco.sotk || item.tkco }}</p>
+            <p>{{ item.tkno }}</p>
+            <p>{{ item.tkco }}</p>
             <p>{{ numberFormat(item.sotien) }}</p>
           </div>
         </div>
@@ -229,7 +236,14 @@
             <p>{{ item.ngay }}</p>
             <p>{{ item.masothue }}</p>
             <p>{{ item.thuesuat }}</p>
-            <p>{{ numberFormat(item.giaban + item.thuegtgt) }}</p>
+            <p>
+              {{
+                numberFormat(
+                  item.giaban.split('.').join('') * 1 +
+                    item.thuegtgt.split('.').join('') * 1,
+                )
+              }}
+            </p>
             <p>{{ numberFormat(item.thuegtgt) }}</p>
             <p>{{ numberFormat(item.giaban) }}</p>
           </div>
@@ -362,38 +376,66 @@ export default {
           // a: giá trị oject trước -- b: giá trị oject hiện hành
           if (this.documentDataChitiet && this.documentDataChitiet.length != 0)
             this.congChitiet.chitiet = this.documentDataChitiet.reduce(
-              (a, b) => +a + +b.sotien,
+              (a, b) =>
+                +a +
+                +parseInt(b.sotien.split('.').join('').split(',').join('.')),
               0,
             )
           if (this.currentDocument)
             this.chenhlechChitiet =
               this.congChitiet.chitiet == 0
                 ? 0
-                : this.congChitiet.chitiet - this.currentDocument.sotien
+                : this.congChitiet.chitiet -
+                  parseInt(
+                    this.currentDocument.sotien
+                      .split('.')
+                      .join('')
+                      .split(',')
+                      .join('.'),
+                  )
           break
         case 2:
           if (this.documentDataVattu && this.documentDataVattu.length != 0)
             this.congChitiet.vattu = this.documentDataVattu.reduce(
-              (a, b) => +a + +b.sotien,
+              (a, b) =>
+                +a +
+                +parseInt(b.sotien.split('.').join('').split(',').join('.')),
               0,
             )
           if (this.currentDocument)
             this.chenhlechChitiet =
               this.congChitiet.vattu == 0
                 ? 0
-                : this.congChitiet.vattu - this.currentDocument.sotien
+                : this.congChitiet.vattu -
+                  parseInt(
+                    this.currentDocument.sotien
+                      .split('.')
+                      .join('')
+                      .split(',')
+                      .join('.'),
+                  )
           break
         case 3:
+          console.log(111, this.documentDataHoadon)
           if (this.documentDataHoadon && this.documentDataHoadon.length != 0)
             this.congChitiet.hoadon = this.documentDataHoadon.reduce(
-              (a, b) => +a + +b.giaban,
+              (a, b) =>
+                +a +
+                +parseInt(b.giaban.split('.').join('').split(',').join('.')),
               0,
             )
           if (this.currentDocument)
             this.chenhlechChitiet =
               this.congChitiet.hoadon == 0
                 ? 0
-                : this.congChitiet.hoadon - this.currentDocument.sotien
+                : this.congChitiet.hoadon -
+                  parseInt(
+                    this.currentDocument.sotien
+                      .split('.')
+                      .join('')
+                      .split(',')
+                      .join('.'),
+                  )
           break
         default:
           this.chenhlechChitiet = 0
@@ -436,7 +478,9 @@ export default {
             try {
               var ctid = ret.query[0][0].ctid
               this.getCurrentDocument(ctid)
-            } catch (error) {}
+            } catch (error) {
+              console.log(error)
+            }
           } else this.$toastr.warning('', 'COPY chứng từ KHÔNG thành công.')
         }
         this.$store.commit('set', ['isLoading', false])
@@ -507,14 +551,14 @@ export default {
 
   .nav-link {
     cursor: pointer;
-    margin: auto 15px;
+    margin: auto;
     align-items: center;
     // background-color: #1e2139;
     background-color: #252945;
     // background-color: rgba(51, 214, 160, 0.1);
     // color: #fff;
     font-size: 16px;
-    width: 170px;
+    width: 140px;
     border-radius: 20px;
     img {
       margin-right: 16px;

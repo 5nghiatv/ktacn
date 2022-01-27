@@ -37,28 +37,31 @@
                     </CInputGroup>
                   </CCol>
                   <CCol md="5">
-                    <Multiselect
-                      v-model="hoadon.masothue"
-                      placeholder="Select your character"
-                      :searchable="true"
-                      trackBy="value"
-                      label="value"
-                      class="multiselect-blue form-control is-valid"
-                      :options="danhmucCustomer"
-                      :is-valid="testValidator('masothue')"
-                    >
-                      <template v-slot:singlelabel="{ value }">
-                        <div class="multiselect-single-label">
-                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                          {{ value.value }}
-                        </div>
-                      </template>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>Mã số Thuế</CInputGroupText>
+                      <Multiselect
+                        v-model="hoadon.masothue"
+                        placeholder="Select your character"
+                        :searchable="true"
+                        trackBy="value"
+                        label="value"
+                        class="multiselect-blue form-control is-valid"
+                        :options="danhmucCustomer"
+                        :is-valid="testValidator('masothue')"
+                      >
+                        <template v-slot:singlelabel="{ value }">
+                          <div class="multiselect-single-label">
+                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                            {{ value.value }}
+                          </div>
+                        </template>
 
-                      <template v-slot:option="{ option }">
-                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
-                        {{ option.value }} {{ option.company }}
-                      </template>
-                    </Multiselect>
+                        <template v-slot:option="{ option }">
+                          <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                          {{ option.value }} {{ option.company }}
+                        </template>
+                      </Multiselect>
+                    </CInputGroup>
                   </CCol>
                 </CRow>
                 <CRow>
@@ -88,7 +91,6 @@
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Thuế gtgt</CInputGroupText>
                       <CFormInput
-                        class="form-control is-valid"
                         v-model="hoadon.thuegtgt"
                         v-mask-decimal.br="0"
                       />
@@ -216,52 +218,58 @@
               <div v-if="ischitiet == 2">
                 <CRow>
                   <CCol md="4">
-                    <Multiselect
-                      v-model="ctuvattu.mahang"
-                      placeholder="Select your character"
-                      :searchable="true"
-                      trackBy="value"
-                      label="value"
-                      class="multiselect-blue form-control is-valid"
-                      :options="danhmucTenhang"
-                      :is-valid="testValidator('mahang')"
-                    >
-                      <template v-slot:singlelabel="{ value }">
-                        <div class="multiselect-single-label">
-                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                          {{ value.value }}
-                        </div>
-                      </template>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>Mã hàng</CInputGroupText>
+                      <Multiselect
+                        v-model="ctuvattu.mahang"
+                        placeholder="Select your character"
+                        :searchable="true"
+                        trackBy="value"
+                        label="value"
+                        class="multiselect-blue form-control is-valid"
+                        :options="danhmucTenhang"
+                        :is-valid="testValidator('mahang')"
+                      >
+                        <template v-slot:singlelabel="{ value }">
+                          <div class="multiselect-single-label">
+                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                            {{ value.value }}
+                          </div>
+                        </template>
 
-                      <template v-slot:option="{ option }">
-                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
-                        {{ option.value }} {{ option.tenhang }}
-                      </template>
-                    </Multiselect>
+                        <template v-slot:option="{ option }">
+                          <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                          {{ option.value }} {{ option.tenhang }}
+                        </template>
+                      </Multiselect>
+                    </CInputGroup>
                   </CCol>
                   <CCol md="4">
-                    <Multiselect
-                      v-model="ctuvattu.makho"
-                      placeholder="Select your character"
-                      :searchable="true"
-                      trackBy="value"
-                      label="value"
-                      class="multiselect-blue form-control is-valid"
-                      :options="danhmucKhohang"
-                      :is-valid="testValidator('makho')"
-                    >
-                      <template v-slot:singlelabel="{ value }">
-                        <div class="multiselect-single-label">
-                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                          {{ value.value }}
-                        </div>
-                      </template>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>Mã Kho</CInputGroupText>
+                      <Multiselect
+                        v-model="ctuvattu.makho"
+                        placeholder="Select your character"
+                        :searchable="true"
+                        trackBy="value"
+                        label="value"
+                        class="multiselect-blue form-control is-valid"
+                        :options="danhmucKhohang"
+                        :is-valid="testValidator('makho')"
+                      >
+                        <template v-slot:singlelabel="{ value }">
+                          <div class="multiselect-single-label">
+                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                            {{ value.value }}
+                          </div>
+                        </template>
 
-                      <template v-slot:option="{ option }">
-                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
-                        {{ option.value }} {{ option.tengoi }}
-                      </template>
-                    </Multiselect>
+                        <template v-slot:option="{ option }">
+                          <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                          {{ option.value }} {{ option.tengoi }}
+                        </template>
+                      </Multiselect>
+                    </CInputGroup>
                   </CCol>
                   <CCol md="1">
                     <CButton
@@ -311,8 +319,7 @@
                         v-mask-decimal.br="2"
                         @change="tinhGiaTien('dongia')"
                         v-model="ctuvattu.dongia"
-                        type="text"
-                        class="form-control is-valid"
+                        class="form-control"
                       />
                     </div>
                   </CCol>
@@ -326,8 +333,7 @@
                         v-mask-decimal.br="0"
                         @change="tinhGiaTien('sotien')"
                         v-model="ctuvattu.sotien"
-                        type="text"
-                        class="form-control is-valid"
+                        class="form-control"
                       />
                     </div>
                   </CCol>
@@ -414,52 +420,58 @@
                 </CRow>
                 <CRow>
                   <CCol md="4">
-                    <Multiselect
-                      v-model="chitiet.tkno"
-                      placeholder="Select your character"
-                      :searchable="true"
-                      trackBy="value"
-                      label="value"
-                      class="multiselect-blue form-control is-valid"
-                      :options="danhmucTaikhoan"
-                      :is-valid="testValidator('tkno')"
-                    >
-                      <template v-slot:singlelabel="{ value }">
-                        <div class="multiselect-single-label">
-                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                          {{ value.value }}
-                        </div>
-                      </template>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>TK Nợ</CInputGroupText>
+                      <Multiselect
+                        v-model="chitiet.tkno"
+                        placeholder="Select your character"
+                        :searchable="true"
+                        trackBy="value"
+                        label="value"
+                        class="multiselect-blue form-control is-valid"
+                        :options="danhmucTaikhoan"
+                        :is-valid="testValidator('tkno')"
+                      >
+                        <template v-slot:singlelabel="{ value }">
+                          <div class="multiselect-single-label">
+                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                            {{ value.value }}
+                          </div>
+                        </template>
 
-                      <template v-slot:option="{ option }">
-                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
-                        {{ option.value }} {{ option.tentk }}
-                      </template>
-                    </Multiselect>
+                        <template v-slot:option="{ option }">
+                          <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                          {{ option.value }} {{ option.tentk }}
+                        </template>
+                      </Multiselect>
+                    </CInputGroup>
                   </CCol>
                   <CCol md="4">
-                    <Multiselect
-                      v-model="chitiet.tkco"
-                      placeholder="Select your character"
-                      :searchable="true"
-                      trackBy="value"
-                      label="value"
-                      class="multiselect-blue form-control is-valid"
-                      :options="danhmucTaikhoan"
-                      :is-valid="testValidator('tkco')"
-                    >
-                      <template v-slot:singlelabel="{ value }">
-                        <div class="multiselect-single-label">
-                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                          {{ value.value }}
-                        </div>
-                      </template>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>TK Có</CInputGroupText>
+                      <Multiselect
+                        v-model="chitiet.tkco"
+                        placeholder="Select your character"
+                        :searchable="true"
+                        trackBy="value"
+                        label="value"
+                        class="multiselect-blue form-control is-valid"
+                        :options="danhmucTaikhoan"
+                        :is-valid="testValidator('tkco')"
+                      >
+                        <template v-slot:singlelabel="{ value }">
+                          <div class="multiselect-single-label">
+                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                            {{ value.value }}
+                          </div>
+                        </template>
 
-                      <template v-slot:option="{ option }">
-                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
-                        {{ option.value }} {{ option.tentk }}
-                      </template>
-                    </Multiselect>
+                        <template v-slot:option="{ option }">
+                          <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                          {{ option.value }} {{ option.tentk }}
+                        </template>
+                      </Multiselect>
+                    </CInputGroup>
                   </CCol>
                   <CCol md="1">
                     <CButton
@@ -579,52 +591,58 @@
                 </CRow>
                 <CRow>
                   <CCol md="4">
-                    <Multiselect
-                      v-model="todo.tkno"
-                      placeholder="Select your character"
-                      :searchable="true"
-                      trackBy="value"
-                      label="value"
-                      class="multiselect-blue form-control is-valid"
-                      :options="danhmucTaikhoan"
-                      :is-valid="testValidator('tkno')"
-                    >
-                      <template v-slot:singlelabel="{ value }">
-                        <div class="multiselect-single-label">
-                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                          {{ value.value }}
-                        </div>
-                      </template>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>TK Nợ</CInputGroupText>
+                      <Multiselect
+                        v-model="todo.tkno"
+                        placeholder="Select your character"
+                        :searchable="true"
+                        trackBy="value"
+                        label="value"
+                        class="multiselect-blue form-control is-valid"
+                        :options="danhmucTaikhoan"
+                        :is-valid="testValidator('tkno')"
+                      >
+                        <template v-slot:singlelabel="{ value }">
+                          <div class="multiselect-single-label">
+                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                            {{ value.value }}
+                          </div>
+                        </template>
 
-                      <template v-slot:option="{ option }">
-                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
-                        {{ option.value }} {{ option.tentk }}
-                      </template>
-                    </Multiselect>
+                        <template v-slot:option="{ option }">
+                          <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                          {{ option.value }} {{ option.tentk }}
+                        </template>
+                      </Multiselect>
+                    </CInputGroup>
                   </CCol>
                   <CCol md="4">
-                    <Multiselect
-                      v-model="todo.tkco"
-                      placeholder="Select your character"
-                      :searchable="true"
-                      trackBy="value"
-                      label="value"
-                      class="multiselect-blue form-control is-valid"
-                      :options="danhmucTaikhoan"
-                      :is-valid="testValidator('tkco')"
-                    >
-                      <template v-slot:singlelabel="{ value }">
-                        <div class="multiselect-single-label">
-                          <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                          {{ value.value }}
-                        </div>
-                      </template>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>TK Có</CInputGroupText>
+                      <Multiselect
+                        v-model="todo.tkco"
+                        placeholder="Select your character"
+                        :searchable="true"
+                        trackBy="value"
+                        label="value"
+                        class="multiselect-blue form-control is-valid"
+                        :options="danhmucTaikhoan"
+                        :is-valid="testValidator('tkco')"
+                      >
+                        <template v-slot:singlelabel="{ value }">
+                          <div class="multiselect-single-label">
+                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
+                            {{ value.value }}
+                          </div>
+                        </template>
 
-                      <template v-slot:option="{ option }">
-                        <!-- <img class="character-option-icon" :src="option.icon" /> -->
-                        {{ option.value }} {{ option.tentk }}
-                      </template>
-                    </Multiselect>
+                        <template v-slot:option="{ option }">
+                          <!-- <img class="character-option-icon" :src="option.icon" /> -->
+                          {{ option.value }} {{ option.tentk }}
+                        </template>
+                      </Multiselect>
+                    </CInputGroup>
                   </CCol>
 
                   <CCol md="4">
@@ -824,6 +842,7 @@
             id="sotkhoan"
             v-model="sotkhoan"
             title="Số tài khoản"
+            :disabled = "patern != 'TK'"
           />
         </CInputGroup>
       </CCol>

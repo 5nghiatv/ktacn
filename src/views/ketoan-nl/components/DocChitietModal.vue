@@ -136,7 +136,26 @@
               <td class="item20">
                 <div class="location-details flex">
                   <label class="typo__label"></label>
-                  <multiselect
+                  <Multiselect
+                    v-model="item.tkno"
+                    placeholder="Select your character"
+                    :searchable="true"
+                    trackBy="value"
+                    label="value"
+                    class="multiselect-blue form-control is-valid"
+                    :options="danhmucTaikhoan"
+                  >
+                    <template v-slot:singlelabel="{ value }">
+                      <div class="multiselect-single-label">
+                        {{ value.value }}
+                      </div>
+                    </template>
+                    <template v-slot:option="{ option }">
+                      {{ option.value }} {{ option.tentk }}
+                    </template>
+                  </Multiselect>
+
+                  <!-- <multiselect
                     v-model="item.tkno"
                     placeholder="Nhập số hoặc tên tài khoản"
                     label="sotk"
@@ -147,7 +166,6 @@
                     :show-labels="false"
                   >
                     <template v-slot:option="props">
-                      <!-- <img class="option__image" :src="props.option.img" alt="No Man’s Sky"> -->
                       <span class="option__title">{{ props.option.sotk }}</span>
                       <div class="option__desc">
                         <span class="option__small">{{
@@ -155,14 +173,33 @@
                         }}</span>
                       </div>
                     </template>
-                  </multiselect>
+                  </multiselect> -->
                   <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
                 </div>
               </td>
               <td class="item20">
                 <div class="location-details flex">
                   <label class="typo__label"></label>
-                  <multiselect
+                  <Multiselect
+                    v-model="item.tkco"
+                    placeholder="Select your character"
+                    :searchable="true"
+                    trackBy="value"
+                    label="value"
+                    class="multiselect-blue form-control is-valid"
+                    :options="danhmucTaikhoan"
+                  >
+                    <template v-slot:singlelabel="{ value }">
+                      <div class="multiselect-single-label">
+                        {{ value.value }}
+                      </div>
+                    </template>
+                    <template v-slot:option="{ option }">
+                      {{ option.value }} {{ option.tentk }}
+                    </template>
+                  </Multiselect>
+
+                  <!-- <multiselect
                     v-model="item.tkco"
                     placeholder="Nhập số hoặc tên tài khoản"
                     label="sotk"
@@ -173,7 +210,6 @@
                     :show-labels="false"
                   >
                     <template v-slot:option="props">
-                      <!-- <img class="option__image" :src="props.option.img" alt="No Man’s Sky"> -->
                       <span class="option__title">{{ props.option.sotk }}</span>
                       <div class="option__desc">
                         <span class="option__small">{{
@@ -181,7 +217,7 @@
                         }}</span>
                       </div>
                     </template>
-                  </multiselect>
+                  </multiselect> -->
                   <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
                 </div>
               </td>
@@ -190,7 +226,7 @@
                 <input
                   required
                   v-on:change="signalChange"
-                  v-mask="maskn"
+                  v-mask-decimal.br="0"
                   v-model="item.sotien"
                   type="text"
                 />
@@ -248,8 +284,8 @@
 <script>
 // import db from "../firebase/firebaseInit";
 // let db = window.firebase.firestore();
-import ModalPublic from './ModalPublic'
-import Loading from './Loading'
+// import ModalPublic from './ModalPublic'
+// import Loading from './Loading'
 import { mapActions, mapMutations, mapState } from 'vuex'
 //import { uid } from "uid";
 //import moment from 'moment';
@@ -257,21 +293,21 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 //     //new AutoNumeric('.input-sotien').french();
 // });
 
-const { configMask, numberFormat, setColorNumber } = require('../utility')
-import createNumberMask from 'text-mask-addons/dist/createNumberMask'
-const currencyMask = createNumberMask(configMask)
-import Multiselect from '../utility/vue-multiselect'
+const { numberFormat, setColorNumber } = require('../utility')
+//import createNumberMask from 'text-mask-addons/dist/createNumberMask'
+//const currencyMask = createNumberMask(configMask)
+import Multiselect from '@vueform/multiselect'
 
 export default {
   name: 'docChitietModal',
   components: {
-    Loading,
-    ModalPublic,
+    // Loading,
+    // ModalPublic,
     Multiselect,
   },
   data() {
     return {
-      maskn: currencyMask,
+      //maskn: currencyMask,
       ctid: null,
       soct: null,
       ngay: null,
@@ -286,23 +322,23 @@ export default {
     }
   },
   mounted() {
-    this.options = this.danhmucTaikhoan
+    //this.options = this.danhmucTaikhoan
     if (this.documentDataChitiet) {
       this.chitietItem = this.documentDataChitiet
-      this.chitietItem.forEach((element) => {
-        var tkno = this.danhmucTaikhoan.filter(
-          (item) => item.sotk === element.tkno,
-        )
-        var tkco = this.danhmucTaikhoan.filter(
-          (item) => item.sotk === element.tkco,
-        )
-        if (tkno.length > 0) {
-          this.$set(element, 'tkno', tkno[0])
-        }
-        if (tkco.length > 0) {
-          this.$set(element, 'tkco', tkco[0])
-        }
-      })
+      // this.chitietItem.forEach((element) => {
+      //   var tkno = this.danhmucTaikhoan.filter(
+      //     (item) => item.sotk === element.tkno,
+      //   )
+      //   var tkco = this.danhmucTaikhoan.filter(
+      //     (item) => item.sotk === element.tkco,
+      //   )
+      //   if (tkno.length > 0) {
+      //     this.$set(element, 'tkno', tkno[0])
+      //   }
+      //   if (tkco.length > 0) {
+      //     this.$set(element, 'tkco', tkco[0])
+      //   }
+      // })
       //console.log(222,this.chitietItem)
     }
   },
@@ -333,7 +369,7 @@ export default {
 
     ...mapActions('myDocument', ['GET_DOCUMENTS', 'UPDATE_CHITIET']),
 
-    customLabel({ sotk, tentk }) {
+    customLabel({ sotk }) {
       return `${sotk}`
     },
     signalChange() {
@@ -342,11 +378,14 @@ export default {
         if (typeof item.sotien === 'number') itemTotal += item.sotien
         else if (typeof item.sotien === 'string')
           itemTotal += parseInt(
-            item.sotien.replace(/\./g, '').replace(/\,/g, '.'),
+            item.sotien.split('.').join('').split(',').join('.'),
           )
       })
       this.chenhlechChitiet =
-        this.chitietItem.length <= 0 ? 0 : itemTotal - this.sotien
+        this.chitietItem.length <= 0
+          ? 0
+          : itemTotal -
+            parseInt(this.sotien.split('.').join('').split(',').join('.'))
       // console.log("change !!!: "+itemTotal);
     },
     // const { configMask, numberFormat, setColorNumber } = require("../utility");
@@ -435,15 +474,17 @@ export default {
         return this.$toastr.warning('', 'Vui lòng nhập số tài khoản.')
       //return console.log(this.chitietItem,this.chenhlechChitiet + this.sotien);
       //await this.closeInvoice();  // Sau kiểm tra mới được & trước chỉnh sửa số liệu
-      await this.chitietItem.forEach((element) => {
-        // element.ngay = moment(element.ngay,'DD-MM-YYYY').format('YYYY-MM-DD');
-        element.tkno = element.tkno.sotk
-        element.tkco = element.tkco.sotk
-      })
+      // await this.chitietItem.forEach((element) => {
+      //   // element.ngay = moment(element.ngay,'DD-MM-YYYY').format('YYYY-MM-DD');
+      //   element.tkno = element.tkno.sotk
+      //   element.tkco = element.tkco.sotk
+      // })
       const ret = await this.UPDATE_CHITIET({
         chitietItem: this.chitietItem,
         ctid: this.ctid,
-        updateSotien: this.chenhlechChitiet + this.sotien,
+        updateSotien:
+          this.chenhlechChitiet +
+          parseInt(this.sotien.split('.').join('').split(',').join('.')),
       })
       // this.closeInvoice();
       if (ret) {

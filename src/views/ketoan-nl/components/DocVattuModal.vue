@@ -136,31 +136,24 @@
               <td class="item50">
                 <div class="location-details flex">
                   <label class="typo__label"></label>
-                  <multiselect
-                    required
-                    @input="changeMahang(item)"
+                  <Multiselect
                     v-model="item.mahang"
                     placeholder="Nhập mã hoặc tên hàng"
-                    label="mahang"
-                    track-by="mahang"
-                    :preselect-first="true"
-                    :options="options"
-                    :custom-label="customLabel"
-                    :show-labels="false"
+                    :searchable="true"
+                    trackBy="value"
+                    label="value"
+                    class="multiselect-blue form-control is-valid"
+                    :options="danhmucTenhang"
                   >
-                    <template v-slot:option="props">
-                      <!-- <img class="option__image" :src="props.option.img" alt="No Man’s Sky"> -->
-                      <span class="option__title">{{
-                        props.option.mahang
-                      }}</span>
-                      <div class="option__desc">
-                        <span class="option__small">{{
-                          props.option.tenhang
-                        }}</span>
+                    <template v-slot:singlelabel="{ value }">
+                      <div class="multiselect-single-label">
+                        {{ value.value }}
                       </div>
                     </template>
-                  </multiselect>
-                  <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
+                    <template v-slot:option="{ option }">
+                      {{ option.value }} {{ option.tenhang }}
+                    </template>
+                  </Multiselect>
                 </div>
               </td>
 
@@ -171,34 +164,30 @@
               <td class="item10">
                 <div class="location-details flex">
                   <label class="typo__label"></label>
-                  <multiselect
+                  <Multiselect
                     v-model="item.makho"
                     placeholder="Nhập mã kho hàng"
-                    label="makho"
-                    track-by="makho"
-                    :preselect-first="true"
-                    :options="options2"
-                    :custom-label="customLabel2"
-                    :show-labels="false"
+                    :searchable="true"
+                    trackBy="value"
+                    label="value"
+                    class="multiselect-blue form-control is-valid"
+                    :options="danhmucKhohang"
                   >
-                    <template v-slot:option="props">
-                      <span class="option__title">{{
-                        props.option.makho
-                      }}</span>
-                      <div class="option__desc">
-                        <span class="option__small">{{
-                          props.option.tengoi
-                        }}</span>
+                    <template v-slot:singlelabel="{ value }">
+                      <div class="multiselect-single-label">
+                        {{ value.value }}
                       </div>
                     </template>
-                  </multiselect>
-                  <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
+                    <template v-slot:option="{ option }">
+                      {{ option.value }} {{ option.tengoi }}
+                    </template>
+                  </Multiselect>
                 </div>
               </td>
 
               <td class="item15">
                 <input
-                  v-mask="maskn2"
+                  v-mask-decimal.br="2"
                   required
                   type="text"
                   v-model="item.soluong"
@@ -207,7 +196,7 @@
               <td class="item20">
                 <input
                   v-on:change="signalChange"
-                  v-mask="maskn"
+                  v-mask-decimal.br="0"
                   required
                   type="text"
                   v-model="item.sotien"
@@ -274,36 +263,26 @@
 
 <script>
 // import db from "../firebase/firebaseInit";
-let db = window.firebase.firestore()
-import ModalPublic from './ModalPublic'
+//let db = window.firebase.firestore()
+//import ModalPublic from './ModalPublic'
 import Loading from './Loading'
 import { mapActions, mapMutations, mapState } from 'vuex'
 //import { uid } from "uid";
 //import moment from 'moment';
 
-const {
-  configMask,
-  configMask2,
-  numberFormat,
-  setColorNumber,
-} = require('../utility')
-import createNumberMask from 'text-mask-addons/dist/createNumberMask'
-const currencyMask = createNumberMask(configMask)
-const currencyMask2 = createNumberMask(configMask2)
-import Multiselect from '../utility/vue-multiselect'
+const { numberFormat, setColorNumber } = require('../utility')
+import Multiselect from '@vueform/multiselect'
 
 export default {
   name: 'docVattuModal',
   components: {
     Loading,
-    ModalPublic,
+    //ModalPublic,
     Multiselect,
   },
   data() {
     return {
       updateVat: false,
-      maskn: currencyMask,
-      maskn2: currencyMask2,
       soct: null,
       ngay: null,
       diengiai: null,
@@ -318,23 +297,23 @@ export default {
     }
   },
   mounted() {
-    this.options = this.danhmucTenhang
-    this.options2 = this.danhmucKhohang
+    // this.options = this.danhmucTenhang
+    // this.options2 = this.danhmucKhohang
     if (this.documentDataVattu) {
       this.chitietItem = this.documentDataVattu
-      this.chitietItem.forEach((element) => {
-        var mahang = this.danhmucTenhang.filter(
-          (item) => item.mahang === element.mahang,
-        )
-        var makho = this.danhmucKhohang.filter(
-          (item) => item.makho === element.makho,
-        )
-        if (mahang.length > 0) {
-          this.$set(element, 'mahang', mahang[0])
-          this.$set(element, 'donvi', mahang[0].donvi)
-        }
-        if (makho.length > 0) this.$set(element, 'makho', makho[0])
-      })
+      // this.chitietItem.forEach((element) => {
+      //   var mahang = this.danhmucTenhang.filter(
+      //     (item) => item.mahang === element.mahang,
+      //   )
+      //   var makho = this.danhmucKhohang.filter(
+      //     (item) => item.makho === element.makho,
+      //   )
+      //   if (mahang.length > 0) {
+      //     this.$set(element, 'mahang', mahang[0])
+      //     this.$set(element, 'donvi', mahang[0].donvi)
+      //   }
+      //   if (makho.length > 0) this.$set(element, 'makho', makho[0])
+      // })
       //console.log(222,this.chitietItem)
     }
   },
@@ -358,7 +337,7 @@ export default {
       var ctid = currentDoc.ctid
       var tkthue = currentDoc.tkco.substr(0, 3) == '511' ? '3331' : '1331'
       await this.chitietItem.forEach((element) => {
-        tongtien += element.sotien.replace(/\./g, '').replace(/\,/g, '.') * 1
+        tongtien += element.sotien.split('.').join('').split(',').join('.') * 1
       })
 
       //console.log(1111,ctid,tongtien,tienthue,tkThue)
@@ -386,7 +365,7 @@ export default {
     customLabel({ mahang, tenhang }) {
       return `${mahang} - ${tenhang}`
     },
-    customLabel2({ makho, tengoi }) {
+    customLabel2({ makho }) {
       return `${makho}`
     },
     changeMahang(item) {
@@ -398,11 +377,14 @@ export default {
         if (typeof item.sotien == 'number') itemTotal += item.sotien
         else if (typeof item.sotien === 'string')
           itemTotal += parseInt(
-            item.sotien.replace(/\./g, '').replace(/\,/g, '.'),
+            item.sotien.split('.').join('').split(',').join('.'),
           )
       })
       this.chenhlechChitiet =
-        this.chitietItem.length <= 0 ? 0 : itemTotal - this.sotien
+        this.chitietItem.length <= 0
+          ? 0
+          : itemTotal -
+            parseInt(this.sotien.split('.').join('').split(',').join('.'))
       // console.log("change !!!: "+itemTotal);
     },
 
@@ -494,11 +476,11 @@ export default {
         )
       //console.log(this.chitietItem);
       //await this.closeInvoice();  // Sau kiểm tra mới được & trước chỉnh sửa số liệu
-      await this.chitietItem.forEach((element) => {
-        // element.ngay = moment(element.ngay,'DD-MM-YYYY').format('YYYY-MM-DD');
-        element.mahang = element.mahang.mahang
-        element.makho = element.makho.makho // Vì 2 field nên có [0]
-      })
+      // await this.chitietItem.forEach((element) => {
+      //   // element.ngay = moment(element.ngay,'DD-MM-YYYY').format('YYYY-MM-DD');
+      //   element.mahang = element.mahang.mahang
+      //   element.makho = element.makho.makho // Vì 2 field nên có [0]
+      // })
       //return console.log(this.chitietItem);
       const ret = await this.UPDATE_VATTU({
         chitietItem: this.chitietItem,

@@ -1,4 +1,3 @@
-import { inject } from 'vue'
 import JwtService from './jwt.service'
 import _ from 'lodash'
 import axios from 'axios'
@@ -13,7 +12,9 @@ const ApiService = {
     //console.log('token:', axios.defaults.headers.common['Authorization'])
   },
   query(resource, params) {
-    const axios = inject('axios')
+    if (JwtService.getToken() !== null) {
+      this.setHeader()
+    }
     return axios({
       method: 'post',
       url: `${resource}`,
@@ -71,6 +72,9 @@ const ApiService = {
 
   update(resource, slug, params) {
     // return Vue.axios.put(`${resource}/${slug}`, params);
+    if (JwtService.getToken() !== null) {
+      this.setHeader()
+    }
     return axios({
       method: 'update',
       url: `${resource}/${slug}`,
@@ -80,6 +84,9 @@ const ApiService = {
   },
 
   put(resource, params) {
+    if (JwtService.getToken() !== null) {
+      this.setHeader()
+    }
     //return Vue.axios.put(`${resource}`, params);
     return axios({
       method: 'put',
@@ -89,6 +96,9 @@ const ApiService = {
     })
   },
   patch(resource, params) {
+    if (JwtService.getToken() !== null) {
+      this.setHeader()
+    }
     //return Vue.axios.patch(`${resource}`, params);
     return axios({
       method: 'patch',
@@ -99,6 +109,9 @@ const ApiService = {
   },
 
   delete(resource) {
+    if (JwtService.getToken() !== null) {
+      this.setHeader()
+    }
     return axios({
       method: 'delete',
       url: `${resource}`,

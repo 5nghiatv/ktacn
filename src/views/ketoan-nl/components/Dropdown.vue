@@ -9,6 +9,7 @@
       <li
         class="dropdown__item"
         v-for="(opt, index) in DropOption"
+        v-bind:key="index"
         @click="methodClick(opt.method)"
       >
         <span class="dropdown__text">{{ opt.title }}</span>

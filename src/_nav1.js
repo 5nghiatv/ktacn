@@ -3,7 +3,7 @@ exports.nav1 = [
   {
     component: 'CNavItem',
     name: 'ACN',
-    to: '/dashboard',
+    to: '/documents',
     icon: 'cil-speedometer',
     badge: {
       color: 'info',

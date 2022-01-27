@@ -9,6 +9,8 @@
           <!-- Chú ý: Chữ in & thường -->
           <transition name="invoice">
             <DocListModal v-if="docListModal" />
+          </transition>
+          <transition name="invoice">
             <DocumentModal v-if="documentModal" />
           </transition>
           <!-- <router-view /> -->
@@ -97,46 +99,6 @@ export default {
 }
 </script>
 
-<style src="./utility/vue-multiselect/dist/vue-multiselect.min.css"></style>
-<style type="text/css">
-.__multiselect__content-wrapper,
-.__multiselect__option,
-.__multiselect__element {
-  width: 550px;
-}
-.__multiselect__content-wrapper {
-  color: burlywood;
-  font-size: 14px;
-  background-color: #1e2139;
-}
-.multiselect {
-  color: burlywood;
-}
-.__multiselect__input,
-.__multiselect__single {
-  color: burlywood;
-  font-size: 14px;
-  background-color: #1e2139;
-  top: 5px;
-}
-.__multiselect__tags {
-  background-color: #1e2139;
-  border: none;
-  min-height: 44px;
-  width: 100%;
-}
-.option__desc {
-  width: 75%;
-  float: left;
-  display: flex;
-  /* flex-direction: column; */
-  /* margin: 10px 0 0 10px; */
-}
-.typo__label {
-  margin-top: 13px;
-}
-</style>
-
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
@@ -150,10 +112,10 @@ export default {
 .appinv {
   background-color: #141625;
   min-height: 100vh;
+
   @media (min-width: 900px) {
     flex-direction: row !important;
   }
-
   .appinv-content {
     padding: 0 20px;
     flex: 1;
@@ -387,5 +349,25 @@ button,
       margin-right: 4px;
     }
   }
+}
+</style>
+
+<style src="@vueform/multiselect/themes/default.css"></style>
+<style>
+.multiselect-green {
+  --ms-tag-bg: #d1fae5;
+  --ms-tag-color: #059669;
+}
+
+.multiselect-blue {
+  --ms-tag-bg: #dbeafe;
+  --ms-tag-color: #2563eb;
+}
+.multiselect-option {
+  width: 530px;
+}
+.multiselect-dropdown {
+  width: 550px;
+  height: 550px;
 }
 </style>

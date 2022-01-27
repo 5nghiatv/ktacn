@@ -88,42 +88,27 @@
                 </CRow>
                 <CRow>
                   <CCol md="12">
-                    <form class="form-inline">
-                      <div class="form-group">
-                        <select
-                          checkbox
-                          v-on:change="getCompanyName()"
-                          style="width: 74%; border-radius: 5px; height: 40px"
-                          :is-valid="testValidator('masothue')"
-                          v-model="company.connect_id"
-                          :required="true"
-                          size="1"
-                        >
-                          <option
-                            v-bind:value="connect._id"
-                            v-for="(connect, index) in connects"
-                            :selected="connect._id == company.connect_id"
-                          >
-                            <div v-if="connect.taxcode.length <= 3">
-                              {{ connect.taxcode }} .&nbsp.&nbsp.&nbsp.&nbsp.
-                              {{ connect.company }}
-                            </div>
-                            <div v-if="connect.taxcode.length == 4">
-                              {{ connect.taxcode }} .&nbsp.&nbsp.&nbsp.
-                              {{ connect.company }}
-                            </div>
-                            <div v-if="connect.taxcode.length == 5">
-                              {{ connect.taxcode }} .&nbsp.&nbsp.
-                              {{ connect.company }}
-                            </div>
-                            <div v-if="connect.taxcode.length >= 6">
-                              {{ connect.taxcode }} .&nbsp.
-                              {{ connect.company }}
-                            </div>
-                          </option>
-                        </select>
-                      </div>
-                    </form>
+                    <Multiselect
+                      v-model="company.connect_id"
+                      placeholder="Select your character"
+                      :searchable="true"
+                      trackBy="taxcode"
+                      label="company"
+                      class="multiselect-blue form-control is-valid"
+                      :options="connects"
+                      @select="getCompanyName()"
+                      :is-valid="testValidator('masothue')"
+                    >
+                      <!-- <template v-slot:singlelabel="{ value }">
+                        <div class="multiselect-single-label">
+                          {{ value.taxcode }}
+                        </div>
+                      </template> -->
+                      <template v-slot:option="{ option }">
+                        {{ option.taxcode }} {{ option.company }}
+                      </template>
+                    </Multiselect>
+
                   </CCol>
                 </CRow>
 
@@ -163,27 +148,6 @@
                     <!-- </CCol> -->
                   </CRow>
                 </div>
-
-                <!-- connect._id == company.connect_id" -->
-
-                <!-- <div class="flex">
-                  <Multiselect
-                    v-model="company.connect_id"
-                    placeholder="Select your character"
-                    label="company"
-                    trackBy="taxcode"
-                    :options="connects"
-                    :searchable="true"
-                    @change="getCompanyName()"
-                    :is-valid="testValidator('masothue')"
-                  >
-                    <template v-slot:option="{ option }">
-                      {{ option.taxcode }} ... 
-                      {{ option.company }}
-                    </template>
-                  </Multiselect>
-                </div> -->
-
                 <br />
                 <h2>Sign up</h2>
                 <CRow>
@@ -212,11 +176,11 @@
 <script>
 import moment from 'moment'
 import { ref } from 'vue'
-//import Multiselect from '@vueform/multiselect'
+import Multiselect from '@vueform/multiselect'
 
 export default {
   name: 'Login',
-  //components: { Multiselect },
+  components: { Multiselect },
   data() {
     return {
       valueSelect: null,
@@ -322,6 +286,7 @@ export default {
           this.company.address = item.address
           this.company.email = item['email']
           this.connect = this.connects[index]
+          //console.log(this.company, this.connect)
           this.options[1] = 'Đơn vị : ' + this.company.company
           this.options[2] =
             '- Từ ngày  : ' + moment(item.fromdate).format('DD-MM-YYYY')
@@ -568,10 +533,10 @@ export default {
       if (post)
         this.$apiAcn.post(models, { email: this.email }).then((data) => {
           this[models] = data.data[models]
-          // this[models].forEach((item) => {
-          //   item['value'] = item._id
-          // })
-          // console.log(this.email, data.data, this[models])
+          this[models].forEach((item) => {
+            item['value'] = item._id
+          })
+          //console.log(this.email, data.data, this[models])
           this.getCompanyName()
           this.$store.commit('set', ['isLoading', false])
         })
@@ -614,10 +579,20 @@ export default {
 
 <style src="@vueform/multiselect/themes/default.css"></style>
 <style>
-.multiselect {
-  color: black;
+.multiselect-green {
+  --ms-tag-bg: #d1fae5;
+  --ms-tag-color: #059669;
 }
-.multiselect-options {
-  width: 400px;
+
+.multiselect-blue {
+  --ms-tag-bg: #dbeafe;
+  --ms-tag-color: #2563eb;
+}
+.multiselect-option {
+  width: 530px;
+}
+.multiselect-dropdown {
+  width: 500px;
+  height: 500px;
 }
 </style>

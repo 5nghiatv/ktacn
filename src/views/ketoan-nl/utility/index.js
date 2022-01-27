@@ -30,6 +30,8 @@ exports.numberFormat = function (x) {
 }
 
 exports.setColorNumber = function (opt, sotien = 0) {
+  sotien += '.' // Phòng là Number
+  sotien = sotien.split('.').join('').split(',').join('.')
   var lim = 2000000
   if (opt === 'draft') return sotien < lim
   if (opt === 'paid') return sotien >= lim && sotien < 5 * lim

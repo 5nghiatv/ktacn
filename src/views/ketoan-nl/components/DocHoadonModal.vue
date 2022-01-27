@@ -155,27 +155,24 @@
               <td class="item25">
                 <div class="location-details flex">
                   <label class="typo__label"></label>
-                  <multiselect
+                  <Multiselect
                     v-model="item.maso"
                     placeholder="Nhập mã số thuế"
-                    label="maso"
-                    track-by="maso"
-                    :preselect-first="true"
-                    :options="options"
-                    :custom-label="customLabel"
-                    :show-labels="true"
+                    :searchable="true"
+                    trackBy="value"
+                    label="value"
+                    class="multiselect-blue form-control is-valid"
+                    :options="danhmucCustomer"
                   >
-                    <template v-slot:option="props">
-                      <!-- <img class="option__image" :src="props.option.img" alt="No Man’s Sky"> -->
-                      <span class="option__title">{{ props.option.maso }}</span>
-                      <div class="option__desc">
-                        <span class="option__small">{{
-                          props.option.company
-                        }}</span>
+                    <template v-slot:singlelabel="{ value }">
+                      <div class="multiselect-single-label">
+                        {{ value.value }}
                       </div>
                     </template>
-                  </multiselect>
-                  <!-- <pre class="language-json"><code>{{ value  }}</code></pre> -->
+                    <template v-slot:option="{ option }">
+                      {{ option.value }} {{ option.company }}
+                    </template>
+                  </Multiselect>
                 </div>
               </td>
 
@@ -192,7 +189,7 @@
                 <input
                   @change="tinhTienThue(index)"
                   v-on:change="signalChange()"
-                  v-mask="maskn"
+                  v-mask-decimal.br="0"
                   required
                   type="text"
                   v-model="item.giaban"
@@ -200,7 +197,7 @@
               </td>
               <td class="item15">
                 <input
-                  v-mask="maskn"
+                  v-mask-decimal.br="0"
                   required
                   type="text"
                   v-model="item.thuegtgt"
@@ -269,27 +266,24 @@
 <script>
 // import db from "../firebase/firebaseInit";
 //let db = window.firebase.firestore();
-import ModalPublic from './ModalPublic'
+//import ModalPublic from './ModalPublic'
 import Loading from './Loading'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import moment from 'moment'
 
-const { configMask, numberFormat, setColorNumber } = require('../utility')
-import createNumberMask from 'text-mask-addons/dist/createNumberMask'
-const currencyMask = createNumberMask(configMask)
-import Multiselect from '../utility/vue-multiselect'
+const { numberFormat, setColorNumber } = require('../utility')
+import Multiselect from '@vueform/multiselect'
 
 export default {
   name: 'docHoadonModal',
   components: {
     Loading,
-    ModalPublic,
+    //ModalPublic,
     Multiselect,
   },
   data() {
     return {
       updateVat: false,
-      maskn: currencyMask,
       soct: null,
       ngay: null,
       diengiai: null,
@@ -303,18 +297,18 @@ export default {
     }
   },
   mounted() {
-    this.options = this.danhmucCustomer
+    // this.options = this.danhmucCustomer
     if (this.documentDataHoadon) {
       this.chitietItem = this.documentDataHoadon
-      this.chitietItem.forEach((element) => {
-        // Lưu Hóa đơn.masothue <---> Customer.maso ( chú ý khi mount ,addNewItem & updateItem)
-        var maso = this.danhmucCustomer.filter(
-          (item) => item.maso === element.masothue,
-        )
-        if (maso.length > 0) {
-          this.$set(element, 'maso', maso[0])
-        }
-      })
+      // this.chitietItem.forEach((element) => {
+      //   // Lưu Hóa đơn.masothue <---> Customer.maso ( chú ý khi mount ,addNewItem & updateItem)
+      //   var maso = this.danhmucCustomer.filter(
+      //     (item) => item.maso === element.masothue,
+      //   )
+      //   if (maso.length > 0) {
+      //     this.$set(element, 'maso', maso[0])
+      //   }
+      // })
       //console.log(222,this.chitietItem)
     }
   },
@@ -338,8 +332,9 @@ export default {
       var ctid = currentDoc.ctid
       var tkthue = currentDoc.tkco.substr(0, 3) == '511' ? '3331' : '1331'
       await this.chitietItem.forEach((element) => {
-        tongtien += element.giaban.replace(/\./g, '').replace(/\,/g, '.') * 1
-        tienthue += element.thuegtgt.replace(/\./g, '').replace(/\,/g, '.') * 1
+        tongtien += element.giaban.split('.').join('').split(',').join('.') * 1
+        tienthue +=
+          element.thuegtgt.split('.').join('').split(',').join('.') * 1
       })
 
       //console.log(1111,ctid,tongtien,tienthue,tkThue)
@@ -364,13 +359,17 @@ export default {
 
     ...mapActions('myDocument', ['UPDATE_HOADON', 'GANTIENHANG_HOADON']),
 
-    customLabel({ maso, company }) {
+    customLabel({ maso }) {
       return `${maso}` //`${maso} - ${company} `;  //Liên quan đến search
     },
     tinhTienThue(index) {
-      var thuesuat = this.chitietItem[index].thuesuat.replace(/\%/g, '')
+      var thuesuat = this.chitietItem[index].thuesuat.split('%').join('')
       var thuegtgt =
-        (this.chitietItem[index].giaban.replace(/\./g, '').replace(/\,/g, '.') *
+        (this.chitietItem[index].giaban
+          .split('.')
+          .join('')
+          .split(',')
+          .join('.') *
           thuesuat) /
         100
       this.chitietItem[index].thuegtgt = thuegtgt.toFixed().toString()
@@ -381,11 +380,14 @@ export default {
         if (typeof item.giaban == 'number') itemTotal += item.giaban
         else if (typeof item.giaban === 'string')
           itemTotal += parseInt(
-            item.giaban.replace(/\./g, '').replace(/\,/g, '.'),
+            item.giaban.split('.').join('').split(',').join('.'),
           )
       })
       this.chenhlechChitiet =
-        this.chitietItem.length <= 0 ? 0 : itemTotal - this.sotien
+        this.chitietItem.length <= 0
+          ? 0
+          : itemTotal -
+            parseInt(this.sotien.split('.').join('').split(',').join('.'))
       // console.log("change !!!: "+itemTotal);
     },
 
@@ -483,7 +485,7 @@ export default {
       //await this.closeInvoice();  // Sau kiểm tra mới được & trước chỉnh sửa số liệu
       await this.chitietItem.forEach((element) => {
         element.ngay = moment(element.ngay, 'DD-MM-YYYY').format('YYYY-MM-DD')
-        element.masothue = element.maso.maso // Chú ý masothue & maso
+        element.masothue = element.maso // Chú ý masothue & maso
       })
       const ret = await this.UPDATE_HOADON({
         chitietItem: this.chitietItem,
