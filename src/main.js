@@ -81,7 +81,7 @@ toastr.options.hideMethod = 'slideUp'
 toastr.options.closeEasing = 'swing'
 toastr.options.preventDuplicates = true
 toastr.options.timeOut = 3000
-import 'toastr/toastr.scss'
+// import 'toastr/toastr.scss'
 //import './assets/css/toastr.min.css'
 
 app.config.globalProperties.$jwtAcn = JwtService
