@@ -110,5 +110,5 @@ export default {
 }
 // @import 'toastr/toastr.scss';
 </style>
-<style src="@vueform/multiselect/themes/default.css"></style>
 <style src="@/assets/css/toastr.min.css"></style>
+<style src="@vueform/multiselect/themes/default.css"></style>
