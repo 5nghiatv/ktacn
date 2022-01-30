@@ -138,18 +138,17 @@
                   <label class="typo__label"></label>
                   <Multiselect
                     v-model="item.mahang"
-                    placeholder="Nhập mã hoặc tên hàng"
+                    placeholder="Nhập mã hàng hóa"
                     :searchable="true"
                     trackBy="value"
                     label="value"
-                    class="multiselect-blue form-control is-valid"
+                    class="form-control"
+                    :class="{
+                      'multiselect-blue': testTheme('default'),
+                      'multiselect-dark': !testTheme('default'),
+                    }"
                     :options="danhmucTenhang"
                   >
-                    <template v-slot:singlelabel="{ value }">
-                      <div class="multiselect-single-label">
-                        {{ value.value }}
-                      </div>
-                    </template>
                     <template v-slot:option="{ option }">
                       {{ option.value }} {{ option.tenhang }}
                     </template>
@@ -166,18 +165,17 @@
                   <label class="typo__label"></label>
                   <Multiselect
                     v-model="item.makho"
-                    placeholder="Nhập mã kho hàng"
+                    placeholder="Mã kho"
                     :searchable="true"
                     trackBy="value"
                     label="value"
-                    class="multiselect-blue form-control is-valid"
+                    class="form-control"
+                    :class="{
+                      'multiselect-blue': testTheme('default'),
+                      'multiselect-dark': !testTheme('default'),
+                    }"
                     :options="danhmucKhohang"
                   >
-                    <template v-slot:singlelabel="{ value }">
-                      <div class="multiselect-single-label">
-                        {{ value.value }}
-                      </div>
-                    </template>
                     <template v-slot:option="{ option }">
                       {{ option.value }} {{ option.tengoi }}
                     </template>
@@ -285,9 +283,11 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 
 const { numberFormat, setColorNumber } = require('../utility')
 import Multiselect from '@vueform/multiselect'
+import utility from '@/common/utility'
 
 export default {
   name: 'docVattuModal',
+  mixins: [utility],
   components: {
     Loading,
     //ModalPublic,

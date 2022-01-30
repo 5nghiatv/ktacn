@@ -1,0 +1,21 @@
+
+<style src="@vueform/multiselect/themes/default.css"></style>
+<style>
+.multiselect-green {
+  --ms-tag-bg: #d1fae5;
+  --ms-tag-color: #059669;
+}
+
+.multiselect-blue {
+  --ms-tag-bg: #dbeafe;
+  --ms-tag-color: #2563eb;
+}
+.multiselect-option {
+  width: 530px;
+}
+.multiselect-dropdown {
+  width: 500px;
+  height: 500px;
+}
+</style>
+

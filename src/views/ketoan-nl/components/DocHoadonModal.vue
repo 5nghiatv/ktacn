@@ -157,18 +157,17 @@
                   <label class="typo__label"></label>
                   <Multiselect
                     v-model="item.masothue"
-                    placeholder="Nhập mã số thuế"
+                    placeholder="Mã thuế"
                     :searchable="true"
                     trackBy="value"
                     label="value"
-                    class="multiselect-blue form-control is-valid"
+                    class="form-control"
+                    :class="{
+                      'multiselect-blue': testTheme('default'),
+                      'multiselect-dark': !testTheme('default'),
+                    }"
                     :options="danhmucCustomer"
                   >
-                    <template v-slot:singlelabel="{ value }">
-                      <div class="multiselect-single-label">
-                        {{ value.value }}
-                      </div>
-                    </template>
                     <template v-slot:option="{ option }">
                       {{ option.value }} {{ option.company }}
                     </template>
@@ -283,12 +282,13 @@
 import Loading from './Loading'
 import { mapActions, mapMutations, mapState } from 'vuex'
 import moment from 'moment'
-
 const { numberFormat, setColorNumber } = require('../utility')
 import Multiselect from '@vueform/multiselect'
+import utility from '@/common/utility'
 
 export default {
   name: 'docHoadonModal',
+  mixins: [utility],
   components: {
     Loading,
     //ModalPublic,

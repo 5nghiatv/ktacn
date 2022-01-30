@@ -138,18 +138,16 @@
                   <label class="typo__label"></label>
                   <Multiselect
                     v-model="item.tkno"
-                    placeholder="Select your character"
                     :searchable="true"
                     trackBy="value"
                     label="value"
-                    class="multiselect-blue form-control is-valid"
+                    class="form-control"
+                    :class="{
+                      'multiselect-blue': testTheme('default'),
+                      'multiselect-dark': !testTheme('default'),
+                    }"
                     :options="danhmucTaikhoan"
                   >
-                    <template v-slot:singlelabel="{ value }">
-                      <div class="multiselect-single-label">
-                        {{ value.value }}
-                      </div>
-                    </template>
                     <template v-slot:option="{ option }">
                       {{ option.value }} {{ option.tentk }}
                     </template>
@@ -161,18 +159,16 @@
                   <label class="typo__label"></label>
                   <Multiselect
                     v-model="item.tkco"
-                    placeholder="Select your character"
                     :searchable="true"
                     trackBy="value"
                     label="value"
-                    class="multiselect-blue form-control is-valid"
+                    class="form-control"
+                    :class="{
+                      'multiselect-blue': testTheme('default'),
+                      'multiselect-dark': !testTheme('default'),
+                    }"
                     :options="danhmucTaikhoan"
                   >
-                    <template v-slot:singlelabel="{ value }">
-                      <div class="multiselect-single-label">
-                        {{ value.value }}
-                      </div>
-                    </template>
                     <template v-slot:option="{ option }">
                       {{ option.value }} {{ option.tentk }}
                     </template>
@@ -267,9 +263,11 @@ const { numberFormat, setColorNumber } = require('../utility')
 //import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 //const currencyMask = createNumberMask(configMask)
 import Multiselect from '@vueform/multiselect'
+import utility from '@/common/utility'
 
 export default {
   name: 'docChitietModal',
+  mixins: [utility],
   components: {
     // Loading,
     // ModalPublic,
@@ -309,7 +307,7 @@ export default {
       //     this.$set(element, 'tkco', tkco[0])
       //   }
       // })
-      //console.log(222,this.chitietItem)
+      // console.log(222, this.chitietItem)
     }
   },
 

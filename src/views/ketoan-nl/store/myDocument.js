@@ -533,7 +533,7 @@ export const myDocument = {
             '", ghichu = "' +
             danhmuc.ghichu +
             '" WHERE id=' +
-            danhmuc.masoId
+            danhmuc.id
           getlistAcc = 'GET_DM_CUSTOMER'
           break
         case 2:
@@ -545,7 +545,7 @@ export const myDocument = {
             '", donvi = "' +
             danhmuc.donvi +
             '" WHERE id=' +
-            danhmuc.mahangId
+            danhmuc.id
           getlistAcc = 'GET_DM_TENHANG'
           break
         case 3:
@@ -557,7 +557,7 @@ export const myDocument = {
             '", diachi = "' +
             danhmuc.diachi +
             '" WHERE id=' +
-            danhmuc.makhoId
+            danhmuc.id
           getlistAcc = 'GET_DM_KHOHANG'
           break
         default:
@@ -567,7 +567,7 @@ export const myDocument = {
             '", tentk = "' +
             danhmuc.tentk +
             '" WHERE id=' +
-            danhmuc.sotkId
+            danhmuc.id
           getlistAcc = 'GET_DM_TAIKHOAN'
           break
       }
@@ -576,29 +576,35 @@ export const myDocument = {
       return ret
     },
 
-    async DELETE_ACCOUNT_LIST({ dispatch }, { danhmuc, currentOpt }) {
-      var query = '',
-        getlistAcc = ''
+    async DELETE_ACCOUNT_LIST({ state, dispatch }, { danhmuc, currentOpt }) {
+      var ret = false
+      var query = ''
       switch (currentOpt) {
         case 1:
-          query = "DELETE FROM customer WHERE id = '" + danhmuc.masoId + "';"
-          getlistAcc = 'GET_DM_CUSTOMER'
+          query = "DELETE FROM customer WHERE id = '" + danhmuc.id + "';"
+          ret = await dispatch('runMysql', query)
+          var index = await state.danhmucCustomer.findIndex(x => x.id === danhmuc.id)
+          state.danhmucCustomer.splice(index, 1)
           break
         case 2:
-          query = "DELETE FROM tenhang WHERE id = '" + danhmuc.mahangId + "';"
-          getlistAcc = 'GET_DM_TENHANG'
+          query = "DELETE FROM tenhang WHERE id = '" + danhmuc.id + "';"
+          ret = await dispatch('runMysql', query)
+          var index = await state.danhmucTenhang.findIndex(x => x.id === danhmuc.id)
+          state.danhmucTenhang.splice(index, 1)
           break
         case 3:
-          query = "DELETE FROM dmtenkho WHERE id = '" + danhmuc.makhoId + "';"
-          getlistAcc = 'GET_DM_KHOHANG'
+          query = "DELETE FROM dmtenkho WHERE id = '" + danhmuc.id + "';"
+          ret = await dispatch('runMysql', query)
+          var index = await state.danhmucKhohang.findIndex(x => x.id === danhmuc.id)
+          state.danhmucKhohang.splice(index, 1)
           break
         default:
-          query = "DELETE FROM dmtkhoan WHERE id = '" + danhmuc.sotkId + "';"
-          getlistAcc = 'GET_DM_TAIKHOAN'
+          query = "DELETE FROM dmtkhoan WHERE id = '" + danhmuc.id + "';"
+          ret = await dispatch('runMysql', query)
+          var index = await state.danhmucTaikhoan.findIndex(x => x.id === danhmuc.id)
+          state.danhmucTaikhoan.splice(index, 1)
           break
       }
-      var ret = await dispatch('runMysql', query)
-      await dispatch(getlistAcc)
       return ret
     },
     async GANTIENHANG_HOADON(

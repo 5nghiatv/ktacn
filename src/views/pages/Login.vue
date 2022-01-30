@@ -108,7 +108,6 @@
                         {{ option.taxcode }} {{ option.company }}
                       </template>
                     </Multiselect>
-
                   </CCol>
                 </CRow>
 
@@ -213,6 +212,7 @@ export default {
         connect_id: '', // for login gửi server
         dnlon: true,
         thongtutc: '',
+        database: '',
       },
       fromtodate: [],
       Validator: {
@@ -285,6 +285,7 @@ export default {
           this.company.company = item.company
           this.company.address = item.address
           this.company.email = item['email']
+          this.company.database = item // || this.connects[index] => lưu cùng this.company
           this.connect = this.connects[index]
           //console.log(this.company, this.connect)
           this.options[1] = 'Đơn vị : ' + this.company.company
@@ -296,30 +297,6 @@ export default {
           this.danhap.todate = item.todate
         }
       })
-    },
-    testDatabase_LUU() {
-      this.$apiAcn
-        .post('connects', { email: this.email })
-        .then((data) => {
-          var ret = false
-          data.data['connects'].forEach((item) => {
-            if (item._id == this.company.connect_id) {
-              ret = true
-            }
-          })
-          if (!ret) {
-            this.company.connect_id = ''
-            //this.$message({ message: "Vui lòng chọn dữ liệu Công ty...", type: 'warning' })
-            this.$toastr.warning('', 'Vui lòng chọn dữ liệu Công ty...')
-          }
-          return ret
-        })
-        .catch((error) => {
-          this.$toastr.error('', 'Kiểm tra Database ERROR ...')
-          //this.$notify({ title: 'ERROR', message: 'testDatabase ERROR ...',  type: 'error',  duration: 3000  })
-          console.log(error)
-          return false
-        })
     },
     testValidator(field) {
       var fryear = new Date(this.fromtodate.pd_fromdate)
@@ -577,22 +554,48 @@ export default {
 }
 </style>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
 <style>
 .multiselect-green {
   --ms-tag-bg: #d1fae5;
   --ms-tag-color: #059669;
 }
-
 .multiselect-blue {
-  --ms-tag-bg: #dbeafe;
-  --ms-tag-color: #2563eb;
+  --ms-bg: white;
+  --ms-border-color: white;
+}
+.multiselect-dark {
+  --ms-bg: #1e2139;
+  --ms-border-color: #1e2139;
 }
 .multiselect-option {
   width: 530px;
+  color: burlywood;
+  background-color: var(--ms-bg);
+}
+.multiselect-search {
+  background-color: var(--ms-bg);
+  border-radius: 4px;
+  outline: var(--ms-bg);
 }
 .multiselect-dropdown {
-  width: 500px;
-  height: 500px;
+  width: 550px;
+  height: 550px;
+  border: var(--ms-bg);
+}
+.multiselect-clear-icon {
+  background-color: var(--ms-bg);
+}
+.multiselect-option {
+  width: 530px;
+  background-color: var(--ms-bg);
+  color: burlywood;
+}
+.multiselect-search {
+  background-color: var(--ms-bg);
+  border-radius: 4px;
+  outline: var(--ms-bg);
+}
+.typo__label {
+  margin-top: 10px;
 }
 </style>

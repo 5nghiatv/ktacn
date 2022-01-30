@@ -45,17 +45,14 @@
                         :searchable="true"
                         trackBy="value"
                         label="value"
-                        class="multiselect-blue form-control is-valid"
+                        class="form-control is-valid"
+                        :class="{
+                          'multiselect-blue': testTheme('default'),
+                          'multiselect-dark': !testTheme('default'),
+                        }"
                         :options="danhmucCustomer"
                         :is-valid="testValidator('masothue')"
                       >
-                        <template v-slot:singlelabel="{ value }">
-                          <div class="multiselect-single-label">
-                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                            {{ value.value }}
-                          </div>
-                        </template>
-
                         <template v-slot:option="{ option }">
                           <!-- <img class="character-option-icon" :src="option.icon" /> -->
                           {{ option.value }} {{ option.company }}
@@ -154,7 +151,10 @@
                   />
                 </modal>
 
-                <table class="topics vgt-table condensed bordered striped">
+                <table
+                  class="topics vgt-table condensed bordered striped vgt-wrap"
+                  :class="{ nocturnal: testTheme('dark') }"
+                >
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -226,17 +226,14 @@
                         :searchable="true"
                         trackBy="value"
                         label="value"
-                        class="multiselect-blue form-control is-valid"
+                        class="form-control is-valid"
+                        :class="{
+                          'multiselect-blue': testTheme('default'),
+                          'multiselect-dark': !testTheme('default'),
+                        }"
                         :options="danhmucTenhang"
                         :is-valid="testValidator('mahang')"
                       >
-                        <template v-slot:singlelabel="{ value }">
-                          <div class="multiselect-single-label">
-                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                            {{ value.value }}
-                          </div>
-                        </template>
-
                         <template v-slot:option="{ option }">
                           <!-- <img class="character-option-icon" :src="option.icon" /> -->
                           {{ option.value }} {{ option.tenhang }}
@@ -253,17 +250,14 @@
                         :searchable="true"
                         trackBy="value"
                         label="value"
-                        class="multiselect-blue form-control is-valid"
+                        class="form-control is-valid"
+                        :class="{
+                          'multiselect-blue': testTheme('default'),
+                          'multiselect-dark': !testTheme('default'),
+                        }"
                         :options="danhmucKhohang"
                         :is-valid="testValidator('makho')"
                       >
-                        <template v-slot:singlelabel="{ value }">
-                          <div class="multiselect-single-label">
-                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                            {{ value.value }}
-                          </div>
-                        </template>
-
                         <template v-slot:option="{ option }">
                           <!-- <img class="character-option-icon" :src="option.icon" /> -->
                           {{ option.value }} {{ option.tengoi }}
@@ -351,7 +345,10 @@
                   </CCol>
                 </CRow>
 
-                <table class="topics vgt-table condensed bordered striped">
+                <table
+                  class="topics vgt-table condensed bordered striped vgt-wrap"
+                  :class="{ nocturnal: testTheme('dark') }"
+                >
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -428,17 +425,14 @@
                         :searchable="true"
                         trackBy="value"
                         label="value"
-                        class="multiselect-blue form-control is-valid"
+                        class="form-control is-valid"
+                        :class="{
+                          'multiselect-blue': testTheme('default'),
+                          'multiselect-dark': !testTheme('default'),
+                        }"
                         :options="danhmucTaikhoan"
                         :is-valid="testValidator('tkno')"
                       >
-                        <template v-slot:singlelabel="{ value }">
-                          <div class="multiselect-single-label">
-                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                            {{ value.value }}
-                          </div>
-                        </template>
-
                         <template v-slot:option="{ option }">
                           <!-- <img class="character-option-icon" :src="option.icon" /> -->
                           {{ option.value }} {{ option.tentk }}
@@ -455,17 +449,14 @@
                         :searchable="true"
                         trackBy="value"
                         label="value"
-                        class="multiselect-blue form-control is-valid"
+                        class="form-control is-valid"
+                        :class="{
+                          'multiselect-blue': testTheme('default'),
+                          'multiselect-dark': !testTheme('default'),
+                        }"
                         :options="danhmucTaikhoan"
                         :is-valid="testValidator('tkco')"
                       >
-                        <template v-slot:singlelabel="{ value }">
-                          <div class="multiselect-single-label">
-                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                            {{ value.value }}
-                          </div>
-                        </template>
-
                         <template v-slot:option="{ option }">
                           <!-- <img class="character-option-icon" :src="option.icon" /> -->
                           {{ option.value }} {{ option.tentk }}
@@ -479,8 +470,8 @@
                       @click="showModalForm()"
                       id="modal"
                       title="Bổ sung Tài khoản"
-                      >++ Stk</CButton
-                    >
+                      >Stk++
+                    </CButton>
                   </CCol>
                   <CCol md="3">
                     <CInputGroup class="mb-3">
@@ -507,7 +498,10 @@
                   />
                 </modal>
 
-                <table class="topics vgt-table condensed bordered striped">
+                <table
+                  class="topics vgt-table condensed bordered striped vgt-wrap"
+                  :class="{ nocturnal: testTheme('dark') }"
+                >
                   <thead>
                     <tr>
                       <th>ID</th>
@@ -599,17 +593,14 @@
                         :searchable="true"
                         trackBy="value"
                         label="value"
-                        class="multiselect-blue form-control is-valid"
+                        class="form-control is-valid"
+                        :class="{
+                          'multiselect-blue': testTheme('default'),
+                          'multiselect-dark': !testTheme('default'),
+                        }"
                         :options="danhmucTaikhoan"
                         :is-valid="testValidator('tkno')"
                       >
-                        <template v-slot:singlelabel="{ value }">
-                          <div class="multiselect-single-label">
-                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                            {{ value.value }}
-                          </div>
-                        </template>
-
                         <template v-slot:option="{ option }">
                           <!-- <img class="character-option-icon" :src="option.icon" /> -->
                           {{ option.value }} {{ option.tentk }}
@@ -626,17 +617,14 @@
                         :searchable="true"
                         trackBy="value"
                         label="value"
-                        class="multiselect-blue form-control is-valid"
+                        class="form-control is-valid"
+                        :class="{
+                          'multiselect-blue': testTheme('default'),
+                          'multiselect-dark': !testTheme('default'),
+                        }"
                         :options="danhmucTaikhoan"
                         :is-valid="testValidator('tkco')"
                       >
-                        <template v-slot:singlelabel="{ value }">
-                          <div class="multiselect-single-label">
-                            <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                            {{ value.value }}
-                          </div>
-                        </template>
-
                         <template v-slot:option="{ option }">
                           <!-- <img class="character-option-icon" :src="option.icon" /> -->
                           {{ option.value }} {{ option.tentk }}
@@ -842,7 +830,7 @@
             id="sotkhoan"
             v-model="sotkhoan"
             title="Số tài khoản"
-            :disabled = "patern != 'TK'"
+            :disabled="patern != 'TK'"
           />
         </CInputGroup>
       </CCol>
@@ -1246,7 +1234,9 @@ export default {
         this.TotalCtuvattu = 0
         this.ctuvattus.forEach((item) => {
           this.TotalCtuvattu +=
-            item.sotien.split('.').join('').split(',').join('.') * 1
+            item.sotien == 0
+              ? 0
+              : item.sotien.split('.').join('').split(',').join('.') * 1
         })
         this.GanTienHangHoadon(this.TotalCtuvattu)
         this.TotalCtuvattu = this.format_so(this.TotalCtuvattu, 0)
@@ -1256,9 +1246,13 @@ export default {
         this.TotalHd_Tien = 0
         this.hoadons.forEach((item) => {
           this.TotalHd_Thue +=
-            item.thuegtgt.split('.').join('').split(',').join('.') * 1
+            item.thuegtgt == 0
+              ? 0
+              : item.thuegtgt.split('.').join('').split(',').join('.') * 1
           this.TotalHd_Tien +=
-            item.giaban.split('.').join('').split(',').join('.') * 1
+            item.giaban == 0
+              ? 0
+              : item.giaban.split('.').join('').split(',').join('.') * 1
         })
         this.GanTienHangHoadon(this.TotalHd_Tien, this.TotalHd_Thue)
         this.TotalHd_Thue = this.format_so(this.TotalHd_Thue, 0)
@@ -1269,9 +1263,11 @@ export default {
     tinhTienThue() {
       var thuesuat = this.hoadon.thuesuat.split('%').join('')
       var thuegtgt =
-        (this.hoadon.giaban.split('.').join('').split(',').join('.') *
-          thuesuat) /
-        100
+        this.hoadon.giaban == 0
+          ? 0
+          : (this.hoadon.giaban.split('.').join('').split(',').join('.') *
+              thuesuat) /
+            100
       this.hoadon.thuegtgt = thuegtgt.toFixed().toString()
     },
     tinhGiaTien(field) {
@@ -2702,26 +2698,54 @@ label {
 </style>
 <style>
 table.vgt-table {
-  /* font-size: 14px !important; */
+  /* font-size: 16px; */
+  /* background-color: var(--ms-bg);
+  linear-gradient(#2C394F, #2C394F); */
 }
 </style>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
 <style>
 .multiselect-green {
   --ms-tag-bg: #d1fae5;
   --ms-tag-color: #059669;
 }
-
 .multiselect-blue {
-  --ms-tag-bg: #dbeafe;
-  --ms-tag-color: #2563eb;
+  --ms-bg: white;
+  --ms-border-color: white;
+}
+.multiselect-dark {
+  --ms-bg: #1e2139;
+  --ms-border-color: #1e2139;
 }
 .multiselect-option {
   width: 530px;
+  color: burlywood;
+  background-color: var(--ms-bg);
+}
+.multiselect-search {
+  background-color: var(--ms-bg);
+  border-radius: 4px;
+  outline: var(--ms-bg);
 }
 .multiselect-dropdown {
   width: 550px;
   height: 550px;
+  border: var(--ms-bg);
+}
+.multiselect-clear-icon {
+  background-color: var(--ms-bg);
+}
+.multiselect-option {
+  width: 530px;
+  background-color: var(--ms-bg);
+  color: burlywood;
+}
+.multiselect-search {
+  background-color: var(--ms-bg);
+  border-radius: 4px;
+  outline: var(--ms-bg);
+}
+.typo__label {
+  margin-top: 10px;
 }
 </style>

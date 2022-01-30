@@ -109,3 +109,4 @@ export default {
   max-width: 1440px !important;
 }
 </style>
+<style src="@vueform/multiselect/themes/default.css"></style>

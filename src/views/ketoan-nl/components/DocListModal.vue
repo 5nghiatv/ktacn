@@ -91,17 +91,34 @@
 
       <hr />
       <br />
-
-      <VueMultiSelect
+      <!-- <VueMultiSelect
         @getCurrentList="getCurrentList"
         :reloadList="reloadList"
         :currentOpt="currentOpt"
         :modelOpt="modelOpt"
         :titleOpt="2"
-      />
+      /> -->
 
       <!-- currentOpt==0 : Tài khoản From -->
       <div v-if="currentOpt == 0" class="bill-from flex flex-column">
+        <Multiselect
+          v-model="sotk"
+          placeholder="Select your character"
+          :searchable="true"
+          trackBy="value"
+          label="value"
+          :class="{
+            'multiselect-blue': testTheme('default'),
+            'multiselect-dark': !testTheme('default'),
+          }"
+          :options="danhmucTaikhoan"
+          @select="getDanhmuc()"
+        >
+          <template v-slot:option="{ option }">
+            {{ option.value }} {{ option.tentk }}
+          </template>
+        </Multiselect>
+
         <div class="flexbox">
           <div class="flex20 flex-column">
             <label for="billerCity">Tài khoản</label>
@@ -127,6 +144,24 @@
 
       <!-- currentOpt==1 : Khách hàng From -->
       <div v-if="currentOpt == 1" class="bill-from flex flex-column">
+        <Multiselect
+          v-model="maso"
+          placeholder="Select your character"
+          :searchable="true"
+          trackBy="value"
+          label="value"
+          :class="{
+            'multiselect-blue': testTheme('default'),
+            'multiselect-dark': !testTheme('default'),
+          }"
+          :options="danhmucCustomer"
+          @select="getDanhmuc()"
+        >
+          <template v-slot:option="{ option }">
+            {{ option.value }} {{ option.company }}
+          </template>
+        </Multiselect>
+
         <div class="flexbox">
           <div class="flex70 flex-column">
             <label for="billerCity">Công ty</label>
@@ -171,6 +206,24 @@
 
       <!-- currentOpt==2 : Hàng hóa From -->
       <div v-if="currentOpt == 2" class="bill-from flex flex-column">
+        <Multiselect
+          v-model="mahang"
+          placeholder="Select your character"
+          :searchable="true"
+          trackBy="value"
+          label="value"
+          :class="{
+            'multiselect-blue': testTheme('default'),
+            'multiselect-dark': !testTheme('default'),
+          }"
+          :options="danhmucTenhang"
+          @select="getDanhmuc()"
+        >
+          <template v-slot:option="{ option }">
+            {{ option.value }} {{ option.tenhang }}
+          </template>
+        </Multiselect>
+
         <div class="flexbox">
           <div class="flex60 flex-column">
             <label for="billerCity">Mã hàng</label>
@@ -209,6 +262,24 @@
 
       <!-- currentOpt==3 : Kho hàng From -->
       <div v-if="currentOpt == 3" class="bill-from flex flex-column">
+        <Multiselect
+          v-model="makho"
+          placeholder="Select your character"
+          :searchable="true"
+          trackBy="value"
+          label="value"
+          :class="{
+            'multiselect-blue': testTheme('default'),
+            'multiselect-dark': !testTheme('default'),
+          }"
+          :options="danhmucKhohang"
+          @select="getDanhmuc()"
+        >
+          <template v-slot:option="{ option }">
+            {{ option.value }} {{ option.tengoi }}
+          </template>
+        </Multiselect>
+
         <div class="flexbox">
           <div class="flex20 flex-column">
             <label for="billerCity">Mã kho</label>
@@ -265,20 +336,27 @@ import ModalPublic from './ModalPublic'
 import Loading from './Loading'
 import { mapActions, mapMutations, mapState } from 'vuex'
 const { numberFormat, setColorNumber } = require('../utility')
-import VueMultiSelect from '../components/VueMultiSelect'
+//import VueMultiSelect from '../components/VueMultiSelect'
+import Multiselect from '@vueform/multiselect'
+import utility from '@/common/utility'
 
 export default {
   name: 'DocListModal',
+  mixins: [utility],
   components: {
     Loading,
     ModalPublic,
-    VueMultiSelect,
+    Multiselect,
   },
   data() {
     return {
       optKetoan: ['Tài khoản', 'Khách hàng', 'Hàng hóa', 'Kho hàng'],
       currentOpt: null,
       currentOptValue: null,
+      sotk: null,
+      maso: null,
+      mahang: null,
+      makho: null,
       taikhoan: [],
       khachhang: [],
       hanghoa: [],
@@ -289,6 +367,7 @@ export default {
         code: '',
         name: '',
       },
+      options_: null,
       modelOpt: null,
       reloadList: 0,
     }
@@ -313,13 +392,38 @@ export default {
       'DELETE_ACCOUNT_LIST',
     ]),
 
-    getCurrentList(CurrentList) {
-      this.taikhoan = CurrentList.taikhoan
-      this.khachhang = CurrentList.khachhang
-      this.hanghoa = CurrentList.hanghoa
-      this.khohang = CurrentList.khohang
+    // getCurrentList(CurrentList) {
+    //   this.taikhoan = CurrentList.taikhoan
+    //   this.khachhang = CurrentList.khachhang
+    //   this.hanghoa = CurrentList.hanghoa
+    //   this.khohang = CurrentList.khohang
+    // },
+    getDanhmuc() {
+      if (this.currentOpt == 0) {
+        this.taikhoan = this.danhmucTaikhoan.filter(
+          (item) => item.value === this.sotk,
+        )
+        this.taikhoan = this.taikhoan[0]
+      }
+      if (this.currentOpt == 1) {
+        this.khachhang = this.danhmucCustomer.filter(
+          (item) => item.value === this.maso,
+        )
+        this.khachhang = this.khachhang[0]
+      }
+      if (this.currentOpt == 2) {
+        this.hanghoa = this.danhmucTenhang.filter(
+          (item) => item.value === this.mahang,
+        )
+        this.hanghoa = this.hanghoa[0]
+      }
+      if (this.currentOpt == 3) {
+        this.khohang = this.danhmucKhohang.filter(
+          (item) => item.value === this.makho,
+        )
+        this.khohang = this.khohang[0]
+      }
     },
-
     chonOptKetoan(opt) {
       document.getElementById('optradio_0').checked = false
       document.getElementById('optradio_1').checked = false
@@ -350,7 +454,10 @@ export default {
         }
       } else {
         if (ret == 'Yes') this.updateAddDoc('delete')
-        else this.currentModel = null
+        else {
+          this.currentModel = null
+          this.$store.commit('set', ['isLoading', false])
+        }
       }
     },
     returnView() {
@@ -401,7 +508,6 @@ export default {
       //     currentOpt: this.currentOpt
       // });
       if (mission == 'delete') {
-        this.$store.commit('set', ['isLoading', false])
         if (!this.currentModel) {
           this.currentModel = mission
           this.TOGGLE_MODAL_NEW(
@@ -416,13 +522,18 @@ export default {
           })
         }
       }
+
       if (ret) {
-        await this.DM_ACCOUNT_LOADED()
-        this.reloadList++ // for children Update list & reset var
+        // await this.DM_ACCOUNT_LOADED()
+        //this.reloadList++ // for children Update list & reset var
         this.taikhoan = []
         this.khachhang = []
         this.hanghoa = []
         this.khohang = []
+        this.sotk = null
+        this.maso = null
+        this.mahang = null
+        this.makho = null
         this.$toastr.success(
           '',
           mission.toUpperCase() +

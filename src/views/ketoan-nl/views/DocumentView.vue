@@ -239,8 +239,12 @@
             <p>
               {{
                 numberFormat(
-                  item.giaban.split('.').join('') * 1 +
-                    item.thuegtgt.split('.').join('') * 1,
+                  (typeof item.giaban === 'number'
+                    ? item.giaban
+                    : item.giaban.split('.').join('') * 1) +
+                    (typeof item.thuegtgt === 'number'
+                      ? item.thuegtgt
+                      : item.thuegtgt.split('.').join('') * 1),
                 )
               }}
             </p>
@@ -378,7 +382,11 @@ export default {
             this.congChitiet.chitiet = this.documentDataChitiet.reduce(
               (a, b) =>
                 +a +
-                +parseInt(b.sotien.split('.').join('').split(',').join('.')),
+                +(b.sotien == 0
+                  ? 0
+                  : parseInt(
+                      b.sotien.split('.').join('').split(',').join('.'),
+                    )),
               0,
             )
           if (this.currentDocument)
@@ -399,7 +407,11 @@ export default {
             this.congChitiet.vattu = this.documentDataVattu.reduce(
               (a, b) =>
                 +a +
-                +parseInt(b.sotien.split('.').join('').split(',').join('.')),
+                +(b.sotien == 0
+                  ? 0
+                  : parseInt(
+                      b.sotien.split('.').join('').split(',').join('.'),
+                    )),
               0,
             )
           if (this.currentDocument)
@@ -421,9 +433,14 @@ export default {
             this.congChitiet.hoadon = this.documentDataHoadon.reduce(
               (a, b) =>
                 +a +
-                +parseInt(b.giaban.split('.').join('').split(',').join('.')),
+                +(b.giaban == 0
+                  ? 0
+                  : parseInt(
+                      b.giaban.split('.').join('').split(',').join('.'),
+                    )),
               0,
             )
+          //console.log(this.congChitiet.hoadon, this.documentDataHoadon)
           if (this.currentDocument)
             this.chenhlechChitiet =
               this.congChitiet.hoadon == 0

@@ -122,22 +122,22 @@
           class="button flex"
           style="background-color: rgba(255, 145, 0, 0.1); color: #ff8f00"
         >
-          <div class="inner-button flex">
-            <img src="../assets/icon-plus.svg" alt="" />
+          <div class="inner-button flex fa fa-plus text-info mr-2">
+            <!-- <img src="../assets/icon-plus.svg" alt="" /> -->
           </div>
           <span>Copy Docs</span>
         </div>
 
         <div @click="AddNewList()" class="button flex">
-          <div class="inner-button flex">
-            <img src="../assets/icon-plus.svg" alt="" />
+          <div class="inner-button flex fa fa-plus text-info mr-2">
+            <!-- <img src="../assets/icon-plus.svg" alt="" /> -->
           </div>
           <span>New List</span>
         </div>
 
         <div @click="newInvoice" class="button flex">
-          <div class="inner-button flex">
-            <img src="../assets/icon-plus.svg" alt="" />
+          <div class="inner-button flex fa fa-plus text-info mr-2">
+            <!-- <img src="../assets/icon-plus.svg" alt="" /> -->
           </div>
           <span>New Document</span>
         </div>

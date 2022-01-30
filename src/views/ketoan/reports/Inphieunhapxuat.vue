@@ -37,34 +37,30 @@
                 </span>
                 <CRow class="col-12" style="float: left">
                   <CCol col="4">
-                    <CInput
-                      v-model="nguoikyten.giamdoc"
-                      type="text"
-                      prepend="Giám đốc"
-                    ></CInput>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>Giám đốc</CInputGroupText>
+                      <CFormInput v-model="nguoikyten.giamdoc" />
+                    </CInputGroup>
                   </CCol>
                   <CCol col="4">
-                    <CInput
-                      v-model="nguoikyten.kttruong"
-                      type="text"
-                      prepend="Kt_Trưởng"
-                    ></CInput>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>Kt_Trưởng</CInputGroupText>
+                      <CFormInput v-model="nguoikyten.kttruong" />
+                    </CInputGroup>
                   </CCol>
                 </CRow>
                 <CRow class="col-12" style="float: left">
                   <CCol col="4">
-                    <CInput
-                      v-model="nguoikyten.nguoilap"
-                      type="text"
-                      prepend="Người lập"
-                    ></CInput>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>Người lập</CInputGroupText>
+                      <CFormInput v-model="nguoikyten.nguoilap" />
+                    </CInputGroup>
                   </CCol>
                   <CCol col="4">
-                    <CInput
-                      v-model="nguoikyten.thukho"
-                      type="text"
-                      prepend="Thủ kho....."
-                    ></CInput>
+                    <CInputGroup class="mb-3">
+                      <CInputGroupText>Thủ kho....</CInputGroupText>
+                      <CFormInput v-model="nguoikyten.thukho" />
+                    </CInputGroup>
                   </CCol>
                 </CRow>
                 <div>

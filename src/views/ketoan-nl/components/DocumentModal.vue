@@ -74,62 +74,44 @@
           <label class="typo__label">Tài khoản Nợ</label>
           <Multiselect
             v-model="tkno"
-            placeholder="Select your character"
+            placeholder="Số tài khoản"
             :searchable="true"
             trackBy="value"
             label="value"
-            class="multiselect-blue form-control is-valid"
+            class="form-control"
+            :class="{
+              'multiselect-blue': testTheme('default'),
+              'multiselect-dark': !testTheme('default'),
+            }"
             :options="danhmucTaikhoan"
           >
-            <template v-slot:singlelabel="{ value }">
-              <div class="multiselect-single-label">
-                <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                {{ value.value }}
-              </div>
-            </template>
             <template v-slot:option="{ option }">
               <!-- <img class="character-option-icon" :src="option.icon" /> -->
               {{ option.value }} {{ option.tentk }}
             </template>
           </Multiselect>
-
-          <!-- <label class="typo__label">Tài khoản Nợ</label>
-          <VueMultiSelect
-            @getCurrentList="getCurrentListNo"
-            :currentOpt="0"
-            :modelOpt="tkno"
-            :titleOpt="2"
-          /> -->
         </div>
 
         <div class="location-details flex">
           <label class="typo__label">Tài khoản Có</label>
           <Multiselect
             v-model="tkco"
-            placeholder="Select your character"
+            placeholder="Số tài khoản"
             :searchable="true"
             trackBy="value"
             label="value"
-            class="multiselect-blue form-control is-valid"
+            class="form-control"
+            :class="{
+              'multiselect-blue': testTheme('default'),
+              'multiselect-dark': !testTheme('default'),
+            }"
             :options="danhmucTaikhoan"
           >
-            <template v-slot:singlelabel="{ value }">
-              <div class="multiselect-single-label">
-                <!-- <img class="character-label-icon" :src="value.icon" /> -->
-                {{ value.value }}
-              </div>
-            </template>
             <template v-slot:option="{ option }">
               <!-- <img class="character-option-icon" :src="option.icon" /> -->
               {{ option.value }} {{ option.tentk }}
             </template>
           </Multiselect>
-          <!-- <VueMultiSelect
-            @getCurrentList="getCurrentListCo"
-            :currentOpt="0"
-            :modelOpt="tkco"
-            :titleOpt="2"
-          /> -->
         </div>
       </div>
 
@@ -176,8 +158,10 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 import moment from 'moment'
 const { numberFormat, setColorNumber } = require('../utility')
 import Multiselect from '@vueform/multiselect'
+import utility from '@/common/utility'
 export default {
   name: 'documentModal',
+  mixins: [utility],
   components: {
     Loading,
     //ModalPublic,

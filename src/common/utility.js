@@ -17,7 +17,7 @@ export default {
     theme() {
       this.googletheme = this.theme === 'default' ? '' : 'nocturnal'
     },
-  },  
+  },
   beforeCreate: function () {
     //this.$i18n.locale = this.$store.state.locale
   },
@@ -26,6 +26,10 @@ export default {
     // console.log("Printing from the Mixin", this.googletheme)
   },
   methods: {
+    testTheme(opt) {
+      //console.log(9999, this.theme, opt, this.theme === opt)
+      return this.theme === opt
+    },
     displayMessage() {
       console.log('Written by => ' + this.Writtenby) // Run in Main.js
     },
@@ -382,10 +386,16 @@ export default {
         }
         if (this.$children[index].currentPage == 1) {
           this.$children[index].changePage(endPages)
-        } else { this.$children[index].changePage(1) }
+        } else {
+          this.$children[index].changePage(1)
+        }
       } else {
-        console.log(2222, 'this.$options.components.VueGoodTable', this.$options.components.VueGoodTable)
-      }  
+        console.log(
+          2222,
+          'this.$options.components.VueGoodTable',
+          this.$options.components.VueGoodTable,
+        )
+      }
     },
     mySearchNoZero() {
       var index = 0
@@ -399,10 +409,13 @@ export default {
         this.searchNoZero = !this.searchNoZero
         this.$children[index].searchTableOnEnter()
       } else {
-          console.log(1111, 'this.$options.components.VueGoodTable', this.$options.components.VueGoodTable)
-          this.$options.components.VueGoodTable.methods.searchTableOnEnter()
+        console.log(
+          1111,
+          'this.$options.components.VueGoodTable',
+          this.$options.components.VueGoodTable,
+        )
+        this.$options.components.VueGoodTable.methods.searchTableOnEnter()
       }
-
     },
   }, // Method
 }

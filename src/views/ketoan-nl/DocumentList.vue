@@ -7,16 +7,16 @@
         <div class="appinv-content flex flex-column">
           <!-- <Modal v-if="modalActive" /> -->
           <!-- Chú ý: Chữ in & thường -->
-          <transition name="invoice">
-            <DocListModal v-if="docListModal" />
-          </transition>
-          <transition name="invoice">
-            <DocumentModal v-if="documentModal" />
-          </transition>
           <!-- <router-view /> -->
           <DocumentView v-if="showDocumentView" />
           <!-- ========Thứ tự trên dưới RẤT QUAN TRỌNG============ -->
           <HomeDocument />
+          <transition name="invoice">
+            <DocumentModal v-if="documentModal" />
+          </transition>
+          <transition name="invoice">
+            <DocListModal v-if="docListModal" />
+          </transition>
         </div>
       </div>
       <div v-else class="mobile-message flex flex-column">
@@ -352,22 +352,48 @@ button,
 }
 </style>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
 <style>
 .multiselect-green {
   --ms-tag-bg: #d1fae5;
   --ms-tag-color: #059669;
 }
-
 .multiselect-blue {
-  --ms-tag-bg: #dbeafe;
-  --ms-tag-color: #2563eb;
+  --ms-bg: white;
+  --ms-border-color: white;
+}
+.multiselect-dark {
+  --ms-bg: #1e2139;
+  --ms-border-color: #1e2139;
 }
 .multiselect-option {
   width: 530px;
+  color: burlywood;
+  background-color: var(--ms-bg);
+}
+.multiselect-search {
+  background-color: var(--ms-bg);
+  border-radius: 4px;
+  outline: var(--ms-bg);
 }
 .multiselect-dropdown {
   width: 550px;
   height: 550px;
+  border: var(--ms-bg);
+}
+.multiselect-clear-icon {
+  background-color: var(--ms-bg);
+}
+.multiselect-option {
+  width: 530px;
+  background-color: var(--ms-bg);
+  color: burlywood;
+}
+.multiselect-search {
+  background-color: var(--ms-bg);
+  border-radius: 4px;
+  outline: var(--ms-bg);
+}
+.typo__label {
+  margin-top: 10px;
 }
 </style>
