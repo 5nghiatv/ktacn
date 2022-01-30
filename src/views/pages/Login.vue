@@ -94,7 +94,7 @@
                       :searchable="true"
                       trackBy="taxcode"
                       label="company"
-                      class="multiselect-blue form-control is-valid"
+                      class="multiselect-blue form-control"
                       :options="connects"
                       @select="getCompanyName()"
                       :is-valid="testValidator('masothue')"
