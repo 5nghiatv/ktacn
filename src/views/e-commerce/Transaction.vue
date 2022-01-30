@@ -296,7 +296,7 @@ export default {
 </script>
 <style>
 table.vgt-table {
-  font-size: 14px !important;
+  /* font-size: 14px !important; */
 }
 </style>
 <style scoped>
