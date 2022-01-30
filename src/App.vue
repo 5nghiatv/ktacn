@@ -101,6 +101,7 @@ export default {
 <style lang="scss">
 // Import Main styles for this application
 @import 'styles/style';
+@import 'toastr/toastr.scss';
 .container-xl,
 .container-lg,
 .container-md,
@@ -108,7 +109,5 @@ export default {
 .container {
   max-width: 1440px !important;
 }
-// @import 'toastr/toastr.scss';
 </style>
-<style src="@/assets/css/toastr.min.css"></style>
 <style src="@vueform/multiselect/themes/default.css"></style>
