@@ -9,17 +9,17 @@
     <CSidebarHeader class="bg-transparent p-0">
       <CNav variant="underline">
         <CNavItem>
-          <CNavLink href="#" @click="updateActiveKey(1)">
+          <CNavLink @click="updateActiveKey(1)">
             <CIcon icon="cil-List" alt="CoreUI Icons List" />
           </CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="#" @click="updateActiveKey(2)">
+          <CNavLink @click="updateActiveKey(2)">
             <CIcon icon="cil-speech" alt="CoreUI Icons Speech" />
           </CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="#" @click="updateActiveKey(3)">
+          <CNavLink @click="updateActiveKey(3)">
             <CIcon icon="cil-settings" alt="CoreUI Icons Settings" />
           </CNavLink>
         </CNavItem>
@@ -204,45 +204,72 @@
       <CTabPane class="p-3" :visible="activeKey == 3">
         <h6>Settings</h6>
         <div>
+          <div class="clearfix mt-3">
+            <CFormSwitch
+              @change="settingSwitch('theme')"
+              id="DarkMode"
+              size="lg"
+              label="Dark Mode"
+              :checked="getSettingSwitch(theme, 'dark')"
+            />
+          </div>
+          <div>
+            <small class="text-medium-emphasis">
+              Chế độ màn hình Sáng ( default) hoặc tối ( nocturnal hoặc Dark )
+            </small>
+          </div>
+        </div>
+
+        <div>
           <div class="clearfix mt-4">
             <CFormSwitch
-              id="Option1"
+              @change="settingSwitch('Dropbox')"
+              id="Dropbox"
               size="lg"
-              label="Option 1"
-              default-checked
+              label="Dropbox"
+              :checked="getSettingSwitch(settings.Dropbox, true)"
             />
           </div>
           <div>
             <small class="text-medium-emphasis">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              Sao lưu Database vào tài khoản DropBox 5nghiatv@gmail.com hay
+              5nghiatv.acn@gmail.com.
             </small>
           </div>
         </div>
-        <div>
-          <div class="clearfix mt-3">
-            <CFormSwitch id="fOption2" size="lg" label="Option 2" />
-          </div>
-          <div>
-            <small class="text-medium-emphasis">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </small>
-          </div>
-        </div>
-        <div>
-          <div class="clearfix mt-3">
-            <CFormSwitch id="Option3" size="lg" label="Option 3" />
-          </div>
-        </div>
+
         <div>
           <div class="clearfix mt-3">
             <CFormSwitch
-              id="Option4"
+              @change="settingSwitch('Company')"
+              id="Company"
               size="lg"
-              label="Option 4"
-              default-checked
+              label="Company"
+              :checked="getSettingSwitch(settings.Company, true)"
             />
+          </div>
+          <div>
+            <small class="text-medium-emphasis">
+              Chế độ Kế toán dành cho Doanh nghiệp loại nào : Công ty ( Doanh
+              nghiệp lớn) hoặc ngược lại là doanh nghiệp nhỏ.
+            </small>
+          </div>
+        </div>
+
+        <div>
+          <div class="clearfix mt-3">
+            <CFormSwitch
+              @change="settingSwitch('FirstMonth')"
+              id="FirstMonth"
+              size="lg"
+              label="FirstMonth"
+              :checked="getSettingSwitch(settings.FirstMonth, true)"
+            />
+          </div>
+          <div>
+            <small class="text-medium-emphasis">
+              Copy chứng từ sẽ tạo theo ngày `từ ngày` hoặc `Đến ngày`
+            </small>
           </div>
         </div>
         <hr />
@@ -296,6 +323,19 @@ export default {
   setup() {
     const activeKey = ref(1)
 
+    const settingSwitch = (opt) => {
+      if (opt == 'theme') {
+        store.state.theme = store.state.theme == 'dark' ? 'default' : 'dark'
+      } else {
+        store.state.settings[opt] = !store.state.settings[opt]
+        store.commit('REP_SETTINGS', store.state.settings)
+      }
+    }
+    const getSettingSwitch = computed(() => (opt, value) => {
+      //console.log(opt, value)
+      return opt == value
+    })
+
     const updateActiveKey = (key) => {
       activeKey.value = key
     }
@@ -304,6 +344,8 @@ export default {
 
     return {
       asideVisible: computed(() => store.state.asideVisible),
+      theme: computed(() => store.state.theme),
+      settings: computed(() => store.state.settings),
       avatar2,
       avatar3,
       avatar4,
@@ -313,6 +355,8 @@ export default {
       avatar8,
       activeKey,
       updateActiveKey,
+      settingSwitch,
+      getSettingSwitch,
     }
   },
 }

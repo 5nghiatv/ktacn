@@ -22,12 +22,14 @@ export default {
     //this.$i18n.locale = this.$store.state.locale
   },
   created: function () {
+    // Phục vụ cho Google Table tùy thuộc vào theme
     this.googletheme = this.theme === 'default' ? '' : 'nocturnal'
     // console.log("Printing from the Mixin", this.googletheme)
   },
   methods: {
     testTheme(opt) {
       //console.log(9999, this.theme, opt, this.theme === opt)
+      // theme : 1-default   2-dark ( Qui định tại AppHearder.vue)
       return this.theme === opt
     },
     displayMessage() {
@@ -395,6 +397,7 @@ export default {
           'this.$options.components.VueGoodTable',
           this.$options.components.VueGoodTable,
         )
+       // this.$options.components.VueGoodTable.methods.changePage(1)
       }
     },
     mySearchNoZero() {
@@ -409,12 +412,15 @@ export default {
         this.searchNoZero = !this.searchNoZero
         this.$children[index].searchTableOnEnter()
       } else {
+        const collection = document.getElementsByClassName("footer__navigation__page-info__current-entry")
+        collection[0].value++
         console.log(
           1111,
           'this.$options.components.VueGoodTable',
           this.$options.components.VueGoodTable,
         )
         this.$options.components.VueGoodTable.methods.searchTableOnEnter()
+        
       }
     },
   }, // Method

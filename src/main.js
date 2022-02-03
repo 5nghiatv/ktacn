@@ -40,7 +40,8 @@ axios.defaults.withCredentials = true
 import ApiService from './common/api.service'
 import JwtService from './common/jwt.service'
 //import 'core-js/stable'
-//import i18n from './i18n'
+import i18n from './i18n'
+app.use(i18n)
 //import _ from 'lodash'
 //import utility from './common/utility'
 // import Element from 'element-ui'
@@ -88,6 +89,7 @@ app.config.globalProperties.$jwtAcn = JwtService
 app.config.globalProperties.$apiAcn = ApiService
 app.config.globalProperties.$author = 'Tác giả: Trần Văn Nghĩa - 0903917963'
 app.config.globalProperties.$toastr = toastr
+app.config.globalProperties.$i18n = i18n
 
 app.provide('icons', icons)
 app.component('CIcon', CIcon)
@@ -102,9 +104,8 @@ router.beforeEach((to, from, next) => {
   if (!language) {
     language = 'vn'
   }
-
   // set the current language for i18n.
-  //i18n.locale = language
+  i18n.locale = language
   const loggedIn = localStorage.getItem('token') !== null
 
   if (!to.path.includes('/pages/register')) {

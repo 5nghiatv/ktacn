@@ -88,6 +88,7 @@
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Thuế gtgt</CInputGroupText>
                       <CFormInput
+                        class="form-control is-valid"
                         v-model="hoadon.thuegtgt"
                         v-mask-decimal.br="0"
                       />
@@ -313,7 +314,7 @@
                         v-mask-decimal.br="2"
                         @change="tinhGiaTien('dongia')"
                         v-model="ctuvattu.dongia"
-                        class="form-control"
+                        class="form-control is-valid"
                       />
                     </div>
                   </CCol>
@@ -327,7 +328,7 @@
                         v-mask-decimal.br="0"
                         @change="tinhGiaTien('sotien')"
                         v-model="ctuvattu.sotien"
-                        class="form-control"
+                        class="form-control is-valid"
                       />
                     </div>
                   </CCol>
@@ -879,7 +880,7 @@
         enabled: true,
         trigger: 'enter',
         skipDiacritics: true,
-        placeholder: 'Tìm nội dung (.)',
+        placeholder: 'Tìm nội dung ( >0 )',
       }"
     >
       >

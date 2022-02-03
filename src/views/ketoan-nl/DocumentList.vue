@@ -382,6 +382,7 @@ button,
 }
 .multiselect-clear-icon {
   background-color: var(--ms-bg);
+  display: none;
 }
 .multiselect-option {
   width: 530px;

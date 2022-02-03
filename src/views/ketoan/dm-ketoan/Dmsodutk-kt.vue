@@ -200,8 +200,8 @@
         enabled: true,
         trigger: 'enter',
         skipDiacritics: true,
-        placeholder: 'Tìm nội dung (.)',
-        searchFn: '',
+        placeholder: 'Tìm nội dung ( >0 )',
+        searchFn: myFunc,
       }"
     >
       >
@@ -385,7 +385,7 @@ export default {
     //     this.searchNoZero = !this.searchNoZero;
     //     this.$children[0].searchTableOnEnter();
     // },
-    mySearch(row, col, cellValue, searchTerm) {
+    myFunc(row, col, cellValue, searchTerm) {
       if (this.searchNoZero && !searchTerm) {
         searchTerm = '>0'
       }

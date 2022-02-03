@@ -12,43 +12,43 @@ exports.nav1 = [
   },
   {
     component: 'CNavTitle',
-    name: 'Kế toán Doanh Nghiệp',
+    name: 'Corporate accounting',
   },
   {
     component: 'CNavItem',
-    name: 'Nhập liệu',
+    name: 'Accounting Data Entry',
     to: '/ketoan/chungtu-kt',
     icon: 'cil-drop',
   },
   {
     component: 'CNavGroup',
-    name: 'In Chứng từ',
+    name: 'Print vouchers',
     to: '/ketoan/reports/inphieuthuchi/All',
     icon: 'cil-print',
     items: [
       {
         component: 'CNavItem',
-        name: 'Phiếu Thu chi',
+        name: 'Print the Receipt',
         to: '/ketoan/reports/inphieuthuchi/All',
       },
       {
         component: 'CNavItem',
-        name: 'Phiếu Nhập xuất',
+        name: 'Print the Imp-Export slip',
         to: '/ketoan/reports/inphieunhapxuat/All',
       },
       {
         component: 'CNavItem',
-        name: 'Phiếu Kế toán',
+        name: 'Print the Accounting slip',
         to: '/ketoan/reports/inphieuketoan/All',
       },
       {
         component: 'CNavItem',
-        name: 'Hóa đơn Bán hàng',
+        name: 'Print invoices',
         to: '/ketoan/reports/inhoadon/All',
       },
       {
         component: 'CNavItem',
-        name: 'Ủy Nhiệm Chi',
+        name: 'Print authorization',
         to: '/users/ACCOUNT-uynhiemchi',
         badge: {
           color: 'info',
@@ -59,51 +59,51 @@ exports.nav1 = [
   },
   {
     component: 'CNavGroup',
-    name: 'Danh mục Kế toán',
+    name: 'Accounting Directory',
     to: '/ketoan/dm-ketoan/dmtkhoan-kt',
     icon: 'cil-cursor',
     items: [
       {
         component: 'CNavItem',
-        name: 'Danh mục Tài khoản',
+        name: 'Account categories',
         to: '/ketoan/dm-ketoan/dmtkhoan-kt',
       },
       {
         component: 'CNavItem',
-        name: 'Danh mục Tiền tệ',
+        name: 'Currency Category',
         to: '/ketoan/dm-ketoan/dmtiente-kt',
       },
       {
         component: 'CNavItem',
-        name: 'Danh mục Khách hàng',
+        name: 'Customer Category',
         to: '/ketoan/dm-ketoan/customer-kt',
       },
       {
         component: 'CNavItem',
-        name: 'Cân đối phát sinh',
+        name: 'Arising balances',
         to: '/ketoan/dm-ketoan/dmsodutk-kt',
       },
     ],
   },
   {
     component: 'CNavGroup',
-    name: 'Danh mục Hàng hóa',
+    name: 'Menu of goods',
     to: '/buttons',
     icon: 'cil-cursor',
     items: [
       {
         component: 'CNavItem',
-        name: 'Danh mục Hàng hóa',
+        name: 'Menu of goods',
         to: '/ketoan/dm-hanghoa/tenhang-kt',
       },
       {
         component: 'CNavItem',
-        name: 'Danh mục Kho hàng',
+        name: 'Warehouse list',
         to: '/ketoan/dm-hanghoa/dmtenkho-kt',
       },
       {
         component: 'CNavItem',
-        name: 'Nhập xuất tồn kho',
+        name: 'Import Export inventory',
         to: '/ketoan/dm-hanghoa/dmkhohang-kt',
       },
     ],
@@ -111,88 +111,88 @@ exports.nav1 = [
   //============= Báo cáo Kế toán
   {
     component: 'CNavTitle',
-    name: 'Báo cáo Kế toán',
+    name: 'Accounting report',
   },
   {
     component: 'CNavItem',
-    name: 'Cân đối Kế toán',
+    name: 'Balance Sheet',
     to: '/ketoan/bc-ketoan/cdketoan-kt',
     icon: 'cil-drop',
   },
   {
     component: 'CNavItem',
-    name: 'Kết quả Kinh Doanh',
+    name: 'Business results',
     to: '/ketoan/bc-ketoan/ketquakd-kt',
     icon: 'cil-pencil',
   },
   {
     component: 'CNavItem',
-    name: 'Lưu chuyển Tiền tệ',
+    name: 'Cash Flow',
     to: '/ketoan/bc-ketoan/lctiente-kt',
     icon: 'cil-pencil',
   },
   //============= Khai báo Thuế
   {
     component: 'CNavTitle',
-    name: 'Khai báo Thuế',
+    name: 'Tax return',
   },
   {
     component: 'CNavItem',
-    name: 'Tờ Khai 01/GTGT',
+    name: 'Declaration 01/VAT',
     to: '/users/KK_01_GTGT.xml',
     icon: 'cil-drop',
   },
   {
     component: 'CNavItem',
-    name: 'Báo cáo Hóa đơn BC26',
+    name: 'BC26 Invoice Report',
     to: '/users/KK-HOADON-BC26.xml',
     icon: 'cil-pencil',
   },
   {
     component: 'CNavItem',
-    name: 'Báo cáo Tài chính-xml',
+    name: 'Financial Report-xml',
     to: '/users/KK-BC-TAICHINH.xml',
     icon: 'cil-pencil',
   },
   {
     component: 'CNavItem',
-    name: 'Báo cáo Tài chính-xls',
+    name: 'Financial Report-xls',
     to: '/users/TM-BC-TAICHINH.xlsx',
     icon: 'cil-pencil',
   },
   {
     component: 'CNavItem',
-    name: 'Tờ Khai 03/TNDN',
+    name: 'Declaration 03/TNDN',
     to: '/users/KK-03-TNDN.xml',
     icon: 'cil-pencil',
   },
   {
     component: 'CNavGroup',
-    name: 'Bảng kê Hóa đơn',
+    name: 'Invoice List',
     to: '/games',
     icon: 'cil-cursor',
     items: [
       {
         component: 'CNavItem',
-        name: 'Bảng kê Hóa đơn đầu vào',
+        name: 'List of Input Invoices',
         to: '/users/KK-GTGT-10',
         icon: 'cil-arrow-circle-right',
       },
       {
         component: 'CNavItem',
-        name: 'Bảng kê Thuế VAT đầu vào',
+        name: 'List of Input VAT',
         to: '/users/KK-GTGT-11',
         icon: 'cil-arrow-circle-right',
       },
       {
         component: 'CNavItem',
-        name: 'Bảng kê Hóa đơn đầu ra',
+        name: 'Outcome Invoice List',
         to: '/users/KK-GTGT-20',
         icon: 'cil-arrow-circle-left',
       },
       {
         component: 'CNavItem',
-        name: 'Bảng kê Thuế VAT đầu ra',
+        name: 'List of Output VAT',
         to: '/users/KK-GTGT-21',
         icon: 'cil-arrow-circle-left',
       },
@@ -201,27 +201,27 @@ exports.nav1 = [
   // ============= Quản lý Kế toán
   {
     component: 'CNavTitle',
-    name: 'Quản lý Kế toán',
+    name: 'Management Accountant',
   },
   {
     component: 'CNavGroup',
-    name: 'Sao lưu - Phục hồi',
+    name: 'Backup-restore',
     to: '/games',
     icon: 'cil-cursor',
     items: [
       {
         component: 'CNavItem',
-        name: 'Sao lưu toàn bộ',
+        name: 'Full backup',
         to: '/users/ACCOUNT-backupData',
       },
       {
         component: 'CNavItem',
-        name: 'Sao lưu bảng dữ liệu',
+        name: 'Data sheet backup',
         to: '/users/ACCOUNT-backupTable',
       },
       {
         component: 'CNavItem',
-        name: 'Phục hồi dữ liệu',
+        name: 'Database restore',
         to: '/users/ACCOUNT-restoreData',
         meta: { isAdmin: true },
         badge: {
@@ -231,7 +231,7 @@ exports.nav1 = [
       },
       {
         component: 'CNavItem',
-        name: 'Nâng cấp Kế toán-',
+        name: 'Upgrade Accounting',
         to: '/users/ACCOUNT-vfpupload',
         meta: { isAdmin: true },
         badge: {
@@ -244,18 +244,18 @@ exports.nav1 = [
   // Quản trị hệ thống
   {
     component: 'CNavGroup',
-    name: 'Quản trị hệ thống',
+    name: 'Administrator',
     to: '/games',
     icon: 'cil-cursor',
     items: [
       {
         component: 'CNavItem',
-        name: 'Kết nối Dữ liệu',
+        name: 'Connect Databases',
         to: '/ketoan/connect_kt',
       },
       {
         component: 'CNavItem',
-        name: 'Danh sách Người dùng',
+        name: 'Users List',
         to: '/ketoan/user_kt',
       },
     ],

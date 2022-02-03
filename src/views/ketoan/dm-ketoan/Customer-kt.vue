@@ -190,7 +190,7 @@
         trigger: 'enter',
         skipDiacritics: true,
         placeholder: 'Tìm nội dung (.)',
-        searchFn: mySreach,
+        searchFn: myFunc,
       }"
     >
       >
@@ -312,12 +312,12 @@ export default {
 
   methods: {
     submitForm() {},
-    mySreach(row, col, cellValue, searchTerm) {
+    myFunc(row, col, cellValue, searchTerm) {
       //placeholder: 'Nhập nội dung tìm hoặc >0',
       //searchFn: mySreach
-      if (this.searchNoZero && !searchTerm) {
-        searchTerm = '>0'
-      }
+      // if (this.searchNoZero && !searchTerm) {
+      //   searchTerm = '>0'
+      // }
       searchTerm = searchTerm.trim()
       if (searchTerm == '>0') return false
       return (

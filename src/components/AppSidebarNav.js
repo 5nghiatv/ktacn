@@ -53,15 +53,31 @@ const AppSidebarNav = defineComponent({
   },
   setup() {
     const store = useStore()
+    // console.log('store.state: SẼ LOAD nav..', store.state)
+    const { nav1 } = require('@/_nav1.js')
+    const { nav2 } = require('@/_nav2.js')
+    let lang = require(`@/locales/${store.state.locale}.json`)
+
+    nav1.forEach((element) => {
+      // console.log('--' + element.name)
+      if (lang.navRight[element.name] != 'undefined') {
+        element.name = lang.navRight[element.name]
+        //console.log(lang.navRight[element.name])
+      }
+      if (element.items) {
+        element.items.forEach((el) => {
+          if (lang.navRight[el.name] != 'undefined') {
+            el.name = lang.navRight[el.name]
+            // console.log(lang.navRight[el.name])
+          }
+        })
+      }
+    })
     if (store.state.isAdmin && process.env.VUE_APP_URL.includes('localhost')) {
-      const { nav1 } = require('@/_nav1.js')
-      const { nav2 } = require('@/_nav2.js')
       nav = [...nav1, ...nav2]
     } else {
-      const { nav1 } = require('@/_nav1.js')
       nav = [...nav1]
     }
-    // ======== New add
 
     const route = useRoute()
     const firstRender = ref(true)

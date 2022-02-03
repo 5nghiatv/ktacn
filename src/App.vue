@@ -21,16 +21,16 @@ export default {
     this.ADD_LOGGED_USER(loggedUser)
   },
   beforeCreate: function () {
-    // var info = this.$jwtAcn.getKetoan()
-    // console.log(
-    //   1,
-    //   'Change language: ',
-    //   this.$i18n.locale,
-    //   ' Replace = ',
-    //   info.locale,
-    // )
-    // this.$i18n.locate = info.locate // Cho bên bên trái & hệ thống ( this.$i18n.locate)
-    // this.$store.state.locale = info.locate // Dành cho bên trên & phải (this.$store.state.locale)
+    var info = this.$jwtAcn.getKetoan()
+    console.log(
+      1,
+      'Change language: ',
+      this.$i18n.locale,
+      ' Replace = ',
+      info.locale,
+    )
+    this.$i18n.locale = info.locale // Cho bên bên trái & hệ thống ( this.$i18n.locate)
+    this.$store.state.locale = info.locale // Dành cho bên trên & phải (this.$store.state.locale)
   },
   // watch: {
   //   items: {

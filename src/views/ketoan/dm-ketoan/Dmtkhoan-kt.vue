@@ -145,13 +145,15 @@
         ofLabel: 'of',
         pageLabel: 'Trang', // for 'pages' mode
         allLabel: 'All',
+        infoFn: null,
+        jumpFirstOrLast: true,
       }"
       :search-options="{
         enabled: true,
         trigger: 'enter',
         skipDiacritics: true,
         placeholder: 'Tìm nội dung (.)',
-        searchFn: '',
+        searchFn: myFunc,
       }"
     >
       >
@@ -273,11 +275,11 @@ export default {
 
   methods: {
     submitForm() {},
-    mySearch(row, col, cellValue, searchTerm) {
+    myFunc(row, col, cellValue, searchTerm) {
       if (this.searchNoZero && !searchTerm) {
         searchTerm = '>0'
       }
-      //console.log(111,"SearchTerm:",searchTerm)
+      //console.log(111, 'SearchTerm:', searchTerm)
       searchTerm = searchTerm.trim()
       if (searchTerm == '>0') return row.nodn + row.codn > 0
       return (

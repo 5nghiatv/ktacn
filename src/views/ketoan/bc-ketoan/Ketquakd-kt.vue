@@ -162,8 +162,8 @@
         enabled: true,
         trigger: 'enter',
         skipDiacritics: true,
-        placeholder: 'Tìm nội dung (.)',
-        searchFn: mySreach,
+        placeholder: 'Tìm nội dung ( >0 )',
+        searchFn: myFunc,
       }"
     >
       >
@@ -292,7 +292,7 @@ export default {
 
   methods: {
     submitForm() {},
-    mySreach(row, col, cellValue, searchTerm) {
+    myFunc(row, col, cellValue, searchTerm) {
       if (this.searchNoZero && !searchTerm) {
         searchTerm = '>0'
       }

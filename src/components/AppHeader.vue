@@ -14,14 +14,14 @@
       </CHeaderBrand>
       <CHeaderNav class="d-none d-md-flex me-auto">
         <CNavItem>
-          <CNavLink href="#/dashboard"> Dashboard </CNavLink>
+          <CNavLink href="#/dashboard"> {{ $t('nav.dashboard') }} </CNavLink>
         </CNavItem>
         <CNavItem>
-          <CNavLink href="#/users/0">Users</CNavLink>
+          <CNavLink href="#/users/0"> {{ $t('nav.users') }}</CNavLink>
         </CNavItem>
         <CNavItem>
           <!-- <CNavLink href="#" @click="logout">Settings</CNavLink> -->
-          <CNavLink href="#" @click="logout">Settings</CNavLink>
+          <CNavLink href="#" @click="logout">{{ $t('nav.settings') }}</CNavLink>
         </CNavItem>
       </CHeaderNav>
       <CHeaderNav class="ms-auto me-4">
@@ -63,7 +63,8 @@
         </CButtonGroup>
       </CHeaderNav>
       <CHeaderNav class="me-4">
-        <AppHeaderDropdownNotif />
+        <AppHeaderLanguage />
+        <!-- <AppHeaderDropdownNotif /> -->
         <AppHeaderDropdownTasks />
         <AppHeaderDropdownMssgs />
       </CHeaderNav>
@@ -109,8 +110,10 @@
 import AppBreadcrumb from './AppBreadcrumb'
 import AppHeaderDropdownAccnt from './AppHeaderDropdownAccnt'
 import AppHeaderDropdownMssgs from './AppHeaderDropdownMssgs'
-import AppHeaderDropdownNotif from './AppHeaderDropdownNotif'
+// import AppHeaderDropdownNotif from './AppHeaderDropdownNotif'
 import AppHeaderDropdownTasks from './AppHeaderDropdownTasks'
+import AppHeaderLanguage from './AppHeaderLanguage'
+
 //import { logo } from '@/assets/brand/logo'
 import { useStore } from 'vuex'
 
@@ -120,8 +123,9 @@ export default {
     AppBreadcrumb,
     AppHeaderDropdownAccnt,
     AppHeaderDropdownMssgs,
-    AppHeaderDropdownNotif,
+    // AppHeaderDropdownNotif,
     AppHeaderDropdownTasks,
+    AppHeaderLanguage,
   },
   setup() {
     const store = useStore()

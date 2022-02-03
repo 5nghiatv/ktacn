@@ -200,8 +200,8 @@
         enabled: true,
         trigger: 'enter',
         skipDiacritics: true,
-        placeholder: 'Tìm nội dung (.)',
-        searchFn: mySreach,
+        placeholder: 'Tìm nội dung ( >0 )',
+        searchFn: myFunc,
       }"
     >
       >
@@ -395,7 +395,7 @@ export default {
           this.$toastr.error('', 'Tính lại số dư thực hiện KHÔNG thành công.')
         })
     },
-    mySreach(row, col, cellValue, searchTerm) {
+    myFunc(row, col, cellValue, searchTerm) {
       if (this.searchNoZero && !searchTerm) {
         searchTerm = '>0'
       }

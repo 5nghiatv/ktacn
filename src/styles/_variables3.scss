@@ -1,14 +1,10 @@
 // Variable overrides
-$nenchinh: #0f1724;
-$nenday__: #070d17;
-$selectChu: #11ece5;
-$selectChu2: #11ca9c;
-$chuthuong: #92abcf;
-$chuthuong: #c6d3e7;
-$khac: #39667f;
-$nenwindows: #2b2b2b;
-$hoverwindows: #414141;
 
+$winword-active-bg: #002050;
+$winword-hover-bg: #124078;
+$winword-dark-bg: #2b579a;
+$winword-dropdown-bg: #3369b9;
+$winword-brand-bg: #3369b9;
 
 $pagination-bg: #c6d3e7 !default;
 $pagination-active-bg: rgb(64, 53, 141) !default;
@@ -17,24 +13,12 @@ $pagination-disabled-bg:  $pagination-bg ;
 $pagination-hover-bg: rgb(192, 186, 223) !default;
 $pagination-hover-border-color: $pagination-hover-bg;
 
-$sidebar-dark-nav-link-hover-bg:  rgb(24, 48, 58)  !default;
-$sidebar-light-nav-link-hover-bg:  rgba(0, 0, 0, 5) !default;
 
-$sidebar-dark-brand-bg: rgb(54,127,169)  !default;
-$sidebar-light-brand-bg: rgb(54,127,169)  !default;
-
-$sidebar-dark-header-bg: rgb(34,45,50)  !default;
-$sidebar-dark-nav-dropdown-bg: rgb(44,59,65)  !default;
-$__sidebar-dark-nav-dropdown-color: rgba(white, .7) !default;
-
-
-$sidebar-dark-bg: #0f1724  !default;
-$sidebar-dark-nav-link-active-bg: $sidebar-dark-nav-link-hover-bg;
-
-$sidebar-light-header-bg: rgb(34,45,50)  !default;
-$sidebar-light-nav-dropdown-bg: rgb(44,59,65)  !default;
-$sidebar-light-bg: rgb(26,34,38)  !default;
-$sidebar-light-nav-link-active-bg: $sidebar-dark-nav-link-hover-bg;
+$sidebar-dark-nav-link-hover-bg: $winword-hover-bg  !default;
+$sidebar-dark-nav-dropdown-bg: $winword-dropdown-bg  !default;
+$sidebar-dark-bg: $winword-dark-bg  !default;
+$sidebar-dark-nav-link-active-bg: $winword-active-bg !default;
+$sidebar-dark-brand-bg: $winword-brand-bg  !default;
 
 
 // $sidebar-dark-nav-link-hover-bg:  rgb(24, 48, 58)  !default;
