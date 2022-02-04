@@ -1,57 +1,41 @@
 // Variable overrides
-$nenchinh: #0f1724;
-$nenday__: #070d17;
-$selectChu: #11ece5;
-$selectChu2: #11ca9c;
-$chuthuong: #92abcf;
-$chuthuong: #c6d3e7;
-$khac: #39667f;
-$nenwindows: #2b2b2b;
-$hoverwindows: #414141;
 
+// === template pagination
+// $pagination-bg: #c6d3e7 !default;
+// $pagination-active-bg: rgb(64, 53, 141) !default;
+// $pagination-disabled-bg:  $pagination-bg ;
+// $pagination-hover-bg: rgb(192, 186, 223) !default;
+// $pagination-hover-border-color: $pagination-hover-bg;
 
-$pagination-bg: #c6d3e7 !default;
-$pagination-active-bg: rgb(64, 53, 141) !default;
-$pagination-disabled-bg:  $pagination-bg ;
-// $pagination-hover-color: darkslateblue !default;
-$pagination-hover-bg: rgb(192, 186, 223) !default;
-$pagination-hover-border-color: $pagination-hover-bg;
+// === template AdminLTE
+$sidebar-nav-link-hover-bg:  rgb(24, 48, 58)  !default;
+$sidebar-bg: rgb(26, 34, 38) !default;
+$sidebar-nav-link-active-bg: rgb(34, 52, 59)  !default;
+$sidebar-nav-dropdown-bg: rgb(44, 59, 65) !default;
+// $sidebar-brand-bg: rgb(54, 127, 169) !default;
+$sidebar-brand-bg: $sidebar-nav-dropdown-bg !default;
+$sidebar-header-bg: $sidebar-nav-dropdown-bg !default;
 
-$sidebar-dark-nav-link-hover-bg:  rgb(24, 48, 58)  !default;
-$sidebar-light-nav-link-hover-bg:  rgba(0, 0, 0, 5) !default;
+// // === template Windows
+// $sidebar-nav-link-hover-bg: #505050 !default;
+// $sidebar-nav-dropdown-bg: #414141 !default;
+// $sidebar-bg: #2b2b2b !default;
+// $sidebar-nav-link-active-bg: #1a1919 !default;
+// $sidebar-brand-bg: $sidebar-nav-dropdown-bg !default;
+// $sidebar-header-bg: $sidebar-nav-dropdown-bg !default;
 
-$sidebar-dark-brand-bg: rgb(54,127,169)  !default;
-$sidebar-light-brand-bg: rgb(54,127,169)  !default;
+// // === template Winword
+// $sidebar-nav-link-hover-bg: #124078 !default;
+// $sidebar-nav-dropdown-bg: #3369b9 !default;
+// $sidebar-bg: #2b579a !default;
+// $sidebar-nav-link-active-bg: #002050 !default;
+// $sidebar-brand-bg: $sidebar-nav-dropdown-bg !default;
+// $sidebar-header-bg: $sidebar-nav-dropdown-bg !default;
 
-$sidebar-dark-header-bg: rgb(34,45,50)  !default;
-$sidebar-dark-nav-dropdown-bg: rgb(44,59,65)  !default;
-$__sidebar-dark-nav-dropdown-color: rgba(white, .7) !default;
-
-
-$sidebar-dark-bg: #0f1724  !default;
-$sidebar-dark-nav-link-active-bg: $sidebar-dark-nav-link-hover-bg;
-
-$sidebar-light-header-bg: rgb(34,45,50)  !default;
-$sidebar-light-nav-dropdown-bg: rgb(44,59,65)  !default;
-$sidebar-light-bg: rgb(26,34,38)  !default;
-$sidebar-light-nav-link-active-bg: $sidebar-dark-nav-link-hover-bg;
-
-
-// $sidebar-dark-nav-link-hover-bg:  rgb(24, 48, 58)  !default;
-// $sidebar-light-nav-link-hover-bg:  rgba(0, 0, 0, 5) !default;
-
-// $sidebar-dark-brand-bg: rgb(54,127,169)  !default;
-// $sidebar-light-brand-bg: rgb(54,127,169)  !default;
-
-// $sidebar-dark-header-bg: rgb(34,45,50)  !default;
-// $sidebar-dark-nav-dropdown-bg: rgb(44,59,65)  !default;
-// $__sidebar-dark-nav-dropdown-color: rgba(white, .7) !default;
-
-
-// $sidebar-dark-bg: rgb(26,34,38)  !default;
-// $sidebar-dark-nav-link-active-bg: $sidebar-dark-nav-link-hover-bg;
-
-// $sidebar-light-header-bg: rgb(34,45,50)  !default;
-// $sidebar-light-nav-dropdown-bg: rgb(44,59,65)  !default;
-// $sidebar-light-bg: rgb(26,34,38)  !default;
-// $sidebar-light-nav-link-active-bg: $sidebar-dark-nav-link-hover-bg;
+// === template Galecy
+// $sidebar-nav-link-hover-bg: #1e2124 !default;
+// $sidebar-nav-dropdown-bg: #24272b !default;
+// $sidebar-bg: #2f353a !default;
+// $sidebar-nav-link-active-bg: #3a3f44 !default;
+// $sidebar-brand-bg: $sidebar-nav-dropdown-bg !default;
+// $sidebar-header-bg: $sidebar-nav-dropdown-bg !default;

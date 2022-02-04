@@ -363,4 +363,8 @@ exports.nav2 = [
       },
     ],
   },
+  {
+    component: 'CNavTitle',
+    name: 'SYSTEM UTILIZATION',
+  },
 ]

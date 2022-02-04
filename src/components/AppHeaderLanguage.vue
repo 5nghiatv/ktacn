@@ -148,17 +148,18 @@ export default {
   },
   methods: {
     setColor(color) {
-      this.$apiAcn
-        .get('setcolor/_variables' + color + '.scss')
-        .then((r) => {
-          if (r.status === 200) {
-            console.log('setColor successFully...' + color, r)
-          }
-          location.reload()
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+      alert('Đang thiết kế ...' + color)
+      // this.$apiAcn
+      //   .get('setcolor/_variables' + color + '.scss')
+      //   .then((r) => {
+      //     if (r.status === 200) {
+      //       console.log('setColor successFully...' + color, r)
+      //     }
+      //     location.reload()
+      //   })
+      //   .catch((err) => {
+      //     console.log(err)
+      //   })
     },
     setLocale(locale) {
       this.$i18n.locale = locale
