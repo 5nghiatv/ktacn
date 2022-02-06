@@ -147,5 +147,11 @@ export default {
   --cui-sidebar-nav-link-hover-bg: #1e2124;
   --cui-sidebar-nav-link-active-bg: #3a3f44;
 }
+.sidebar-nav {
+  overflow: hidden;
+}
+.sidebar-nav:hover {
+  overflow-y: auto;
+}
 </style>
 <style src="@vueform/multiselect/themes/default.css"></style>
