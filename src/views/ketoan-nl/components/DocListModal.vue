@@ -108,8 +108,8 @@
           trackBy="value"
           label="value"
           :class="{
-            'multiselect-blue': testTheme('default'),
-            'multiselect-dark': !testTheme('default'),
+            'multiselect-blue': !testTheme('dark'),
+            'multiselect-dark': testTheme('dark'),
           }"
           :options="danhmucTaikhoan"
           @select="getDanhmuc()"
@@ -151,8 +151,8 @@
           trackBy="value"
           label="value"
           :class="{
-            'multiselect-blue': testTheme('default'),
-            'multiselect-dark': !testTheme('default'),
+            'multiselect-blue': !testTheme('dark'),
+            'multiselect-dark': testTheme('dark'),
           }"
           :options="danhmucCustomer"
           @select="getDanhmuc()"
@@ -213,8 +213,8 @@
           trackBy="value"
           label="value"
           :class="{
-            'multiselect-blue': testTheme('default'),
-            'multiselect-dark': !testTheme('default'),
+            'multiselect-blue': !testTheme('dark'),
+            'multiselect-dark': testTheme('dark'),
           }"
           :options="danhmucTenhang"
           @select="getDanhmuc()"
@@ -269,8 +269,8 @@
           trackBy="value"
           label="value"
           :class="{
-            'multiselect-blue': testTheme('default'),
-            'multiselect-dark': !testTheme('default'),
+            'multiselect-blue': !testTheme('dark'),
+            'multiselect-dark': testTheme('dark'),
           }"
           :options="danhmucKhohang"
           @select="getDanhmuc()"

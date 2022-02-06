@@ -143,8 +143,8 @@
                     label="value"
                     class="form-control"
                     :class="{
-                      'multiselect-blue': testTheme('default'),
-                      'multiselect-dark': !testTheme('default'),
+                      'multiselect-blue': !testTheme('dark'),
+                      'multiselect-dark': testTheme('dark'),
                     }"
                     :options="danhmucTaikhoan"
                   >
@@ -164,8 +164,8 @@
                     label="value"
                     class="form-control"
                     :class="{
-                      'multiselect-blue': testTheme('default'),
-                      'multiselect-dark': !testTheme('default'),
+                      'multiselect-blue': !testTheme('dark'),
+                      'multiselect-dark': testTheme('dark'),
                     }"
                     :options="danhmucTaikhoan"
                   >

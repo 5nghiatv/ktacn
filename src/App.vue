@@ -12,6 +12,9 @@ export default {
       cartValue: 0,
     }
   },
+  mounted() {
+    // Ensure that you have proper reference to HTMLElement
+  },
   created() {
     // Phục hồi biến trong store khi refresh trang web , Nếu không sẽ mất hết
     //====================================================================
@@ -58,6 +61,19 @@ export default {
   },
   methods: {
     /* Initially loading the cart products from local storage */
+    // setTheme(theme) {
+    //   localStorage.setItem('user-theme', theme)
+    //   this.userTheme = theme
+    //   document.documentElement.className = theme
+    // },
+    // toggleTheme() {
+    //   const activeTheme = localStorage.getItem('user-theme')
+    //   if (activeTheme === 'light-theme') {
+    //     this.setTheme('dark-theme')
+    //   } else {
+    //     this.setTheme('light-theme')
+    //   }
+    // },
     ...mapMutations(['SET_CART_PRODUCTS', 'ADD_LOGGED_USER', 'REP_SETTINGS']),
     getSettings() {
       const settings = JSON.parse(localStorage.getItem('setting_acn'))
@@ -85,10 +101,26 @@ export default {
   setup() {
     const store = useStore()
     //console.log(111, 'setup:', store.state.loggedUser)
+    store.state.theme = localStorage.getItem('user-theme') || 'default' // setItem in store.toggleTheme
+
     watch(store.state, () => {
       store.state.theme === 'dark'
         ? document.body.classList.add('dark-theme')
         : document.body.classList.remove('dark-theme')
+      document.documentElement.setAttribute('data-theme', store.state.theme) // sets the data-theme attribute
+
+      /** Replace custom stylesheet */
+      // if (document.querySelector('link[id="customStyle"]')) {
+      //   document.head.removeChild(
+      //     document.querySelector('link[id="customStyle"]'),
+      //   )
+      // }
+      // let lk = document.createElement('link')
+      // lk.setAttribute('id', 'customStyle')
+      // lk.setAttribute('rel', 'stylesheet')
+      // lk.setAttribute('href', `/css/${store.state.theme}.css`)
+      // document.head.appendChild(lk)
+      // console.log(9999, lk)
     })
 
     store.state.theme === 'dark'
@@ -108,6 +140,26 @@ export default {
 .container-sm,
 .container {
   max-width: 1440px !important;
+}
+
+// [data-theme='default'] {
+//   --cui-sidebar-bg: green;
+// }
+[data-theme='windows'] {
+  --cui-sidebar-bg: #2b2b2b;
+  --cui-sidebar-nav-dropdown-bg: #414141;
+}
+[data-theme='winword'] {
+  --cui-sidebar-bg: #2b579a;
+  --cui-sidebar-nav-dropdown-bg: #3369b9;
+}
+[data-theme='lte'] {
+  --cui-sidebar-bg: rgb(26, 34, 38);
+  --cui-sidebar-nav-dropdown-bg: rgb(44, 59, 65);
+}
+[data-theme='legacy'] {
+  --cui-sidebar-bg: #2f353a;
+  --cui-sidebar-nav-dropdown-bg: #24272b;
 }
 </style>
 <style src="@vueform/multiselect/themes/default.css"></style>

@@ -43,7 +43,8 @@ export default createStore({
       state.sidebarVisible = !state.sidebarVisible
     },
     toggleTheme(state, payload) {
-      state.theme = payload.value
+      state.theme = payload.value || payload // Phải có ||
+      localStorage.setItem('user-theme', state.theme)
     },
     toggleUnfoldable(state) {
       state.sidebarUnfoldable = !state.sidebarUnfoldable
@@ -133,6 +134,7 @@ export default createStore({
     locate: (state) => state.locate,
   },
 
+  // for this.$store.dispatch('login', data)
   actions: {
     login(state, response) {
       // token at: response.headers.authorization

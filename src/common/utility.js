@@ -15,7 +15,7 @@ export default {
   },
   watch: {
     theme() {
-      this.googletheme = this.theme === 'default' ? '' : 'nocturnal'
+      this.googletheme = this.theme === 'dark' ? 'nocturnal' : '' 
     },
   },
   beforeCreate: function () {
@@ -23,7 +23,7 @@ export default {
   },
   created: function () {
     // Phục vụ cho Google Table tùy thuộc vào theme
-    this.googletheme = this.theme === 'default' ? '' : 'nocturnal'
+    this.googletheme = this.theme === 'dark' ? 'nocturnal' : '' 
     // console.log("Printing from the Mixin", this.googletheme)
   },
   methods: {

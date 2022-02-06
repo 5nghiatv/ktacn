@@ -59,30 +59,30 @@
       <CDropdownHeader tag="div" class="text-center" color="light">
         <strong>{{ $t('navRight.Colors') }}</strong>
       </CDropdownHeader>
-      <CDropdownItem @click="setColor(0)">
+      <CDropdownItem @click="setColor('default')">
         <img src="/he.svg" alt="flag" style="height: 20px; width: 20px" />
         <CIcon /> CoreUI Vue
       </CDropdownItem>
 
-      <CDropdownItem @click="setColor(1)">
+      <CDropdownItem @click="setColor('lte')">
         <img src="/su.svg" alt="flag" style="height: 20px; width: 20px" />
         <CIcon /> AdminLTE Vue
       </CDropdownItem>
-      <CDropdownItem @click="setColor(2)">
+      <CDropdownItem @click="setColor('windows')">
         <img src="/lb.svg" alt="flag" style="height: 20px; width: 20px" />
         <CIcon /> Windows Vue
       </CDropdownItem>
-      <CDropdownItem @click="setColor(3)">
+      <CDropdownItem @click="setColor('winword')">
         <img src="/hn.svg" alt="flag" style="height: 20px; width: 20px" />
         <CIcon /> Winword Vue
       </CDropdownItem>
-      <CDropdownItem @click="setColor(4)">
+      <CDropdownItem @click="setColor('legacy')">
         <img src="/lb.svg" alt="flag" style="height: 20px; width: 20px" />
         <CIcon /> Legacy Vue
       </CDropdownItem>
-      <CDropdownItem @click="setColor(5)">
+      <CDropdownItem @click="setColor('dark')">
         <img src="/hn.svg" alt="flag" style="height: 20px; width: 20px" />
-        <CIcon /> Dark Vue
+        <CIcon /> Dark Mode
       </CDropdownItem>
 
       <CDropdownDivider />
@@ -147,18 +147,8 @@ export default {
     }
   },
   methods: {
-    setColor(color) {
-      this.$apiAcn
-        .get('setcolor/_variables' + color + '.scss')
-        .then((r) => {
-          if (r.status === 200) {
-            console.log('setColor successFully...' + color, r)
-          }
-          location.reload()
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+    setColor(theme) {
+      this.$store.commit('toggleTheme', theme)
     },
     setLocale(locale) {
       this.$i18n.locale = locale

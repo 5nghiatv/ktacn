@@ -23,7 +23,7 @@
                       autocomplete="username"
                     />
                   </CInputGroup>
-                  <CInputGroup class="mb-4">
+                  <CInputGroup class="mb-3">
                     <CInputGroupText>
                       <CIcon icon="cil-lock-locked" />
                     </CInputGroupText>
@@ -94,7 +94,11 @@
                       :searchable="true"
                       trackBy="taxcode"
                       label="company"
-                      class="multiselect-blue form-control"
+                      class="form-control"
+                      :class="{
+                        'multiselect-blue': !testTheme('dark'),
+                        'multiselect-dark': testTheme('dark'),
+                      }"
                       :options="connects"
                       @select="getCompanyName()"
                       :is-valid="testValidator('masothue')"
@@ -176,9 +180,11 @@
 import moment from 'moment'
 import { ref } from 'vue'
 import Multiselect from '@vueform/multiselect'
+import utility from '@/common/utility'
 
 export default {
   name: 'Login',
+  mixins: [utility],
   components: { Multiselect },
   data() {
     return {
