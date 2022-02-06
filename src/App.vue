@@ -35,14 +35,6 @@ export default {
     this.$i18n.locale = info.locale // Cho bên bên trái & hệ thống ( this.$i18n.locate)
     this.$store.state.locale = info.locale // Dành cho bên trên & phải (this.$store.state.locale)
   },
-  // watch: {
-  //   items: {
-  //     handler(val, oldVal) {
-  //       console.log(oldVal + ' --> ' + val)
-  //     },
-  //     deep: true,
-  //   },
-  // },
   computed: {
     ...mapState(['cartProducts', 'loggedUser', 'settings']),
     CheckCreate: function () {
@@ -60,20 +52,6 @@ export default {
     },
   },
   methods: {
-    /* Initially loading the cart products from local storage */
-    // setTheme(theme) {
-    //   localStorage.setItem('user-theme', theme)
-    //   this.userTheme = theme
-    //   document.documentElement.className = theme
-    // },
-    // toggleTheme() {
-    //   const activeTheme = localStorage.getItem('user-theme')
-    //   if (activeTheme === 'light-theme') {
-    //     this.setTheme('dark-theme')
-    //   } else {
-    //     this.setTheme('light-theme')
-    //   }
-    // },
     ...mapMutations(['SET_CART_PRODUCTS', 'ADD_LOGGED_USER', 'REP_SETTINGS']),
     getSettings() {
       const settings = JSON.parse(localStorage.getItem('setting_acn'))
