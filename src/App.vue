@@ -148,18 +148,26 @@ export default {
 [data-theme='windows'] {
   --cui-sidebar-bg: #2b2b2b;
   --cui-sidebar-nav-dropdown-bg: #414141;
+  --cui-sidebar-nav-link-hover-bg: #505050;
+  --cui-sidebar-nav-link-active-bg: #1a1919;
 }
 [data-theme='winword'] {
   --cui-sidebar-bg: #2b579a;
   --cui-sidebar-nav-dropdown-bg: #3369b9;
+  --cui-sidebar-nav-link-hover-bg: #124078;
+  --cui-sidebar-nav-link-active-bg: #002050;
 }
 [data-theme='lte'] {
   --cui-sidebar-bg: rgb(26, 34, 38);
   --cui-sidebar-nav-dropdown-bg: rgb(44, 59, 65);
+  --cui-sidebar-nav-link-hover-bg: rgb(24, 48, 58);
+  --cui-sidebar-nav-link-active-bg: rgb(34, 52, 59);
 }
 [data-theme='legacy'] {
   --cui-sidebar-bg: #2f353a;
   --cui-sidebar-nav-dropdown-bg: #24272b;
+  --cui-sidebar-nav-link-hover-bg: #1e2124;
+  --cui-sidebar-nav-link-active-bg: #3a3f44;
 }
 </style>
 <style src="@vueform/multiselect/themes/default.css"></style>

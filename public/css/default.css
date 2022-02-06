@@ -1,8 +1,0 @@
-:root {
-  --sidebar-nav-link-hover-bg: #124078 !default;
-  --sidebar-nav-dropdown-bg: #3369b9 !default;
-  --sidebar-bg: #2b579a !default;
-  --sidebar-nav-link-active-bg: #002050 !default;
-  --sidebar-brand-bg: $sidebar-nav-dropdown-bg !default;
-  --sidebar-header-bg: $sidebar-nav-dropdown-bg !default;
-}
