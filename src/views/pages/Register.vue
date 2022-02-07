@@ -91,7 +91,7 @@
                       >
                     </CCol>
                     <CCol col="4">
-                      <CButton href="/" color="success" block
+                      <CButton @click="gotoHome()" color="success" block
                         >Home page</CButton
                       >
                     </CCol>
@@ -154,6 +154,10 @@ export default {
     }
   },
   methods: {
+    async gotoHome() {
+      await this.$router.push('/dashboard')
+      await location.reload()
+    },
     onSelectAdmin() {
       this.isAdmin = document.getElementById('mySelectAdmin').value
     },

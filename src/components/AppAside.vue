@@ -47,7 +47,7 @@
             </small>
           </CListGroupItem>
           <CListGroupItem href="#" class="border-start-4 border-start-info">
-            <CAvatar :src="avatar4" size="lg" class="float-end" />
+            <CAvatar :src="avatar1" size="lg" class="float-end" />
             <div>Skype with <strong>Megan</strong></div>
             <small class="text-medium-emphasis me-3">
               <CIcon icon="cil-calendar" /> 4 - 5pm
@@ -118,7 +118,7 @@
       <CTabPane class="p-3" :visible="activeKey == 2">
         <div class="message">
           <div class="py-3 pb-5 me-3 float-start">
-            <CAvatar :src="avatar7" status="success" size="md" />
+            <CAvatar :src="avatar6" status="success" size="md" />
           </div>
           <div>
             <small class="text-medium-emphasis">Lukasz Holeczek</small>
@@ -135,7 +135,7 @@
         <hr />
         <div class="message">
           <div class="py-3 pb-5 me-3 float-start">
-            <CAvatar :src="avatar7" status="success" size="md" />
+            <CAvatar :src="avatar6" status="success" size="md" />
           </div>
           <div>
             <small class="text-medium-emphasis">Lukasz Holeczek</small>
@@ -152,7 +152,7 @@
         <hr />
         <div class="message">
           <div class="py-3 pb-5 me-3 float-start">
-            <CAvatar :src="avatar7" status="success" size="md" />
+            <CAvatar :src="avatar6" status="success" size="md" />
           </div>
           <div>
             <small class="text-medium-emphasis">Lukasz Holeczek</small>
@@ -310,6 +310,7 @@
 <script>
 import { computed, ref } from 'vue'
 import { useStore } from 'vuex'
+import avatar1 from '@/assets/images/avatars/1.jpg'
 import avatar2 from '@/assets/images/avatars/2.jpg'
 import avatar3 from '@/assets/images/avatars/3.jpg'
 import avatar4 from '@/assets/images/avatars/4.jpg'
@@ -346,6 +347,7 @@ export default {
       asideVisible: computed(() => store.state.asideVisible),
       theme: computed(() => store.state.theme),
       settings: computed(() => store.state.settings),
+      avatar1,
       avatar2,
       avatar3,
       avatar4,

@@ -482,7 +482,7 @@ export default {
                 .then(async () => {
                   this.$store.commit('set', ['isLoading', false])
                   await this.$router.push('/')
-                  location.reload()
+                  await location.reload()
                 })
               // console.log(data.data.token) ;
               // console.log(this.$jwtAcn.getDateTime()) ;

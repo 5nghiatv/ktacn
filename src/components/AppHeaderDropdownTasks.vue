@@ -21,7 +21,7 @@
         <CProgress thin color="info-gradient" />
       </CDropdownItem>
       <CDropdownItem class="d-block">
-        <div class="small mb-1" @click="calRouter('/ketoan/user_kt')">
+        <div class="small mb-1" @click="editUserinfo()">
           Sửa thông tin người dùng
           <span class="float-right"><strong></strong></span>
         </div>
@@ -64,6 +64,8 @@
 </template>
 <script>
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+
 export default {
   name: 'TheHeaderDropdownTasks',
   data() {
@@ -71,11 +73,24 @@ export default {
   },
   setup() {
     const router = useRouter()
+    const store = useStore()
+
     const calRouter = (query) => {
       router.push(query)
     }
+
+    const editUserinfo = () => {
+      let id =
+        typeof store.state.loggedUser.id != 'undefined'
+          ? store.state.loggedUser.id
+          : store.state.loggedUser._id
+      let path = `/pages/register/${id}`
+      router.push(path)
+    }
+
     return {
       calRouter,
+      editUserinfo,
     }
   },
 }
