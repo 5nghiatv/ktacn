@@ -13,17 +13,18 @@
           <img
             src="img\avatars\nghia.png"
             name="aboutme"
-            width="140"
-            height="140"
-            border="0"
-            class="avatar"
+            width="240"
+            height="240"
+            class="avatar-ecommerce"
+            style="border-radius: 50%"
           />
           <hr />
-
-          <h3 class="media-heading">Trần Văn Nghĩa</h3>
-          <h6>
-            <strong>nghiatv@gmail.com</strong>
-          </h6>
+          <div style="color: darkolivegreen">
+            <h3 class="media-heading">Trần Văn Nghĩa</h3>
+            <h6>
+              <strong>nghiatv@gmail.com</strong>
+            </h6>
+          </div>
           <h6>
             <a href="https://ketoan.nghiajs.com/" target="_blank"
               >ketoan.nghiajs.com</a

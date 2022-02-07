@@ -10,43 +10,45 @@
       >
     </CDropdownToggle>
     <CDropdownMenu class="pt-0">
-      <CDropdownHeader class="bg-light">
-        <strong>You have {{ itemsCount }} pending tasks</strong>
+      <CDropdownHeader class="bg-light" style="text-align: center">
+        <strong>Account</strong>
       </CDropdownHeader>
       <CDropdownItem class="d-block">
-        <div class="small mb-1">
-          Upgrade NPM &amp; Bower
-          <span class="float-right"><strong>0%</strong></span>
+        <div class="small mb-1" @click="thongtin(1)">
+          Thông tin người dùng
+          <span class="float-right"><strong></strong></span>
         </div>
         <CProgress thin color="info-gradient" />
       </CDropdownItem>
       <CDropdownItem class="d-block">
-        <div class="small mb-1">
-          ReactJS Version <span class="float-right"><strong>25%</strong></span>
+        <div class="small mb-1" @click="thongtin(2)">
+          Sửa thông tin người dùng
+          <span class="float-right"><strong></strong></span>
         </div>
         <CProgress thin color="danger-gradient" :value="25" />
       </CDropdownItem>
       <CDropdownItem class="d-block">
-        <div class="small mb-1">
-          VueJS Version <span class="float-right"><strong>50%</strong></span>
+        <div class="small mb-1" @click="thongtin(3)">
+          Thông tin tác giả
+          <span class="float-right"><strong>50%</strong></span>
         </div>
         <CProgress thin color="warning-gradient" :value="50" />
       </CDropdownItem>
-      <CDropdownItem class="d-block">
+      <CDropdownItem class="d-block" @click="thongtin(4)">
         <div class="small mb-1">
-          Add new layouts <span class="float-right"><strong>75%</strong></span>
+          CoreUI Vue Pro <span class="float-right"><strong>75%</strong></span>
         </div>
         <CProgress thin color="info-gradient" :value="75" />
       </CDropdownItem>
       <CDropdownItem class="d-block">
         <div class="small mb-1">
-          Angular 2 Cli Version
+          Angular 2 Cli
           <span class="float-right"><strong>100%</strong></span>
         </div>
         <CProgress thin color="success-gradient" :value="100" />
       </CDropdownItem>
-      <CDropdownItem class="text-center border-top">
-        <strong>View all tasks</strong>
+      <CDropdownItem class="text-center border-top" @click="thongtin(3)">
+        <strong>Ketoan.ACN</strong>
       </CDropdownItem>
     </CDropdownMenu>
   </CDropdown>
@@ -56,6 +58,14 @@ export default {
   name: 'TheHeaderDropdownTasks',
   data() {
     return { itemsCount: 15 }
+  },
+  setup() {
+    const thongtin = (opt) => {
+      alert(opt)
+    }
+    return {
+      thongtin,
+    }
   },
 }
 </script>
