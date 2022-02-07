@@ -148,10 +148,26 @@ export default {
   --cui-sidebar-nav-link-active-bg: #3a3f44;
 }
 .sidebar-nav {
+  --scrollbarBG: --cui-sidebar-nav-link-active-bg;
+  --thumbBG: #90a4ae;
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
   overflow: hidden;
 }
 .sidebar-nav:hover {
   overflow-y: auto;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 11px;
+}
+.sidebar-nav::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
 }
 </style>
 <style src="@vueform/multiselect/themes/default.css"></style>
