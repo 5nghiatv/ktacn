@@ -439,6 +439,11 @@ const routes = [
             component: () => import('@/views/ketoan/User-kt.vue'),
           },
           {
+            path: 'contact',
+            name: 'Contact',
+            component: () => import('@/views/ketoan/Contact.vue'),
+          },
+          {
             path: 'reports/inphieuketoan/:ctid',
             name: 'Inphieuketoan',
             component: () => import('@/views/ketoan/reports/Inphieuketoan'),

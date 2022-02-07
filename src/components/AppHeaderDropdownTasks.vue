@@ -14,57 +14,68 @@
         <strong>Account</strong>
       </CDropdownHeader>
       <CDropdownItem class="d-block">
-        <div class="small mb-1" @click="thongtin(1)">
+        <div class="small mb-1" @click="calRouter('/users/0')">
           Thông tin người dùng
           <span class="float-right"><strong></strong></span>
         </div>
         <CProgress thin color="info-gradient" />
       </CDropdownItem>
       <CDropdownItem class="d-block">
-        <div class="small mb-1" @click="thongtin(2)">
+        <div class="small mb-1" @click="calRouter('/ketoan/user_kt')">
           Sửa thông tin người dùng
           <span class="float-right"><strong></strong></span>
         </div>
         <CProgress thin color="danger-gradient" :value="25" />
       </CDropdownItem>
       <CDropdownItem class="d-block">
-        <div class="small mb-1" @click="thongtin(3)">
+        <div class="small mb-1" @click="calRouter('/ketoan/contact')">
           Thông tin tác giả
           <span class="float-right"><strong>50%</strong></span>
         </div>
         <CProgress thin color="warning-gradient" :value="50" />
       </CDropdownItem>
-      <CDropdownItem class="d-block" @click="thongtin(4)">
+      <CDropdownItem
+        class="d-block"
+        href="https://coreui.io/demo/4.0/index.html"
+        target="_blank"
+      >
         <div class="small mb-1">
           CoreUI Vue Pro <span class="float-right"><strong>75%</strong></span>
         </div>
         <CProgress thin color="info-gradient" :value="75" />
       </CDropdownItem>
-      <CDropdownItem class="d-block">
+      <CDropdownItem
+        class="d-block"
+        href="https://v3.vuejs.org/guide/introduction.html"
+        target="_blank"
+      >
+        <!-- target="_blank"  Mở trang mới -->
         <div class="small mb-1">
-          Angular 2 Cli
+          VueJS 3.x
           <span class="float-right"><strong>100%</strong></span>
         </div>
         <CProgress thin color="success-gradient" :value="100" />
       </CDropdownItem>
-      <CDropdownItem class="text-center border-top" @click="thongtin(3)">
+      <CDropdownItem class="text-center border-top">
         <strong>Ketoan.ACN</strong>
       </CDropdownItem>
     </CDropdownMenu>
   </CDropdown>
 </template>
 <script>
+import { useRouter } from 'vue-router'
 export default {
   name: 'TheHeaderDropdownTasks',
   data() {
     return { itemsCount: 15 }
   },
   setup() {
-    const thongtin = (opt) => {
-      alert(opt)
+    const router = useRouter()
+    const calRouter = (query) => {
+      router.push(query)
     }
     return {
-      thongtin,
+      calRouter,
     }
   },
 }
