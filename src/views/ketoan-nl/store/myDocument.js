@@ -32,8 +32,12 @@ export const myDocument = {
     danhmucTenhang: ref(null),
     danhmucKhohang: ref(null),
     showDocumentView: ref(null),
+    danhmucUsers: ref(null),
   },
   mutations: {
+    SET_DM_USERS(state, payload) {
+      state.danhmucUsers = payload
+    },
     SET_DM_TAIKHOAN(state, payload) {
       // state.danhmucTaikhoan = payload; // Không watch || computer được
       state.danhmucTaikhoan = payload
@@ -123,6 +127,15 @@ export const myDocument = {
       await dispatch('GET_DM_CUSTOMER')
       await dispatch('GET_DM_TENHANG')
       await dispatch('GET_DM_KHOHANG')
+    },
+    async GET_DM_USERS({ commit }) {
+      await ApiService.get('/users', {})
+        .then((data) => {
+          commit('SET_DM_USERS', data.data.users)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
     async GET_DM_TAIKHOAN({ commit }) {
       await ApiService.get('/dmtkhoans', {})

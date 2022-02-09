@@ -30,9 +30,6 @@
           <DocsExample href="components/smart-table/">
             <SmartTableDownloadableExample />
           </DocsExample>
-          <DocsExample href="components/smart-table/">
-            <SmartTableDownloadableExample_ />
-          </DocsExample>
         </CCardBody>
       </CCard>
     </CCol>
@@ -42,14 +39,12 @@
 <script>
 import SmartTableBasixExample from './SmartTableBasixExample'
 import SmartTableDownloadableExample from './SmartTableDownloadableExample'
-import SmartTableDownloadableExample_ from './SmartTableDownloadableExample_'
 import SmartTableSelectableExample from './SmartTableSelectableExample'
 export default {
   name: 'SmartTable',
   components: {
     SmartTableBasixExample,
     SmartTableDownloadableExample,
-    SmartTableDownloadableExample_,
     SmartTableSelectableExample,
   },
 }

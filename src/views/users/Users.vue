@@ -1,83 +1,88 @@
 <template>
-  <div>
-    <CRow>
-      <CCol :md="12">
-        <CCard class="mb-4">
-          <CCardHeader> Danh sách người dùng </CCardHeader>
-          <CCardBody>
-            <CTable align="middle" class="mb-0 border" hover responsive>
-              <CTableHead color="light">
-                <CTableRow>
-                  <CTableHeaderCell class="text-center">
-                    <CIcon name="cil-people" />
-                  </CTableHeaderCell>
-                  <CTableHeaderCell>User</CTableHeaderCell>
-                  <CTableHeaderCell class="text-center"
-                    >Country</CTableHeaderCell
-                  >
-                  <CTableHeaderCell>Usage</CTableHeaderCell>
-                  <CTableHeaderCell class="text-center"
-                    >Payment Method</CTableHeaderCell
-                  >
-                  <CTableHeaderCell>Activity</CTableHeaderCell>
-                </CTableRow>
-              </CTableHead>
-              <CTableBody>
-                <CTableRow v-for="item in tableExample" :key="item.name">
-                  <CTableDataCell class="text-center">
-                    <CAvatar
-                      size="md"
-                      :src="item.avatar.src"
-                      :status="item.avatar.status"
-                    />
-                  </CTableDataCell>
-                  <CTableDataCell>
-                    <div>{{ item.user.name }}</div>
-                    <div class="small text-medium-emphasis">
-                      <span>{{ item.user.new ? 'New' : 'Recurring' }}</span> |
-                      {{ item.user.registered }}
+  <CRow>
+    <CCol :md="12">
+      <CCard class="mb-4">
+        <CCardHeader> Danh sách người dùng </CCardHeader>
+        <CCardBody>
+          <CTable align="middle" class="mb-0 border" hover responsive>
+            <CTableHead color="light">
+              <CTableRow>
+                <CTableHeaderCell class="text-center">
+                  <CIcon name="cil-people" />
+                </CTableHeaderCell>
+                <CTableHeaderCell>User</CTableHeaderCell>
+                <CTableHeaderCell class="text-center">Country</CTableHeaderCell>
+                <CTableHeaderCell>Usage</CTableHeaderCell>
+                <CTableHeaderCell class="text-center"
+                  >Payment Method</CTableHeaderCell
+                >
+                <CTableHeaderCell>Activity</CTableHeaderCell>
+              </CTableRow>
+            </CTableHead>
+            <CTableBody>
+              <CTableRow v-for="item in tableExample" :key="item.name">
+                <CTableDataCell class="text-center">
+                  <CAvatar
+                    size="md"
+                    :src="item.avatar.src"
+                    :status="item.avatar.status"
+                  />
+                </CTableDataCell>
+                <CTableDataCell>
+                  <div>{{ item.user.name }}</div>
+                  <div class="small text-medium-emphasis">
+                    <span>{{ item.user.new ? 'New' : 'Recurring' }}</span> |
+                    {{ item.user.registered }}
+                  </div>
+                </CTableDataCell>
+                <CTableDataCell class="text-center">
+                  <CIcon
+                    size="xl"
+                    :name="item.country.flag"
+                    :title="item.country.name"
+                  />
+                </CTableDataCell>
+                <CTableDataCell>
+                  <div class="clearfix">
+                    <div class="float-start">
+                      <strong>{{ item.usage.value }}%</strong>
                     </div>
-                  </CTableDataCell>
-                  <CTableDataCell class="text-center">
-                    <CIcon
-                      size="xl"
-                      :name="item.country.flag"
-                      :title="item.country.name"
-                    />
-                  </CTableDataCell>
-                  <CTableDataCell>
-                    <div class="clearfix">
-                      <div class="float-start">
-                        <strong>{{ item.usage.value }}%</strong>
-                      </div>
-                      <div class="float-end">
-                        <small class="text-medium-emphasis">
-                          {{ item.usage.period }}
-                        </small>
-                      </div>
+                    <div class="float-end">
+                      <small class="text-medium-emphasis">
+                        {{ item.usage.period }}
+                      </small>
                     </div>
-                    <CProgress
-                      thin
-                      :color="item.usage.color"
-                      :value="item.usage.value"
-                    />
-                  </CTableDataCell>
-                  <CTableDataCell class="text-center">
-                    <CIcon size="xl" :name="item.payment.icon" />
-                  </CTableDataCell>
-                  <CTableDataCell>
-                    <div class="small text-medium-emphasis">Last login</div>
-                    <strong>{{ item.activity }}</strong>
-                  </CTableDataCell>
-                </CTableRow>
-                <CTableRow> </CTableRow>
-              </CTableBody>
-            </CTable>
-          </CCardBody>
-        </CCard>
-      </CCol>
-    </CRow>
-  </div>
+                  </div>
+                  <CProgress
+                    thin
+                    :color="item.usage.color"
+                    :value="item.usage.value"
+                  />
+                </CTableDataCell>
+                <CTableDataCell class="text-center">
+                  <CIcon size="xl" :name="item.payment.icon" />
+                </CTableDataCell>
+                <CTableDataCell>
+                  <div class="small text-medium-emphasis">Last login</div>
+                  <strong>{{ item.activity }}</strong>
+                </CTableDataCell>
+              </CTableRow>
+              <CTableRow> </CTableRow>
+            </CTableBody>
+          </CTable>
+        </CCardBody>
+      </CCard>
+    </CCol>
+  </CRow>
+  <CRow>
+    <CCol :md="12">
+      <CCard class="mb-4">
+        <CCardBody>
+          <SmartTableUsers />
+        </CCardBody>
+      </CCard>
+    </CCol>
+  </CRow>
 </template>
 
 <script>
@@ -92,10 +97,13 @@ import avatar6 from '@/assets/images/avatars/6.jpg'
 import { onMounted, onUpdated, onUnmounted } from 'vue'
 //import { onBeforeMount, onMounted, ref, inject } from "vue"
 import { mapState } from 'vuex'
+import SmartTableUsers from './SmartTableUsers'
 
 export default {
   name: 'Users',
-  components: {},
+  components: {
+    SmartTableUsers,
+  },
   data() {
     return {
       googletheme: '',
