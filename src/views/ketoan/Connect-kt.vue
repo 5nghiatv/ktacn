@@ -184,7 +184,7 @@
           title="Lọc có giá trị > 0"
           style="margin-right: 20px"
           class="btn btn-info"
-          @change="mySearchNoZero()"
+          @change="mySearchNoZero2()"
           type="checkbox"
           id="vehicle1"
           name="vehicle1"
@@ -270,6 +270,7 @@ export default {
       updaterec: false,
       infoprint: '',
       optprint: false,
+      todosSave: [],
 
       columns: [
         {
@@ -309,6 +310,18 @@ export default {
   },
 
   methods: {
+    mySearchNoZero2() {
+      if (this.todosSave.length > 0) {
+        this.todos = this.todosSave // hoàn lại
+        this.todosSave = []
+      } else {
+        let temp = this.todos.filter((doc) => {
+          return doc.company.indexOf('Công ty') != -1
+        })
+        this.todosSave = this.todos // Lưu
+        this.todos = temp
+      }
+    },
     submitForm() {},
     testValidator(field) {
       if (field == 'host') return (this.Validator.host = this.todo.host != '')

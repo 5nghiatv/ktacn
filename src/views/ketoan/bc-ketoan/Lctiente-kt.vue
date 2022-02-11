@@ -171,7 +171,7 @@
           title="Lọc có giá trị > 0"
           style="margin-right: 20px"
           class="btn btn-info"
-          @change="mySearchNoZero()"
+          @change="mySearchNoZero2()"
           type="checkbox"
           id="vehicle1"
           name="vehicle1"
@@ -230,6 +230,7 @@ export default {
         chitieu: false,
         cachtinh: false,
       },
+      todosSave: [],
       lctienteB: {},
       lctientes: [],
       lctiente: {
@@ -291,6 +292,24 @@ export default {
   },
 
   methods: {
+    mySearchNoZero2() {
+      if (this.todosSave.length > 0) {
+        this.lctientes = this.todosSave // hoàn lại
+        this.todosSave = []
+      } else {
+        let temp = this.lctientes.filter((row) => {
+          return (
+            row.kytruoc + row.kynay > 0 ||
+            row.kytruoc + row.kynay < 0 ||
+            row.kynay.toString().indexOf('.') != -1 ||
+            row.kytruoc.toString().indexOf('.') != -1
+          )
+        })
+        this.todosSave = this.lctientes // Lưu
+        this.lctientes = temp
+      }
+    },
+
     submitForm() {},
     myFunc(row, col, cellValue, searchTerm) {
       if (this.searchNoZero && !searchTerm) {

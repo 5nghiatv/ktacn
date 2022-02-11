@@ -153,7 +153,7 @@
         trigger: 'enter',
         skipDiacritics: true,
         placeholder: 'Tìm nội dung (.)',
-        searchFn: myFunc,
+        searchFn: '',
       }"
     >
       >
@@ -162,7 +162,7 @@
           title="Lọc có giá trị > 0"
           style="margin-right: 20px"
           class="btn btn-info"
-          @change="mySearchNoZero()"
+          @change="mySearchNoZero2()"
           type="checkbox"
           id="vehicle1"
           name="vehicle1"
@@ -225,6 +225,7 @@ export default {
         nodn: true,
         codn: true,
       },
+      todosSave: [],
       todoB: {},
       todos: [],
       todo: {
@@ -274,22 +275,20 @@ export default {
   },
 
   methods: {
-    submitForm() {},
-    myFunc(row, col, cellValue, searchTerm) {
-      if (this.searchNoZero && !searchTerm) {
-        searchTerm = '>0'
+    mySearchNoZero2() {
+      if (this.todosSave.length > 0) {
+        this.todos = this.todosSave // hoàn lại
+        this.todosSave = []
+      } else {
+        let temp = this.todos.filter((row) => {
+          return row.nodn + row.codn > 0
+        })
+        this.todosSave = this.todos // Lưu
+        this.todos = temp
       }
-      //console.log(111, 'SearchTerm:', searchTerm)
-      searchTerm = searchTerm.trim()
-      if (searchTerm == '>0') return row.nodn + row.codn > 0
-      return (
-        row.sotk.indexOf(searchTerm) != -1 ||
-        row.tentk.indexOf(searchTerm) != -1 ||
-        row.nodn.toString().indexOf(searchTerm) != -1 ||
-        row.codn.toString().indexOf(searchTerm) != -1
-      )
     },
 
+    submitForm() {},
     testValidator(field) {
       if (!this.todo.nodn) this.todo.nodn = '0'
       if (!this.todo.codn) this.todo.codn = '0'

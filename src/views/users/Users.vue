@@ -83,6 +83,15 @@
       </CCard>
     </CCol>
   </CRow>
+  <!-- <CRow>
+    <CCol :md="12">
+      <CCard class="mb-4">
+        <CCardBody>
+          <SmartTablecdKetoan />
+        </CCardBody>
+      </CCard>
+    </CCol>
+  </CRow> -->
 </template>
 
 <script>
@@ -94,15 +103,17 @@ import avatar4 from '@/assets/images/avatars/4.jpg'
 import avatar5 from '@/assets/images/avatars/5.jpg'
 import avatar6 from '@/assets/images/avatars/6.jpg'
 //import { useStore } from 'vuex'
-import { onMounted, onUpdated, onUnmounted } from 'vue'
+import { ref, onMounted, onUpdated, onUnmounted } from 'vue'
 //import { onBeforeMount, onMounted, ref, inject } from "vue"
 import { mapState } from 'vuex'
 import SmartTableUsers from './SmartTableUsers'
+//import SmartTablecdKetoan from './SmartTablecdKetoan'
 
 export default {
   name: 'Users',
   components: {
     SmartTableUsers,
+    //SmartTablecdKetoan,
   },
   data() {
     return {
@@ -178,7 +189,9 @@ export default {
       { title: 'Twitter', icon: 'cib-twitter', percent: 11, value: '37,564' },
       { title: 'LinkedIn', icon: 'cib-linkedin', percent: 8, value: '27,319' },
     ]
-    const tableExample = [
+
+    // ==========================================>>>>  Phải có ref()
+    const tableExample = ref([
       {
         avatar: { src: avatar1, status: 'success' },
         user: {
@@ -267,7 +280,7 @@ export default {
         payment: { name: 'Amex', icon: 'cib-cc-amex' },
         activity: 'Last week',
       },
-    ]
+    ])
 
     return {
       tableExample,
@@ -544,9 +557,23 @@ export default {
     //this.$i18n.locale = this.$store.state.locale
     // console.log(this.infoketoan)
   },
-  mounted() {
+  async mounted() {
     this.downloadReport()
-    //this.getTodos()
+    await this.$store.dispatch('myDocument/GET_DM_USERS')
+    let users = this.$store.state.myDocument.danhmucUsers
+    // console.log(this.tableExample, this.$store.state.myDocument.danhmucUsers)
+    // let temp = []
+    // for (let i = 0; i < users.length; i++) {
+    //   if (i > this.tableExample.length)
+    //     temp.push(this.tableExample[this.tableExample.length - 1])
+    // }
+    // if (temp.length > 0) this.tableExample.push(temp)
+    // console.log(temp, this.tableExample)
+
+    await this.tableExample.forEach((item, index) => {
+      if (users.length >= index)
+        this.tableExample[index].user.name = users[index].username
+    })
   },
   beforeRouteUpdate(to, from, next) {
     next()

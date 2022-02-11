@@ -136,7 +136,7 @@
         enabled: true,
         trigger: 'enter',
         skipDiacritics: true,
-        placeholder: 'Tìm nội dung ()',
+        placeholder: 'Tìm nội dung (.)',
       }"
     >
       >

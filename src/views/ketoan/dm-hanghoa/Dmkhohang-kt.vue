@@ -200,8 +200,8 @@
         enabled: true,
         trigger: 'enter',
         skipDiacritics: true,
-        placeholder: 'Tìm nội dung ( >0 )',
-        searchFn: myFunc,
+        placeholder: 'Tìm nội dung...',
+        searchFn: '',
       }"
     >
       >
@@ -210,7 +210,7 @@
           title="Lọc có giá trị > 0"
           style="margin-right: 20px"
           class="btn btn-info"
-          @change="mySearchNoZero()"
+          @change="mySearchNoZero2()"
           type="checkbox"
           id="vehicle1"
           name="vehicle1"
@@ -278,6 +278,7 @@ export default {
         mahang: false,
         makho: false,
       },
+      todosSave: [],
       todoB: {},
       todos: [],
       todo: {
@@ -376,6 +377,45 @@ export default {
   },
 
   methods: {
+    mySearchNoZero2() {
+      if (this.todosSave.length > 0) {
+        this.todos = this.todosSave // hoàn lại
+        this.todosSave = []
+      } else {
+        let temp = this.todos.filter((row) => {
+          return (
+            row.luongdn +
+              row.tiendn +
+              row.luongdk +
+              row.tiendk +
+              row.luongnhap +
+              row.tiennhap +
+              row.luongxuat +
+              row.tienxuat +
+              row.luongck +
+              row.tienck >
+              0 ||
+            (
+              row.luongdn +
+              row.tiendn +
+              row.luongdk +
+              row.tiendk +
+              row.luongnhap +
+              row.tiennhap +
+              row.luongxuat +
+              row.tienxuat +
+              row.luongck +
+              row.tienck
+            )
+              .toString()
+              .indexOf('.') != -1
+          )
+        })
+        this.todosSave = this.todos // Lưu
+        this.todos = temp
+      }
+    },
+
     submitForm() {},
     tinhcandoi(whatCandoi) {
       if (whatCandoi != 'chuyensoduhang') return this.readTodos() // Phiên bản mới đã bao gồm tinhcandoihag - Cập nhật lại dmkhohang
@@ -395,40 +435,7 @@ export default {
           this.$toastr.error('', 'Tính lại số dư thực hiện KHÔNG thành công.')
         })
     },
-    myFunc(row, col, cellValue, searchTerm) {
-      if (this.searchNoZero && !searchTerm) {
-        searchTerm = '>0'
-      }
-      searchTerm = searchTerm.trim()
-      if (searchTerm == '>0')
-        return (
-          row.luongdn +
-            row.tiendn +
-            row.luongdk +
-            row.tiendk +
-            row.luongnhap +
-            row.tiennhap +
-            row.luongxuat +
-            row.tienxuat +
-            row.luongck +
-            row.tienck >
-          0
-        )
-      return (
-        row.mahang.indexOf(searchTerm) != -1 ||
-        row.makho.indexOf(searchTerm) != -1 ||
-        row.luongdn.toString().indexOf(searchTerm) != -1 ||
-        row.tiendn.toString().indexOf(searchTerm) != -1 ||
-        row.luongdk.toString().indexOf(searchTerm) != -1 ||
-        row.tiendk.toString().indexOf(searchTerm) != -1 ||
-        row.luongnhap.toString().indexOf(searchTerm) != -1 ||
-        row.tiennhap.toString().indexOf(searchTerm) != -1 ||
-        row.luongxuat.toString().indexOf(searchTerm) != -1 ||
-        row.tienxuat.toString().indexOf(searchTerm) != -1 ||
-        row.luongck.toString().indexOf(searchTerm) != -1 ||
-        row.tienck.toString().indexOf(searchTerm) != -1
-      )
-    },
+
     testValidator(field) {
       if (!this.todo.luongdn) this.todo.luongdn = '0'
       if (!this.todo.tiendn) this.todo.tiendn = '0'

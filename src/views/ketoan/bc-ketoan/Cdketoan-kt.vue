@@ -171,7 +171,7 @@
           title="Lọc có giá trị > 0"
           style="margin-right: 20px"
           class="btn btn-info"
-          @change="mySearchNoZero()"
+          @change="mySearchNoZero2()"
           type="checkbox"
           id="vehicle1"
           name="vehicle1"
@@ -234,6 +234,7 @@ export default {
 
       cdketoanB: {},
       cdketoans: [],
+      todosSave: [],
       cdketoan: {
         id: '',
         masc: '',
@@ -300,6 +301,25 @@ export default {
   },
 
   methods: {
+    mySearchNoZero2() {
+      if (this.todosSave.length > 0) {
+        this.cdketoans = this.todosSave // hoàn lại
+        this.todosSave = []
+      } else {
+        let temp = this.cdketoans.filter((row) => {
+          return (
+            row.tscc + row.tscd + row.tsnc + row.tsnd > 0 ||
+            row.tscc + row.tscd + row.tsnc + row.tsnd < 0 ||
+            row.tscc.toString().indexOf('.') != -1 ||
+            row.tscd.toString().indexOf('.') != -1 ||
+            row.tsnc.toString().indexOf('.') != -1 ||
+            row.tsnd.toString().indexOf('.') != -1
+          )
+        })
+        this.todosSave = this.cdketoans // Lưu
+        this.cdketoans = temp
+      }
+    },
     submitForm() {},
     myFunc(row, col, cellValue, searchTerm) {
       if (this.searchNoZero && !searchTerm) {

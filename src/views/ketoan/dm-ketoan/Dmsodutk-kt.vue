@@ -200,8 +200,8 @@
         enabled: true,
         trigger: 'enter',
         skipDiacritics: true,
-        placeholder: 'Tìm nội dung ( >0 )',
-        searchFn: myFunc,
+        placeholder: 'Tìm nội dung...',
+        searchFn: '',
       }"
     >
       >
@@ -210,7 +210,7 @@
           title="Lọc có giá trị > 0"
           style="margin-right: 20px"
           class="btn btn-info"
-          @change="mySearchNoZero()"
+          @change="mySearchNoZero2()"
           type="checkbox"
           id="vehicle1"
           name="vehicle1"
@@ -281,6 +281,7 @@ export default {
         nodn: true,
         ngoaite: true,
       },
+      todosSave: [],
       todoB: {},
       todos: [],
       todo: {
@@ -362,6 +363,25 @@ export default {
   },
 
   methods: {
+    mySearchNoZero2() {
+      if (this.todosSave.length > 0) {
+        this.todos = this.todosSave // hoàn lại
+        this.todosSave = []
+      } else {
+        let temp = this.todos.filter((row) => {
+          return (
+            row.nodk + row.codk + row.psno + row.psco + row.nock + row.cock >
+              0 ||
+            (row.nodk + row.codk + row.psno + row.psco + row.nock + row.cock)
+              .toString()
+              .indexOf('.') != -1
+          )
+        })
+        this.todosSave = this.todos // Lưu
+        this.todos = temp
+      }
+    },
+
     submitForm() {},
     tinhcandoi(whatCandoi) {
       if (whatCandoi != 'chuyensodutk') return this.readTodos() // Phiên bản mới đã bao gồm tínhcandoi - Cập nhật lại dmsodutk -
@@ -381,35 +401,7 @@ export default {
           this.$toastr.error('', 'Tính lại số dư thực hiện KHÔNG thành công.')
         })
     },
-    // mySearchNoZero(){
-    //     this.searchNoZero = !this.searchNoZero;
-    //     this.$children[0].searchTableOnEnter();
-    // },
-    myFunc(row, col, cellValue, searchTerm) {
-      if (this.searchNoZero && !searchTerm) {
-        searchTerm = '>0'
-      }
-      searchTerm = searchTerm.trim()
-      if (searchTerm == '>0')
-        return (
-          row.nodk + row.codk + row.psno + row.psco + row.nock + row.cock > 0 ||
-          (row.nodk + row.codk + row.psno + row.psco + row.nock + row.cock)
-            .toString()
-            .indexOf('.') != -1
-        )
-      return (
-        row.sotk.indexOf(searchTerm) != -1 ||
-        row.tentk.indexOf(searchTerm) != -1 ||
-        row.nodk.toString().indexOf(searchTerm) != -1 ||
-        row.codk.toString().indexOf(searchTerm) != -1 ||
-        row.psno.toString().indexOf(searchTerm) != -1 ||
-        row.psco.toString().indexOf(searchTerm) != -1 ||
-        row.nock.toString().indexOf(searchTerm) != -1 ||
-        row.cock.toString().indexOf(searchTerm) != -1 ||
-        row.nodn.toString().indexOf(searchTerm) != -1 ||
-        row.codn.toString().indexOf(searchTerm) != -1
-      )
-    },
+
     testValidator(field) {
       if (!this.todo.nodn) this.todo.nodn = 0
       if (!this.todo.codn) this.todo.codn = 0
