@@ -171,7 +171,7 @@
         <input
           title="Trang đầu hoặc cuối"
           style="margin-right: 20px"
-          class="btn btn-info"
+          class="btn btn-warning"
           @change="goTopEndPages()"
           type="checkbox"
           id="vehicle1"

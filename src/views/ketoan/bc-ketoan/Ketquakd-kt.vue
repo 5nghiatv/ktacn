@@ -157,6 +157,7 @@
         ofLabel: 'of',
         pageLabel: 'Trang', // for 'pages' mode
         allLabel: 'All',
+        jumpFirstOrLast: true,
       }"
       :search-options="{
         enabled: true,

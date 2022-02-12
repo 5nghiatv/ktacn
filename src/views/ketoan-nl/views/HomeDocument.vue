@@ -151,10 +151,12 @@
         :document="document"
         :key="index"
       />
-      <CPagination
-        align="end"
-        v-model:active-page="currentPage"
+      <CSmartPagination
+        @click="activePageChange"
+        :activePage="currentPage"
         :pages="totalPage"
+        :dots="false"
+        align="end"
       />
     </div>
 
@@ -249,6 +251,24 @@ export default {
     this.setPagination(10)
   },
   methods: {
+    activePageChange(e) {
+      if (e.target.innerHTML == '<span>»</span>' || e.target.innerHTML == '»')
+        this.currentPage = this.totalPage
+      if (e.target.innerHTML == '<span>›</span>' || e.target.innerHTML == '›') {
+        this.currentPage =
+          this.currentPage + 1 < this.totalPage
+            ? this.currentPage + 1
+            : this.totalPage
+      }
+      if (e.target.innerHTML == '<span>«</span>' || e.target.innerHTML == '«')
+        this.currentPage = 1
+      if (e.target.innerHTML == '<span>‹</span>' || e.target.innerHTML == '‹') {
+        this.currentPage = this.currentPage - 1 < 1 ? 1 : this.currentPage - 1
+      }
+      if (parseInt(e.target.innerHTML) > 0)
+        this.currentPage = parseInt(e.target.innerHTML)
+      // console.log(this.currentPage, e.target.innerHTML)
+    },
     ...mapMutations('myDocument', ['TOGGLE_DOCUMENT']),
     ...mapActions('myDocument', ['runMysql', 'GET_DOCUMENTS']),
 

@@ -15,7 +15,7 @@ export default {
   },
   watch: {
     theme() {
-      this.googletheme = this.theme === 'dark' ? 'nocturnal' : '' 
+      this.googletheme = this.theme === 'dark' ? 'nocturnal' : ''
     },
   },
   beforeCreate: function () {
@@ -23,7 +23,7 @@ export default {
   },
   created: function () {
     // Phục vụ cho Google Table tùy thuộc vào theme
-    this.googletheme = this.theme === 'dark' ? 'nocturnal' : '' 
+    this.googletheme = this.theme === 'dark' ? 'nocturnal' : ''
     // console.log("Printing from the Mixin", this.googletheme)
   },
   methods: {
@@ -392,12 +392,17 @@ export default {
           this.$children[index].changePage(1)
         }
       } else {
-        console.log(
-          2222,
-          'this.$options.components.VueGoodTable',
-          this.$options.components.VueGoodTable,
+        const collection = document.getElementsByClassName(
+          'page-info__label',
         )
-       // this.$options.components.VueGoodTable.methods.changePage(1)
+        let totalPage = parseInt(collection[0].children[2].innerHTML.split('of').join('')) 
+        collection[0].children[1].value = collection[0].children[1].value == 1 ? totalPage : 1
+        collection[0].children[1].focus()
+        // console.log(
+        //   2222,
+        //   'this.$options.components.VueGoodTable',
+        //   this.$options.components.VueGoodTable,
+        // )
       }
     },
     mySearchNoZero() {
@@ -412,15 +417,12 @@ export default {
         this.searchNoZero = !this.searchNoZero
         this.$children[index].searchTableOnEnter()
       } else {
-        const collection = document.getElementsByClassName("footer__navigation__page-info__current-entry")
-        collection[0].value++
         console.log(
           1111,
           'this.$options.components.VueGoodTable',
           this.$options.components.VueGoodTable,
         )
-        this.$options.components.VueGoodTable.methods.searchTableOnEnter()
-        
+        // this.$options.components.VueGoodTable.methods.searchTableOnEnter()
       }
     },
   }, // Method
