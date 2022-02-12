@@ -30,9 +30,9 @@
       <CDropdownItem class="d-block">
         <div class="small mb-1" @click="calRouter('/ketoan/contact')">
           Thông tin tác giả
-          <span class="float-right"><strong>50%</strong></span>
+          <span class="float-right"><strong>45%</strong></span>
         </div>
-        <CProgress thin color="warning-gradient" :value="50" />
+        <CProgress thin color="warning-gradient" :value="45" />
       </CDropdownItem>
       <CDropdownItem
         class="d-block"
@@ -40,9 +40,21 @@
         target="_blank"
       >
         <div class="small mb-1">
-          CoreUI Vue Pro <span class="float-right"><strong>75%</strong></span>
+          CoreUI Vue Pro-Demo
+          <span class="float-right"><strong>60%</strong></span>
         </div>
-        <CProgress thin color="info-gradient" :value="75" />
+        <CProgress thin color="info-gradient" :value="60" />
+      </CDropdownItem>
+      <CDropdownItem
+        class="d-block"
+        href="https://coreui.io/vue/docs/4.1/getting-started/introduction.html"
+        target="_blank"
+      >
+        <div class="small mb-1">
+          CoreUI Vue Pro-Doc
+          <span class="float-right"><strong>80%</strong></span>
+        </div>
+        <CProgress thin color="info-gradient" :value="80" />
       </CDropdownItem>
       <CDropdownItem
         class="d-block"
