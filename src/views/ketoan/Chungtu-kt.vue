@@ -676,14 +676,15 @@
                   id="update"
                 >
                   Update </CButton
-                >&nbsp;&nbsp;
-                <CButton
+                >
+                &nbsp;&nbsp;
+                <CLoadingButton
                   :disabled="!isrestore"
-                  class="btn btn-outline-info btn-sm"
+                  size="sm" color="info" :timeout="2000" variant="outline"
                   @click="restore()"
                   id="restore"
                 >
-                  >> Restore </CButton
+                  >> Restore </CLoadingButton
                 >&nbsp;&nbsp;
                 <CButton
                   class="btn btn-outline-warning btn-sm"
