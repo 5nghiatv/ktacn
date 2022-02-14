@@ -103,7 +103,7 @@
       <div v-if="currentOpt == 0" class="bill-from flex flex-column">
         <Multiselect
           v-model="sotk"
-          placeholder="Select your character"
+          placeholder="Số tài khoản"
           :searchable="true"
           trackBy="value"
           label="value"
@@ -146,7 +146,7 @@
       <div v-if="currentOpt == 1" class="bill-from flex flex-column">
         <Multiselect
           v-model="maso"
-          placeholder="Select your character"
+          placeholder="Mã số thuế"
           :searchable="true"
           trackBy="value"
           label="value"
@@ -208,7 +208,7 @@
       <div v-if="currentOpt == 2" class="bill-from flex flex-column">
         <Multiselect
           v-model="mahang"
-          placeholder="Select your character"
+          placeholder="Mã hàng"
           :searchable="true"
           trackBy="value"
           label="value"
@@ -264,7 +264,7 @@
       <div v-if="currentOpt == 3" class="bill-from flex flex-column">
         <Multiselect
           v-model="makho"
-          placeholder="Select your character"
+          placeholder="Mã kho"
           :searchable="true"
           trackBy="value"
           label="value"

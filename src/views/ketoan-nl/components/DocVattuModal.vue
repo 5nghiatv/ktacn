@@ -138,7 +138,7 @@
                   <label class="typo__label"></label>
                   <Multiselect
                     v-model="item.mahang"
-                    placeholder="Nhập mã hàng hóa"
+                    placeholder="Mã hàng hóa"
                     :searchable="true"
                     trackBy="value"
                     label="value"

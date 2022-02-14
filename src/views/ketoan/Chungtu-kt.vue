@@ -36,12 +36,12 @@
                       />
                     </CInputGroup>
                   </CCol>
-                  <CCol md="5">
+                  <CCol md="5" style='z-index: 2'>
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Mã số Thuế</CInputGroupText>
                       <Multiselect
                         v-model="hoadon.masothue"
-                        placeholder="Select your character"
+                        placeholder="Mã số thuế"
                         :searchable="true"
                         trackBy="value"
                         label="value"
@@ -218,12 +218,12 @@
               <!-- VẬT TƯ =============================================== -->
               <div v-if="ischitiet == 2">
                 <CRow>
-                  <CCol md="4">
+                  <CCol md="4" style='z-index: 2'>
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Mã hàng</CInputGroupText>
                       <Multiselect
                         v-model="ctuvattu.mahang"
-                        placeholder="Select your character"
+                        placeholder="Mã hàng"
                         :searchable="true"
                         trackBy="value"
                         label="value"
@@ -242,12 +242,12 @@
                       </Multiselect>
                     </CInputGroup>
                   </CCol>
-                  <CCol md="4">
+                  <CCol md="4" style='z-index: 2'>
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Mã Kho</CInputGroupText>
                       <Multiselect
                         v-model="ctuvattu.makho"
-                        placeholder="Select your character"
+                        placeholder="Mã kho"
                         :searchable="true"
                         trackBy="value"
                         label="value"
@@ -422,7 +422,7 @@
                       <CInputGroupText>TK Nợ</CInputGroupText>
                       <Multiselect
                         v-model="chitiet.tkno"
-                        placeholder="Select your character"
+                        placeholder="Số tài khoản"
                         :searchable="true"
                         trackBy="value"
                         label="value"
@@ -446,7 +446,7 @@
                       <CInputGroupText>TK Có</CInputGroupText>
                       <Multiselect
                         v-model="chitiet.tkco"
-                        placeholder="Select your character"
+                        placeholder="Số tài khoản"
                         :searchable="true"
                         trackBy="value"
                         label="value"
@@ -590,7 +590,7 @@
                       <CInputGroupText>TK Nợ</CInputGroupText>
                       <Multiselect
                         v-model="todo.tkno"
-                        placeholder="Select your character"
+                        placeholder="Số tài khoản"
                         :searchable="true"
                         trackBy="value"
                         label="value"
@@ -614,7 +614,7 @@
                       <CInputGroupText>TK Có</CInputGroupText>
                       <Multiselect
                         v-model="todo.tkco"
-                        placeholder="Select your character"
+                        placeholder="Số tài khoản"
                         :searchable="true"
                         trackBy="value"
                         label="value"
@@ -697,7 +697,7 @@
                   @click="inOneChungtu()"
                   id="inOne"
                 >
-                  >> In chứng từ >
+                  >> In chứng từ
                   <a style="font-style: italic; font-size: 0.7em"
                     >{{ mess_print }}
                   </a> </CButton

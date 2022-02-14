@@ -367,4 +367,14 @@ exports.nav2 = [
     component: 'CNavTitle',
     name: 'SYSTEM UTILIZATION',
   },
+  // {
+  //   component: 'CNavItem',
+  //   name: 'Compose',
+  //   to: '/apps/email/compose',
+  //   icon: 'cil-envelope-letter',
+  //   progress: {
+  //     color: 'info-gradient',
+  //     value: '77',
+  //   },
+  // },
 ]
