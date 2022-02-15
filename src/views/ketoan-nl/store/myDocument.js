@@ -438,6 +438,8 @@ export const myDocument = {
       var query = "DELETE FROM hoadon WHERE ctid = '" + ctid + "';"
       // =====================  Nhớ có dấu ; ở cuối
       await chitietItem.forEach((reqbody) => {
+        reqbody.giaban = reqbody.giaban + "."
+        reqbody.thuegtgt = reqbody.thuegtgt + "."
         reqbody.giaban = reqbody.giaban.split('.').join('').split(',').join('.')
         reqbody.thuegtgt = reqbody.thuegtgt
           .split('.')

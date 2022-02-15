@@ -486,8 +486,7 @@ export default {
     },
 
     async updateInvoice() {
-      console.log(this.updateVat)
-
+      //console.log(this.updateVat)
       var checkmaso = await this.chitietItem.filter((item) => !item.mahang)
       var checkmakho = await this.chitietItem.filter((item) => !item.makho)
       if (checkmaso.length > 0 || checkmakho.length > 0)

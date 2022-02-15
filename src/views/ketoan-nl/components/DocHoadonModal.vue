@@ -462,8 +462,8 @@ export default {
         // masothue: "",
         maso: null,
         thuesuat: '%',
-        giaban: null,
-        thuegtgt: null,
+        giaban: 0,
+        thuegtgt: 0,
       })
     },
     copyItem(id) {
@@ -474,13 +474,12 @@ export default {
         ngay: item.ngay,
         sohd: item.sohd,
         diengiai: item.diengiai,
-        // masothue: item.masothue,
-        maso: item.maso,
+        masothue: item.masothue,
         thuesuat: item.thuesuat,
         giaban: item.giaban,
         thuegtgt: item.thuegtgt,
       })
-      //console.log(item,this.chitietItem,id);
+      //console.log(item, this.chitietItem, id)
     },
     deleteItem(id) {
       this.chitietItem = this.chitietItem.filter((item) => item.id !== id)
