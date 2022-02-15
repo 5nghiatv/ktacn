@@ -310,8 +310,8 @@ export default {
     document.getElementById('optradio_' + this.ktChitiet).checked = true
   },
   methods: {
-    async refreshDoc() {
-      await this.getCurrentDocument(this.currentDocumentArray[0].ctid)
+    refreshDoc() {
+      this.getCurrentDocument(this.currentDocumentArray[0].ctid)
     },
     numberFormat(x) {
       return numberFormat(x)
@@ -362,7 +362,6 @@ export default {
     ]),
 
     async getCurrentDocument(ctid) {
-      //console.log(ctid, this.currentDocumentArray);
       ctid = ctid ? ctid : this.currentDocumentArray[0].ctid
       await this.SET_CURRENT_DOCUMENT(ctid) // this.$route.params.ctid);
       this.currentDocument = this.currentDocumentArray[0]

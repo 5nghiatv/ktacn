@@ -24,7 +24,7 @@
                       />
                     </CInputGroup>
                   </CCol>
-                  <CCol md="3">
+                  <CCol md="4">
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Ngày</CInputGroupText>
                       <CFormInput
@@ -36,7 +36,7 @@
                       />
                     </CInputGroup>
                   </CCol>
-                  <CCol md="5" style='z-index: 2'>
+                  <CCol md="4" style='z-index: 2'>
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Mã số Thuế</CInputGroupText>
                       <Multiselect

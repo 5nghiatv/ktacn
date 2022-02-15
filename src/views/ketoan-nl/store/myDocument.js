@@ -25,7 +25,7 @@ export const myDocument = {
     documentDataVattu: ref(null),
     documentDataHoadon: ref(null),
     documentsLoaded: ref(null),
-    currentDocumentArray: [], // không được null mới dùng Vue.set được
+    currentDocumentArray: ref([]), // không được null mới dùng Vue.set được
     currentKTchitiet: ref(0),
     danhmucTaikhoan: ref(null),
     danhmucCustomer: ref(null),
@@ -75,9 +75,7 @@ export const myDocument = {
         // 3 dấu === sẽ không tìm thấy
         return document.ctid == payload
       })
-      // NÊN NHỚ ======> Chi tiết nội dung Array thay đổi nhưng địa chỉ vẫn không đổi NÊN :
       if (doc.length > 0) state.currentDocumentArray[0] = doc[0]
-      // Vue.set(state.currentDocumentArray, 0, doc[0])
     },
     TOGGLE_DOCUMENT_VIEW(state) {
       state.showDocumentView = !state.showDocumentView
@@ -596,25 +594,33 @@ export const myDocument = {
         case 1:
           query = "DELETE FROM customer WHERE id = '" + danhmuc.id + "';"
           ret = await dispatch('runMysql', query)
-          var index = await state.danhmucCustomer.findIndex(x => x.id === danhmuc.id)
+          var index = await state.danhmucCustomer.findIndex(
+            (x) => x.id === danhmuc.id,
+          )
           state.danhmucCustomer.splice(index, 1)
           break
         case 2:
           query = "DELETE FROM tenhang WHERE id = '" + danhmuc.id + "';"
           ret = await dispatch('runMysql', query)
-          var index = await state.danhmucTenhang.findIndex(x => x.id === danhmuc.id)
+          var index = await state.danhmucTenhang.findIndex(
+            (x) => x.id === danhmuc.id,
+          )
           state.danhmucTenhang.splice(index, 1)
           break
         case 3:
           query = "DELETE FROM dmtenkho WHERE id = '" + danhmuc.id + "';"
           ret = await dispatch('runMysql', query)
-          var index = await state.danhmucKhohang.findIndex(x => x.id === danhmuc.id)
+          var index = await state.danhmucKhohang.findIndex(
+            (x) => x.id === danhmuc.id,
+          )
           state.danhmucKhohang.splice(index, 1)
           break
         default:
           query = "DELETE FROM dmtkhoan WHERE id = '" + danhmuc.id + "';"
           ret = await dispatch('runMysql', query)
-          var index = await state.danhmucTaikhoan.findIndex(x => x.id === danhmuc.id)
+          var index = await state.danhmucTaikhoan.findIndex(
+            (x) => x.id === danhmuc.id,
+          )
           state.danhmucTaikhoan.splice(index, 1)
           break
       }

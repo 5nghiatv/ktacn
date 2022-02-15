@@ -268,7 +268,8 @@
           </div>
           <div>
             <small class="text-medium-emphasis">
-              Copy chứng từ sẽ tạo theo ngày `từ ngày` hoặc `Đến ngày`
+              Nhập ngày và tháng trong phạm vi `Từ ngày Đến ngày` hoặc chỉ nhập
+              ngày trong tháng theo Từ ngày
             </small>
           </div>
         </div>

@@ -137,6 +137,7 @@
                 <div class="location-details flex">
                   <label class="typo__label"></label>
                   <Multiselect
+                    @select="selectHanghoa(item)"
                     v-model="item.mahang"
                     placeholder="Mã hàng hóa"
                     :searchable="true"
@@ -160,7 +161,7 @@
                 <input ref="donvi" type="text" v-model="item.donvi" disabled />
               </td>
               <!-- <td class="item5"><input required type="text" v-model="item.makho" /></td> -->
-              <td class="item10">
+              <td class="item20">
                 <div class="location-details flex">
                   <label class="typo__label"></label>
                   <Multiselect
@@ -344,6 +345,13 @@ export default {
     }
   },
   methods: {
+    selectHanghoa(item) {
+      const hanghoa = this.danhmucTenhang.filter((ite) => {
+        return ite.mahang == item.mahang
+      })
+      // console.log(item.mahang, hanghoa.length)
+      item['donvi'] = hanghoa.length > 0 ? hanghoa[0].donvi : ''
+    },
     async CallGanTienHangHoadon(tongtien = 0, tienthue = 0) {
       if (!this.updateVat || this.chitietItem.length == 0) return
       const currentDoc = this.currentDocumentArray[0]
@@ -455,7 +463,7 @@ export default {
       this.chitietItem.push({
         ctid: this.currentDocumentArray[0].ctid,
         mahang: '',
-        makho: makho,
+        makho: makho.length > 0 ? makho[0].makho : '',
         soluong: null,
         sotien: null,
       })

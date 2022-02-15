@@ -194,6 +194,7 @@ export default {
       // Trừ Edit & add
       const currentDocument = this.currentDocumentArray[0]
       this.id = currentDocument.id
+      this.ctid = currentDocument.ctid
       this.soct = currentDocument.soct
       this.ngay = currentDocument.ngay //moment(currentDocument.ngay).format('DD-MM-YYYY');
       this.diengiai = currentDocument.diengiai
@@ -313,8 +314,8 @@ export default {
           this.$toastr.success('', 'Create chứng từ thành công.')
         } else this.$toastr.warning('', 'Create chứng từ KHÔNG thành công.')
         this.$store.commit('set', ['isLoading', false])
-        this.closeInvoice()
         this.$emit('refreshDoc')
+        this.closeInvoice()
       } else {
         // for Edit Oncly
         // return console.log(this.tkno.sotk,this.tkco.sotk);
@@ -331,14 +332,15 @@ export default {
             sotien: this.sotien.split('.').join('').split(',').join('.'),
             //ngoaite: this.ngoaite,
           },
-          routeId: this.$route.params.ctid,
+          // routeId: this.$route.params.ctid,
+          routeId: this.ctid,
         })
         if (ret) {
           this.$toastr.success('', 'Update chứng từ thành công.')
         } else this.$toastr.warning('', 'Update chứng từ KHÔNG thành công.')
         this.$store.commit('set', ['isLoading', false])
-        this.closeInvoice()
         this.$emit('refreshDoc')
+        this.closeInvoice()
       }
     },
 
