@@ -113,101 +113,15 @@
                 THỰC HIỆN GỬI TIN
               </button>
             </p>
-            <p class="full" v-if="loggedUser && loggedUser.isAdmin && edit">
-              <button
-                :disabled="!isValid"
-                @click="updateTodo()"
-                href="javascript:void(0);"
-              >
-                THỰC HIỆN LƯU TIN
-              </button>
-              <!-- :disabled="!isValid" -->
-            </p>
           </form>
         </div>
       </div>
     </div>
     <br />
-    <vue-good-table
-      id="tableACN"
-      v-if="(loggedUser && loggedUser.isAdmin) || loggedUser.admin"
-      :columns="columns"
-      :rows="todos"
-      :theme="googletheme"
-      v-on:cell-click="onCellClick"
-      styleClass="vgt-table condensed bordered striped"
-      max-height="20000px"
-      :fixed-header="false"
-      :line-numbers="this.colchecked"
-      :pagination-options="{
-        enabled: true,
-        mode: 'pages',
-        perPage: 15,
-        position: 'top',
-        perPageDropdown: [15, 30, 50, 100, 300, 500],
-        dropdownAllowAll: true,
-        setCurrentPage: 1,
-        nextLabel: 'Sau',
-        prevLabel: 'Trước',
-        rowsPerPageLabel: 'Dòng/trang',
-        ofLabel: 'of',
-        pageLabel: 'Trang', // for 'pages' mode
-        allLabel: 'All',
-      }"
-      :search-options="{
-        enabled: true,
-        trigger: 'enter',
-        skipDiacritics: true,
-        placeholder: 'Tìm nội dung (.)',
-      }"
-    >
-      >
-      <template #table-actions>
-        <input
-          title="Lọc có giá trị > 0"
-          style="margin-right: 20px"
-          class="btn btn-info"
-          @change="mySearchNoZero()"
-          type="checkbox"
-          id="vehicle1"
-          name="vehicle1"
-          value="true"
-        />
-        <input
-          title="Trang đầu hoặc cuối"
-          style="margin-right: 20px"
-          class="btn btn-info"
-          @change="goTopEndPages()"
-          type="checkbox"
-          id="vehicle1"
-          name="vehicle1"
-          value="true"
-        />
-        <input
-          title="view column"
-          style="margin-right: 20px"
-          class="btn btn-info"
-          @change="colOption()"
-          v-model="colchecked"
-          type="checkbox"
-          id="vehicle1"
-          name="vehicle1"
-          value="colchecked"
-        />
-      </template>
-      <template #table-actions-bottom>
-        <!-- This will show up on the bottom of the table.  -->
-      </template>
-      <template #emptystate>
-        <!-- This will show up when there are no rows -->
-      </template>
-    </vue-good-table>
-    <br />
   </body>
 </template>
 
 <script>
-import { VueGoodTable } from 'vue-good-table-next'
 import utility from '@/common/utility'
 import { mapState } from 'vuex'
 
@@ -218,11 +132,9 @@ const firestorage = window.firebase.storage() // For Storage
 const messagesRef = window.firebase.database().ref(object)
 
 export default {
-  name: 'contact',
+  name: 'contactAuthor',
   mixins: [utility],
-  components: {
-    VueGoodTable,
-  },
+  components: {},
   data() {
     return {
       files: [],

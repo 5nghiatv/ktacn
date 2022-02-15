@@ -108,7 +108,9 @@ router.beforeEach((to, from, next) => {
   i18n.locale = language
   const loggedIn = localStorage.getItem('token') !== null
 
-  if (!to.path.includes('/pages/register')) {
+  if (
+    !(to.path.includes('/pages/register') || to.path.includes('/pages/contact'))
+  ) {
     if (!loggedIn && to.path !== '/pages/login') {
       return next('/pages/login')
     }

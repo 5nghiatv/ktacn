@@ -125,9 +125,18 @@
                           title="Refresh Database..."
                           v-on:click="readDanhmuc('connects', true)"
                         >
-                          Company..</a
+                          Company...</a
                         ></label
                       >
+                      <label style="color: blueviolet; margin-left: 60px;">
+                        <a
+                          title="Liên hệ tác giả..."
+                          @click="contactAuthor()"
+                        >
+                          Author...</a
+                        ></label
+                      >
+
                       <CFormCheck
                         id="flexCheckChecked"
                         label="Doanh nghiệp lớn"
@@ -138,7 +147,7 @@
                     <!-- <CCol md="2"> -->
                     <CFormSelect
                       title="Chứng từ đã nhập"
-                      style="margin-left: -7px; width: 40px; height: 30px"
+                      style="margin-left: 5px; width: 40px; height: 30px"
                       horizontal
                       :options="options"
                       placeholder="Please select"
@@ -341,7 +350,9 @@ export default {
       }
       return passe
     },
-
+    contactAuthor() {
+      this.$router.push('/pages/contactAuthor')
+    },
     register() {
       this.$router.push('/pages/register/0')
     },
