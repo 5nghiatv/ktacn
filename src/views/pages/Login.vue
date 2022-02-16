@@ -129,7 +129,7 @@
                     >
                   </div>
                   <div class="author">
-                    <label style="color: blueviolet;">
+                    <label style="color: blueviolet">
                       <a title="Liên hệ tác giả..." @click="contactAuthor()">
                         Author...</a
                       ></label
@@ -348,7 +348,7 @@ export default {
       return passe
     },
     contactAuthor() {
-      this.$router.push('/pages/contactAuthor')
+      this.$router.push('/pages/author')
     },
     register() {
       this.$router.push('/pages/register/0')
@@ -490,7 +490,7 @@ export default {
                 .then(async () => {
                   this.$store.commit('set', ['isLoading', false])
                   await this.$router.push('/')
-                  await location.reload()
+                  // await location.reload()
                 })
               // console.log(data.data.token) ;
               // console.log(this.$jwtAcn.getDateTime()) ;

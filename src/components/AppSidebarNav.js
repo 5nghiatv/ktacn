@@ -11,6 +11,7 @@ import {
 //import nav from '@/_nav.js'
 let nav = [] // dùng trong setup() & phải khai báo tại đây
 import { useStore } from 'vuex'
+//import { watch } from 'vue'
 
 const normalizePath = (path) =>
   decodeURI(path)
@@ -51,8 +52,17 @@ const AppSidebarNav = defineComponent({
     CNavGroup,
     CNavTitle,
   },
+  mounted() {},
   setup() {
     const store = useStore()
+
+    // =================== Phải init store.state từ đây mới chính xác
+    const user = JSON.parse(window.localStorage.getItem('user'))
+    store.state.loggedUser = user
+    store.state.username = user.username
+    store.state.isAdmin = user.admin
+    //console.log('Setup AppSidebarNav:', store.state.loggedUser)
+
     // console.log('store.state: SẼ LOAD nav..', store.state)
     const { nav1 } = require('@/_nav1.js')
     const { nav2 } = require('@/_nav2.js')

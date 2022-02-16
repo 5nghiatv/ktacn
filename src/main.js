@@ -109,7 +109,7 @@ router.beforeEach((to, from, next) => {
   const loggedIn = localStorage.getItem('token') !== null
 
   if (
-    !(to.path.includes('/pages/register') || to.path.includes('/pages/contact'))
+    !(to.path.includes('/pages/register') || to.path.includes('/pages/author'))
   ) {
     if (!loggedIn && to.path !== '/pages/login') {
       return next('/pages/login')

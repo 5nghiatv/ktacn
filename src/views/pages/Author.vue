@@ -9,7 +9,7 @@
             <li>
               <i class="fa fa-road"></i> 118/63 Bạch Đằng, P.24, Q.BT- HCM
             </li>
-            <li><i class="fa fa-phone"></i> (084) 0903917963</li>
+            <li><i class="fa fa-phone"></i> (084) 0903917963 - 0947501512</li>
             <li><i class="fa fa-envelope"></i> Nghiatv@gmail.com</li>
           </ul>
         </div>

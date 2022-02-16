@@ -97,6 +97,7 @@ export default {
           ? store.state.loggedUser.id
           : store.state.loggedUser._id
       let path = `/pages/register/${id}`
+      store.dispatch('logout')
       router.push(path)
     }
 

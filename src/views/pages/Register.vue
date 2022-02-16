@@ -5,14 +5,18 @@
         <CCol :md="9" :lg="7" :xl="6">
           <CCard class="mx-4">
             <CCardBody class="p-4">
-              <CForm>
+              <CForm @submit.prevent="submitForm">
                 <h1>{{ title }}</h1>
                 <p class="text-medium-emphasis">Create your account</p>
                 <CInputGroup class="mb-3">
                   <CInputGroupText>
                     <CIcon icon="cil-user" />
                   </CInputGroupText>
-                  <CFormInput placeholder="Username" autocomplete="username" />
+                  <CFormInput
+                    v-model="username"
+                    placeholder="Username"
+                    autocomplete="username"
+                  />
                 </CInputGroup>
 
                 <CInputGroup v-if="updateuser" class="mb-3">
@@ -86,7 +90,11 @@
                       >
                     </CCol>
                     <CCol col="4">
-                      <CButton @click="deleteTodo()" color="warning" block
+                      <CButton
+                        :disabled="this.$route.params.id == '0'"
+                        @click="deleteTodo()"
+                        color="warning"
+                        block
                         >Delete Account</CButton
                       >
                     </CCol>
@@ -147,6 +155,7 @@ export default {
       email: '',
       role: '',
       status: '',
+      image: '',
       isAdmin: false,
       password: '',
       newPassword: '',
@@ -154,9 +163,10 @@ export default {
     }
   },
   methods: {
+    submitForm() {},
     async gotoHome() {
-      await this.$router.push('/dashboard')
-      await location.reload()
+      await this.$router.push('/')
+      location.reload()
     },
     onSelectAdmin() {
       this.isAdmin = document.getElementById('mySelectAdmin').value
@@ -202,10 +212,11 @@ export default {
           email: this.email,
           password: this.password,
         })
-        .then(() => {
+        .then(async () => {
           // this.$store.dispatch('login', data);
           //alert("Register successFully ,You can login ..")
-          this.$router.push('/pages/login')
+          await this.$router.push('/pages/login')
+          location.reload()
           //console.log(data.data) ;
           // console.log(data.data.user) ;
         })
@@ -239,8 +250,9 @@ export default {
 
       this.$apiAcn
         .patch(url, item)
-        .then(() => {
-          this.$router.push('/pages/login')
+        .then(async () => {
+          await this.$router.push('/pages/login')
+          location.reload()
         })
         .catch((error) => {
           this.$toastr.error('', 'Update Error...')
@@ -249,13 +261,23 @@ export default {
     },
 
     deleteTodo() {
-      if (!confirm('Are you sure to delete this user ?')) {
+      if (
+        this.$route.params.id == '0' ||
+        !confirm('Are you sure to delete this user : ' + this.email + ' ?')
+      ) {
         return
       }
       let url = this.models + '/' + this.$route.params.id
       this.$apiAcn
         .delete(url)
         .then(() => {
+          this.$toastr.warning('', 'Đã xóa user : ' + this.email)
+          this.name = ''
+          this.username = ''
+          this.email = ''
+          this.image = ''
+          this.password = ''
+          this.newPassword = ''
           this.$router.push('/pages/register/0')
         })
         .catch((error) => {

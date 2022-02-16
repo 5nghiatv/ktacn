@@ -578,9 +578,9 @@ const routes = [
         component: () => import('@/views/pages/Register'),
       },
       {
-        path: 'contactAuthor',
-        name: 'contactAuthor',
-        component: () => import('@/views/pages/contactAuthor'),
+        path: 'author',
+        name: 'Author',
+        component: () => import('@/views/pages/Author'),
       },
     ],
   },
