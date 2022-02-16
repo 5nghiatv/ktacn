@@ -123,8 +123,8 @@ router.get('/testdb',async ( req, res) => {
       logged: connect_Option.username && connect_Option.password ? true: false ,
       mongodb: __mongodb,
       connect_Option: connect_Option,
-      sqlReturn: kq ? kq : "Run Sql ERROR : Check info connect Database & getUser... ",
-      sqlReturn2: kq2 ? kq2 : "Run Sql ERROR : Check info connect Database & Procedure... "
+      getUsers: kq ? kq : "Run Sql ERROR : Check info connect Database & getUser... ",
+      getProcedures: kq2 ? kq2 : "Run Sql ERROR : Check info connect Database & Procedure... "
     });
 });
 

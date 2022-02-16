@@ -117,37 +117,28 @@
 
                 <br />
 
-                <div>
-                  <CRow>
-                    <CCol md="10">
-                      <label style="color: blueviolet">
-                        <a
-                          title="Refresh Database..."
-                          v-on:click="readDanhmuc('connects', true)"
-                        >
-                          Company...</a
-                        ></label
+                <div class="wrapper_">
+                  <div class="danhmuc">
+                    <label style="color: blueviolet">
+                      <a
+                        title="Refresh Database..."
+                        v-on:click="readDanhmuc('connects', true)"
                       >
-                      <label style="color: blueviolet; margin-left: 60px;">
-                        <a
-                          title="Liên hệ tác giả..."
-                          @click="contactAuthor()"
-                        >
-                          Author...</a
-                        ></label
-                      >
-
-                      <CFormCheck
-                        id="flexCheckChecked"
-                        label="Doanh nghiệp lớn"
-                        title="Kế toán áp dụng cho DN lớn"
-                        v-model="company.dnlon"
-                      />
-                    </CCol>
-                    <!-- <CCol md="2"> -->
+                        Company...</a
+                      ></label
+                    >
+                  </div>
+                  <div class="author">
+                    <label style="color: blueviolet;">
+                      <a title="Liên hệ tác giả..." @click="contactAuthor()">
+                        Author...</a
+                      ></label
+                    >
+                  </div>
+                  <div class="d-flex flex-row-reverse">
                     <CFormSelect
                       title="Chứng từ đã nhập"
-                      style="margin-left: 5px; width: 40px; height: 30px"
+                      style="width: 40px; height: 30px"
                       horizontal
                       :options="options"
                       placeholder="Please select"
@@ -157,9 +148,15 @@
                       id="mySelect"
                     >
                     </CFormSelect>
-                    <!-- </CCol> -->
-                  </CRow>
+                  </div>
                 </div>
+                <CFormCheck
+                  id="flexCheckChecked"
+                  label="Doanh nghiệp lớn"
+                  title="Kế toán áp dụng cho DN lớn"
+                  v-model="company.dnlon"
+                />
+
                 <br />
                 <h2>Sign up</h2>
                 <CRow>
@@ -172,7 +169,7 @@
                       Register Now!
                     </CButton>
                   </CCol>
-                  <CCol sm="7">
+                  <CCol sm="6">
                     <!-- <CButton color="light" variant="outline"  @click="changePasw()" > Change Password!  </CButton> -->
                   </CCol>
                 </CRow>
@@ -568,6 +565,10 @@ export default {
 .card-body {
   flex: 1 1 auto;
   padding: 2rem 2rem;
+}
+.wrapper_ {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 </style>
 
