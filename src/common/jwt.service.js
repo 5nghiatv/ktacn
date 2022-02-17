@@ -8,9 +8,8 @@ export const getToken = () => {
   return window.localStorage.getItem(TOKEN_KEY)
 }
 
-export const saveToken = (token, expiresIn) => {
+export const saveToken = (token) => {
   //console.log('Token :'+ token )
-  console.log('Token expiresIn :' + expiresIn)
   window.localStorage.setItem(TOKEN_KEY, token)
   // Nếu Object phải ====> window.localStorage.setItem("nguoikyten", JSON.stringify(this.nguoikyten));
   // this.nguoikyten = JSON.parse(window.localStorage.getItem("nguoikyten") );

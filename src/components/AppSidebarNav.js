@@ -64,21 +64,20 @@ const AppSidebarNav = defineComponent({
     //console.log('Setup AppSidebarNav:', store.state.loggedUser)
 
     // console.log('store.state: SẼ LOAD nav..', store.state)
-    const { nav1 } = require('@/_nav1.js')
+    let { nav1 } = require('@/_nav1.js')
     const { nav2 } = require('@/_nav2.js')
     let lang = require(`@/locales/${store.state.locale}.json`)
 
     nav1.forEach((element) => {
       // console.log('--' + element.name)
-      if (lang.navRight[element.name] != 'undefined') {
+      if (typeof lang.navRight[element.name] != 'undefined') {
         element.name = lang.navRight[element.name]
-        //console.log(lang.navRight[element.name])
+        //console.log(777, lang.navRight[element.name])
       }
       if (element.items) {
         element.items.forEach((el) => {
-          if (lang.navRight[el.name] != 'undefined') {
+          if (typeof lang.navRight[el.name] != 'undefined') {
             el.name = lang.navRight[el.name]
-            // console.log(lang.navRight[el.name])
           }
         })
       }

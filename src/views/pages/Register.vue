@@ -82,14 +82,14 @@
                   <CFormInput v-model="image" placeholder="image" />
                 </CInputGroup>
 
-                <CCardFooter v-if="updateuser" class="p-4">
-                  <CRow>
-                    <CCol col="4">
+                <CCardFooter class="p-4">
+                  <CRow v-if="updateuser">
+                    <CCol md="4" class="d-flex justify-content-center">
                       <CButton @click="updateTodo()" color="info" block
                         >Update Account</CButton
                       >
                     </CCol>
-                    <CCol col="4">
+                    <CCol md="4" class="d-flex justify-content-center">
                       <CButton
                         :disabled="this.$route.params.id == '0'"
                         @click="deleteTodo()"
@@ -98,34 +98,36 @@
                         >Delete Account</CButton
                       >
                     </CCol>
-                    <CCol col="4">
+                    <CCol md="4" class="d-flex justify-content-center">
+                      <CButton @click="gotoHome()" color="success" block
+                        >Home page</CButton
+                      >
+                    </CCol>
+                  </CRow>
+                  <CRow v-if="!updateuser">
+                    <CCol md="6" class="d-flex justify-content-center">
+                      <CButton @click="register()" color="info" block
+                        >Create Account</CButton
+                      >
+                    </CCol>
+                    <CCol md="6" class="d-flex justify-content-center">
                       <CButton @click="gotoHome()" color="success" block
                         >Home page</CButton
                       >
                     </CCol>
                   </CRow>
                 </CCardFooter>
-
-                <div class="d-grid">
-                  <CButton
-                    v-if="!updateuser"
-                    @click="register()"
-                    color="info"
-                    block
-                    >Create Account</CButton
-                  >
-                </div>
               </CForm>
             </CCardBody>
 
-            <CCardFooter id="social-icon">
-              <!-- <a id="fa-facebook" href="javascript:void(0)" class="fa fa-facebook"></a>
+            <!-- <CCardFooter id="social-icon">
+              <a id="fa-facebook" href="javascript:void(0)" class="fa fa-facebook"></a>
               <a id="fa-twitter" href="javascript:void(0)" class="fa fa-twitter"></a>
               <a id="fa-google" href="javascript:void(0)" class="fa fa-google"></a>
               <a id="fa-youtube" href="javascript:void(0)" class="fa fa-youtube"></a>
               <a id="fa-instagram" href="javascript:void(0)" class="fa fa-instagram"></a>
-              <a id="fa-skype" href="javascript:void(0)" class="fa fa-skype"></a> -->
-            </CCardFooter>
+              <a id="fa-skype" href="javascript:void(0)" class="fa fa-skype"></a>
+            </CCardFooter> -->
           </CCard>
         </CCol>
       </CRow>
@@ -166,7 +168,7 @@ export default {
     submitForm() {},
     async gotoHome() {
       await this.$router.push('/')
-      location.reload()
+      //location.reload()
     },
     onSelectAdmin() {
       this.isAdmin = document.getElementById('mySelectAdmin').value
@@ -216,7 +218,7 @@ export default {
           // this.$store.dispatch('login', data);
           //alert("Register successFully ,You can login ..")
           await this.$router.push('/pages/login')
-          location.reload()
+          //location.reload()
           //console.log(data.data) ;
           // console.log(data.data.user) ;
         })
@@ -252,7 +254,7 @@ export default {
         .patch(url, item)
         .then(async () => {
           await this.$router.push('/pages/login')
-          location.reload()
+          //location.reload()
         })
         .catch((error) => {
           this.$toastr.error('', 'Update Error...')
