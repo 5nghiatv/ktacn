@@ -144,6 +144,14 @@ $(function(){
                 setTimeout(function(){ $("#message").hide(); },4000);
             });
         });
+//================== Delete collection users
+        $("#dropuser").on('click', function(){
+            if(!confirm('Are you sure to Delete collection users ? ')) { return;}
+            $.get( "/exp/drop/users", function( data ) {
+                $("#message").show().html(data['success']);
+                setTimeout(function(){ $("#message").hide(); },4000);
+            });
+        });
 
 //================== List collection
         $("#listcollct").on('click', function(){

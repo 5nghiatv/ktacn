@@ -196,18 +196,20 @@ router.get('/importuser', function (req, res) {
   let csvStream = fastcsv
     .parse()
     .on('data', function (data) {
+      // username_1,role_2,status_3,admin_4,databases_5,socialId_6,image_7,name_8,email_9,password_10,registered11
+      // Cần xem lại cấu trúc file users.csv để sửa thứ tự
       var item = new User({
         username: data[1],
         role: data[2],
         status: data[3],
-        name: data[4],
-        email: data[5],
-        password: data[6],
-        registered: data[7],
-        databases: data[10],
-        admin: data[11],
-        image: data[12],
-        socialId: data[13],
+        admin: data[4],
+        databases: data[5],
+        socialId: data[6],
+        image: data[7],
+        name: data[8],
+        email: data[9],
+        password: data[10],
+        registered: data[11],
       })
       csvData.push(item)
     })
