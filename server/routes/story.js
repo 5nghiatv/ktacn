@@ -3,65 +3,89 @@ const router = express.Router()
 const { ensureAuth } = require('../configs/auth-story')
 //const { ensureAuth } = require('../configs/auth')
 const passport = require('passport')
-const Story  = require('../models/story')
+const Story = require('../models/story')
 
 //===============================FOR AUTH GOOGLE==================
 
-router.get('/login', (req, res) => { res.render('login-google' ,{
-  //  globalUser: { googleId: ''},
-}) } )
+router.get('/login', (req, res) => {
+  res.render('login-google', {
+    //  globalUser: { googleId: ''},
+  })
+})
 
 // @desc    Auth with Google
 // @route   GET /auth/google
 router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
 router.get('/twitter', passport.authenticate('twitter', { scope: ['profile'] }))
 //router.get('/facebook', passport.authenticate('facebook', { scope: ['profile'] }))
-router.get('/facebook', passport.authenticate('facebook', { scope : ['profile', 'email'] }));
-router.get('/github', passport.authenticate('github', 
-{ client_id: process.env.GITHUB_CLIENT_ID,
-  redirect_uri: process.env.GITHUB_CLIENT_CALLBACK_URL,
-  scope: ['profile'] }))
-router.get('/linkedin',passport.authenticate('linkedin', { scope: ['r_emailaddress', 'r_liteprofile'] }));
+router.get(
+  '/facebook',
+  passport.authenticate('facebook', { scope: ['profile', 'email'] }),
+)
+router.get(
+  '/github',
+  passport.authenticate('github', {
+    client_id: process.env.GITHUB_CLIENT_ID,
+    redirect_uri: process.env.GITHUB_CLIENT_CALLBACK_URL,
+    scope: ['profile'],
+  }),
+)
+router.get(
+  '/linkedin',
+  passport.authenticate('linkedin', {
+    scope: ['r_emailaddress', 'r_liteprofile'],
+  }),
+)
 
 // @desc    Google auth callback
 // @route   GET /story/google/callback
 
-router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/' }),
+router.get(
+  '/google/callback',
+  passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     //res.render('stories/dashboard')
-    res.redirect('/social')   // Call router.get('/') bên dưới
-  }
+    res.redirect('/social') // Call router.get('/') bên dưới
+  },
 )
 
 // send to twitter to do the authentication
 //  app.get('/twitter', passport.authenticate('twitter', { scope : 'email' }));
 
-router.get('/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }),
+router.get(
+  '/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/' }),
   (req, res) => {
     //res.render('stories/dashboard')
-    res.redirect('/social')   // Call router.get('/') bên dưới
-  }
+    res.redirect('/social') // Call router.get('/') bên dưới
+  },
 )
 
-router.get('/github/callback', passport.authenticate('github', { failureRedirect: '/' }),
+router.get(
+  '/github/callback',
+  passport.authenticate('github', { failureRedirect: '/' }),
   (req, res) => {
     //res.render('stories/dashboard')
-    res.redirect('/social')   // Call router.get('/') bên dưới
-  }
+    res.redirect('/social') // Call router.get('/') bên dưới
+  },
 )
 
-router.get('/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/' }),
+router.get(
+  '/linkedin/callback',
+  passport.authenticate('linkedin', { failureRedirect: '/' }),
   (req, res) => {
     //res.render('stories/dashboard')
-    res.redirect('/social')   // Call router.get('/') bên dưới
-  }
+    res.redirect('/social') // Call router.get('/') bên dưới
+  },
 )
 
-router.get('/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/' }),
+router.get(
+  '/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/' }),
   (req, res) => {
     //res.render('stories/dashboard')
-    res.redirect('/social')   // Call router.get('/') bên dưới
-  }
+    res.redirect('/social') // Call router.get('/') bên dưới
+  },
 )
 
 //  app.get('/auth/facebook/callback', passport.authenticate('facebook', {successRedirect : '/profile',
@@ -72,14 +96,13 @@ router.get('/facebook/callback', passport.authenticate('facebook', { failureRedi
 // @route   /auth/logout
 router.get('/logout', (req, res) => {
   req.logout()
-  global.__user = ''   //  setup AT ---passport.authenticate------users/logout------
+  global.__user = '' //  setup AT ---passport.authenticate------users/logout------
   res.redirect('/exp/login')
 })
 
 // ========================
 router.get('/intro', ensureAuth, async (req, res) => {
   try {
-
     const stories = await Story.find({
       user: req.user._id,
       status: 'public',
@@ -90,13 +113,12 @@ router.get('/intro', ensureAuth, async (req, res) => {
     //   .populate('user')
     //   .sort({ createdAt: 'desc' })
     //   .lean()
-    
+
     //console.log(stories)
     //console.log(global.__user)
     res.render('stories/intro', {
-      stories, 
-      globalUser: req.user
-
+      stories,
+      globalUser: req.user,
     })
   } catch (err) {
     console.error(err)
@@ -106,23 +128,21 @@ router.get('/intro', ensureAuth, async (req, res) => {
 
 //===============================FOR AUTH GOOGLE==================
 
-
 // @desc    Show add+ Edit page to UPDATE
 // @route   GET /stories/add
 router.get('/add', ensureAuth, (req, res) => {
- res.render('stories/edit', {
-        method: '',
-        titleUpAdd: 'Add Story',
-        story: {
-          _id: '',
-          title: '',
-          body: '',
-          status: ''
-        },
-        globalUser: req.user,
-      })  
+  res.render('stories/edit', {
+    method: '',
+    titleUpAdd: 'Add Story',
+    story: {
+      _id: '',
+      title: '',
+      body: '',
+      status: '',
+    },
+    globalUser: req.user,
+  })
 })
-
 
 // @desc    Process add form -- CREATE
 // @route   POST /stories
@@ -131,7 +151,7 @@ router.post('/', ensureAuth, async (req, res) => {
     req.body.user = req.user.id
     //console.log(req.body)
     await Story.create(req.body)
-    res.redirect('/social')  // to Dashboard 
+    res.redirect('/social') // to Dashboard
   } catch (err) {
     console.error(err)
     res.render('error/500')
@@ -151,10 +171,10 @@ router.get('/', ensureAuth, async (req, res) => {
       .lean()
     //console.log(stories)
     //console.log(global.__user)
-    
+
     res.render('stories/dashboard', {
       stories,
-      globalUser: req.user
+      globalUser: req.user,
     })
   } catch (err) {
     console.error(err)
@@ -199,7 +219,7 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
       _id: req.params.id,
     }).lean()
 
-//console.log(story)
+    //console.log(story)
 
     if (!story) {
       return res.render('error/404')
@@ -297,4 +317,3 @@ router.get('/user/:userId', ensureAuth, async (req, res) => {
 })
 
 module.exports = router
-

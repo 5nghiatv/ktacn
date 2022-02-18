@@ -1,17 +1,19 @@
 //const config = require('config');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken')
 //const Joi = require('joi');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 //simple schema
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   username: {
     type: String,
-    default: ['Trần Văn Nghĩa', 'Trần Thị Mai Thảo','Trần Vũ Anh'].find((_, i, ar) => Math.random() < 1 / (ar.length - i))
+    default: ['Trần Văn Nghĩa', 'Trần Thị Mai Thảo', 'Trần Vũ Anh'].find(
+      (_, i, ar) => Math.random() < 1 / (ar.length - i),
+    ),
   },
 
   email: {
@@ -20,66 +22,73 @@ const UserSchema = new mongoose.Schema({
     lowercase: true,
     unique: true,
     validate: {
-        validator: function(v) {
-            return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
-        },
-        message: "Please enter a valid email"
+      validator: function (v) {
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v)
+      },
+      message: 'Please enter a valid email',
     },
-    required: [true, "Email required"]
+    required: [true, 'Email required'],
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   registered: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   role: {
     type: String,
-    default: ['Member', 'Staff','Admin'].find((_, i, ar) => Math.random() < 1 / (ar.length - i))
+    default: ['Member', 'Staff', 'Admin'].find(
+      (_, i, ar) => Math.random() < 1 / (ar.length - i),
+    ),
   },
   status: {
     type: String,
-    default: ['Active', 'Inactive', 'Pending', 'Banned'].find((_, i, ar) => Math.random() < 1 / (ar.length - i))
-
+    default: ['Active', 'Inactive', 'Pending', 'Banned'].find(
+      (_, i, ar) => Math.random() < 1 / (ar.length - i),
+    ),
   },
   admin: {
-      type: Boolean, default: false
+    type: Boolean,
+    default: false,
   },
-  databases:[],
+  databases: [],
   socialId: {
     type: String,
-    default: ""
+    default: '',
   },
   image: {
-    type: String,default: ""
+    type: String,
+    default: '',
   },
+})
 
-
-});
-
-//custom method to generate authToken 
-UserSchema.methods.generateAuthToken = function() { 
+//custom method to generate authToken
+UserSchema.methods.generateAuthToken = function () {
   const expire = '24h'
-  const token = jwt.sign({ _id: this._id, isAdmin: this.isAdmin ,user: this }, process.env.PRIVATE_KEY ,{expiresIn: expire } ); 
+  const token = jwt.sign(
+    { _id: this._id, isAdmin: this.isAdmin, user: this },
+    process.env.PRIVATE_KEY,
+    { expiresIn: expire },
+  )
   //get the private key from the config file -> environment variable
   //console.log(jwt.verify(token, process.env.PRIVATE_KEY) )
-  return { token: token, expiresIn: expire }  ;
+  return { token: token, expiresIn: expire }
 }
 
 //custom method verify
-UserSchema.methods.verify = function(token) {
-    return jwt.verify(token, process.env.PRIVATE_KEY)
-};
-
+UserSchema.methods.verify = function (token) {
+  return jwt.verify(token, process.env.PRIVATE_KEY)
+}
 
 //custom method comparePassword
-UserSchema.methods.comparePassword = function(password) {
+UserSchema.methods.comparePassword = function (password) {
   // return bcrypt.compareSync(password, this.hash_password);
-};
+}
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema)
+exports.User = User
 
-exports.User = User;
-
+//KHÔNG DÙNG module.exports = mongoose.model('User', UserSchema)
+// NÊN ===> const { User } = require('../models/User')

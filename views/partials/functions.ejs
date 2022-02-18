@@ -94,6 +94,14 @@ $(function(){
                 setTimeout(function(){ $("#message").hide(); },4000);
             });
         });
+//================== Import Users.csv
+        $("#importuser").on('click', function(){
+            if(!confirm('Are you sure to Restore collection Users ?')) { return;}
+            $.get( "/exp/importuser", function( data ) {
+                $("#message").show().html(data['success']);
+                setTimeout(function(){ $("#message").hide(); },4000);
+            });
+        });
 //================== Import Products.csv
         $("#importprod").on('click', function(){
             if(!confirm('Are you sure to Restore collection Products ?')) { return;}

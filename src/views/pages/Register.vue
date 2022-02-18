@@ -6,8 +6,8 @@
           <CCard class="mx-4">
             <CCardBody class="p-4">
               <CForm @submit.prevent="submitForm">
-                <h1>{{ title }}</h1>
-                <p class="text-medium-emphasis">Create your account</p>
+                <h1>{{ updateuser ? 'Update' : title }}</h1>
+                <p class="text-medium-emphasis">Your account</p>
                 <CInputGroup class="mb-3">
                   <CInputGroupText>
                     <CIcon icon="cil-user" />
@@ -305,7 +305,6 @@ export default {
           //const id = this.$route.params.id
           if (this.$route.params.id && this.$route.params.id != '0') {
             this.updateuser = true
-            this.title = 'Update User'
             this.id_ = todos._id
             this.name = todos.name
             this.username = todos.username

@@ -39,7 +39,7 @@
             <CAvatar :src="avatar6" status="warning" />
           </div>
           <div>
-            <small class="text-medium-emphasis">Jane Dovve</small>
+            <small class="text-medium-emphasis">Xuân Mai</small>
             <small class="text-medium-emphasis float-end mt-1"
               >5 minutes ago</small
             >
@@ -74,10 +74,10 @@
       <CDropdownItem href="#">
         <div class="message">
           <div class="pt-3 me-3 float-start">
-            <CAvatar :src="avatar4" status="info" />
+            <CAvatar :src="avatar1" status="info" />
           </div>
           <div>
-            <small class="text-medium-emphasis">Joe Doe</small>
+            <small class="text-medium-emphasis">Mr Nghĩa</small>
             <small class="text-medium-emphasis float-end mt-1">4:03 AM</small>
           </div>
           <div class="text-truncate font-weight-bold">
@@ -96,7 +96,7 @@
   </CDropdown>
 </template>
 <script>
-import avatar4 from '@/assets/images/avatars/4.jpg'
+import avatar1 from '@/assets/images/avatars/1.jpg'
 import avatar5 from '@/assets/images/avatars/5.jpg'
 import avatar6 from '@/assets/images/avatars/6.jpg'
 import avatar7 from '@/assets/images/avatars/7.jpg'
@@ -105,7 +105,7 @@ export default {
   setup() {
     const itemsCount = 7
     return {
-      avatar4,
+      avatar1,
       avatar5,
       avatar6,
       avatar7,

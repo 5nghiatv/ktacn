@@ -37,7 +37,7 @@
             Today
           </CListGroupItem>
           <CListGroupItem href="#" class="border-start-4 border-start-warning">
-            <CAvatar :src="avatar7" size="lg" class="float-end" />
+            <CAvatar :src="avatar1" size="lg" class="float-end" />
             <div>Meeting with <strong>Lucas</strong></div>
             <small class="text-medium-emphasis me-3">
               <CIcon icon="cil-calendar" /> 1 - 3pm
@@ -47,7 +47,7 @@
             </small>
           </CListGroupItem>
           <CListGroupItem href="#" class="border-start-4 border-start-info">
-            <CAvatar :src="avatar1" size="lg" class="float-end" />
+            <CAvatar :src="avatar6" size="lg" class="float-end" />
             <div>Skype with <strong>Megan</strong></div>
             <small class="text-medium-emphasis me-3">
               <CIcon icon="cil-calendar" /> 4 - 5pm
