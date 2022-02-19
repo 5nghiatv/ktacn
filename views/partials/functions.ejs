@@ -146,7 +146,7 @@ $(function(){
         });
 //================== Delete collection users
         $("#dropuser").on('click', function(){
-            if(!confirm('Are you sure to Delete collection users ? ')) { return;}
+            if(!confirm('Are you sure to Delete collection users ? (Will have to recreate 1) ')) { return;}
             $.get( "/exp/drop/users", function( data ) {
                 $("#message").show().html(data['success']);
                 setTimeout(function(){ $("#message").hide(); },4000);

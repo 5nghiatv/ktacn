@@ -119,11 +119,11 @@
           <h3>Item List</h3>
           <table class="item-list">
             <tr class="table-heading flex">
-              <th class="item25">Số Hóa đơn</th>
+              <th class="item20">Số Hóa đơn</th>
               <th class="item15">Ngày tháng</th>
-              <th class="item25">Mã số Thuế</th>
+              <th class="item15">Mã số Thuế</th>
               <th class="item7">Thuế suất</th>
-              <th class="item20">Số tiền</th>
+              <th class="item15">Số tiền</th>
               <th class="item15">Thuế gtgt</th>
               <!-- <th class="total">Thành tiền</th> -->
             </tr>

@@ -119,11 +119,11 @@
           <h3>Item List</h3>
           <table class="item-list">
             <tr class="table-heading flex">
-              <th class="item50">Mã hàng</th>
+              <th class="item45">Mã hàng</th>
               <!-- <th class="item40">Tên hàng</th> -->
               <th class="item10">Đơn vị</th>
               <th class="item10">Kho</th>
-              <th class="item15">Số lượng</th>
+              <th class="item20">Số lượng</th>
               <th class="item20">Số tiền</th>
             </tr>
             <tr
@@ -161,7 +161,7 @@
                 <input ref="donvi" type="text" v-model="item.donvi" disabled />
               </td>
               <!-- <td class="item5"><input required type="text" v-model="item.makho" /></td> -->
-              <td class="item20">
+              <td class="item10">
                 <div class="location-details flex">
                   <label class="typo__label"></label>
                   <Multiselect

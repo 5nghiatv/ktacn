@@ -36,10 +36,11 @@
                       />
                     </CInputGroup>
                   </CCol>
-                  <CCol md="4" style='z-index: 2'>
+                  <CCol md="4" style="z-index: 2">
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Mã số Thuế</CInputGroupText>
                       <Multiselect
+                        @select="selectGetCompany()"
                         v-model="hoadon.masothue"
                         placeholder="Mã số thuế"
                         :searchable="true"
@@ -218,7 +219,7 @@
               <!-- VẬT TƯ =============================================== -->
               <div v-if="ischitiet == 2">
                 <CRow>
-                  <CCol md="4" style='z-index: 2'>
+                  <CCol md="4" style="z-index: 2">
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Mã hàng</CInputGroupText>
                       <Multiselect
@@ -242,7 +243,7 @@
                       </Multiselect>
                     </CInputGroup>
                   </CCol>
-                  <CCol md="4" style='z-index: 2'>
+                  <CCol md="4" style="z-index: 2">
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Mã Kho</CInputGroupText>
                       <Multiselect
@@ -354,6 +355,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Mã hàng</th>
+                      <th>Tên hàng</th>
                       <th>Mã kho</th>
                       <th>Số lượng</th>
                       <th>Thành tiền</th>
@@ -365,6 +367,7 @@
                     <tr v-for="(ctuvattu, index) in ctuvattus">
                       <td style="text-align: center">{{ index + 1 }}</td>
                       <td>{{ ctuvattu.mahang }}</td>
+                      <td>{{ getTenhang(ctuvattu.mahang) }}</td>
                       <td>{{ ctuvattu.makho }}</td>
                       <td style="text-align: right">{{ ctuvattu.soluong }}</td>
                       <td style="text-align: right">{{ ctuvattu.sotien }}</td>
@@ -675,12 +678,15 @@
                   :disabled="!checkUpdate || !isValid"
                   id="update"
                 >
-                  Update </CButton
-                >
+                  Update
+                </CButton>
                 &nbsp;&nbsp;
                 <CLoadingButton
                   :disabled="!isrestore"
-                  size="sm" color="info" :timeout="2000" variant="outline"
+                  size="sm"
+                  color="info"
+                  :timeout="2000"
+                  variant="outline"
                   @click="restore()"
                   id="restore"
                 >
@@ -1063,11 +1069,11 @@ export default {
       infoprint: '',
       optprint: false,
       ischitiet: 0,
-      dmtkhoans: [],
-      dmtientes: [],
-      tenhangs: [],
-      dmtenkhos: [],
-      customers_: [],
+      // dmtkhoans: [],
+      // dmtientes: [],
+      // tenhangs: [],
+      // dmtenkhos: [],
+      // customers_: [],
       columns: [
         {
           label: 'Số c.từ',
@@ -1107,6 +1113,19 @@ export default {
   },
 
   methods: {
+    selectGetCompany() {
+      const company = this.danhmucCustomer.filter((item) => {
+        return item.maso == this.hoadon.masothue
+      })
+      if (company.length > 0) this.hoadon.diengiai = company[0].company
+    },
+    getTenhang(mahang) {
+      const hanghoa = this.danhmucTenhang.filter((item) => {
+        return item.mahang == mahang
+      })
+      //console.log(mahang, hanghoa, this.tenhangs)
+      return hanghoa.length > 0 ? hanghoa[0].tenhang : ''
+    },
     submitForm(e) {
       // if(!moment(this.todo.dofbirth,'DD-MM-YYYY').isValid()) {
       //     this.$toastr.warning("Ngày không hợp lệ !!");
