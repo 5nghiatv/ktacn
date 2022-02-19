@@ -726,7 +726,7 @@
                   >> Hóa đơn
                 </CButton>
                 <CButton
-                  style="float: right; margin-right: 5px"
+                  style="float: right; margin-left: 5px; margin-right: 5px"
                   class="btn btn-outline-info btn-sm"
                   @click="setChitiet(2)"
                   :disabled="!todo.ctid"
@@ -735,7 +735,7 @@
                   >> Vật tư
                 </CButton>
                 <CButton
-                  style="float: right; margin-right: 5px"
+                  style="float: right; margin-right: 0px"
                   class="btn btn-outline-warning btn-sm"
                   @click="setChitiet(1)"
                   :disabled="!todo.ctid"

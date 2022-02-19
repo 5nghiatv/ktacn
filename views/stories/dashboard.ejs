@@ -9,7 +9,7 @@
             <th>Title</th>
             <th>Date</th>
             <th>Status</th>
-            <th>Action&#8482; </th>
+            <th>Action &#8482; </th>
         </tr>
     </thead>
     <tbody>
@@ -28,9 +28,9 @@
                             </a>
                             &nbsp;
                                 <% if(story.user && globalUser.name == story.user.name){ %>
-                                    <i class="fas fa-check-square-o"></i>
+                                    &#8482;
                                 <% } else { %>
-                                    x
+                                    <i class="fas fa-check-square-o"></i>
                                 <% } %>
                             &nbsp;
                             <form action="/social/<%= story._id %>?_method=DELETE" method="POST" id="delete-form" onclick="return confirm('Are you sure to delete this record ?');">
