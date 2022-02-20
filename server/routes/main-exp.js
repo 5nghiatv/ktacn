@@ -94,9 +94,13 @@ router.get('/backupdb', async (req, res) => {
 })
 
 //----------------------------------------
-router.get('/importcust', function (req, res) {
+router.get('/importcust', async function (req, res) {
   //---------------------------------
   let clname = 'customers'
+  const client = await mongoclient.connect(ur5, {})
+  const myDB = client.db(dbName)
+  deleteCollection(client, clname, res)
+
   let stream = fs.createReadStream(__dirname + '/../backup/' + clname + '.csv')
   // console.log(stream);
   let csvData = []
@@ -122,8 +126,6 @@ router.get('/importcust', function (req, res) {
       // remove the first line: header
       csvData.shift()
       //console.log(csvData);
-      const client = await mongoclient.connect(ur5, {})
-      const myDB = client.db(dbName)
       const resCollct = await myDB.collection(clname).insertMany(csvData)
       if (resCollct) {
         console.log(`Inserted: ${resCollct.insertedCount} rows`)
@@ -143,11 +145,14 @@ router.get('/importcust', function (req, res) {
 })
 
 //----------------------------------------
-router.get('/importempl', function (req, res) {
+router.get('/importempl', async function (req, res) {
   //---------------------------------
   let clname = 'employees'
-  let stream = fs.createReadStream(__dirname + '/../backup/' + clname + '.csv')
+  const client = await mongoclient.connect(ur5, {})
+  const myDB = client.db(dbName)
+  deleteCollection(client, clname, res)
 
+  let stream = fs.createReadStream(__dirname + '/../backup/' + clname + '.csv')
   let csvData = []
   let csvStream = fastcsv
     .parse()
@@ -166,8 +171,6 @@ router.get('/importempl', function (req, res) {
       // remove the first line: header
       csvData.shift()
       //console.log(csvData);
-      const client = await mongoclient.connect(ur5, {})
-      const myDB = client.db(dbName)
       const resCollct = await myDB.collection(clname).insertMany(csvData)
       if (resCollct) {
         console.log(`Inserted: ${resCollct.insertedCount} rows`)
@@ -187,11 +190,14 @@ router.get('/importempl', function (req, res) {
 })
 
 //----------------------------------------
-router.get('/importuser', function (req, res) {
+router.get('/importuser', async function (req, res) {
   //---------------------------------
   let clname = 'users'
-  let stream = fs.createReadStream(__dirname + '/../backup/' + clname + '.csv')
+  const client = await mongoclient.connect(ur5, {})
+  const myDB = client.db(dbName)
+  deleteCollection(client, clname, res)
 
+  let stream = fs.createReadStream(__dirname + '/../backup/' + clname + '.csv')
   let csvData = []
   let csvStream = fastcsv
     .parse()
@@ -217,8 +223,6 @@ router.get('/importuser', function (req, res) {
       // remove the first line: header
       csvData.shift()
       //console.log(csvData);
-      const client = await mongoclient.connect(ur5, {})
-      const myDB = client.db(dbName)
       const resCollct = await myDB.collection(clname).insertMany(csvData)
       if (resCollct) {
         console.log(`Inserted: ${resCollct.insertedCount} rows`)
@@ -236,39 +240,71 @@ router.get('/importuser', function (req, res) {
   stream.pipe(csvStream)
   //res.json({success : clname+" data exported to <"+ ur5 +"> Successfully.", status : 200});
 })
+//---------------------------------
+async function deleteCollection(client, clname, res) {
+  const myDB = client.db(dbName)
+  const collections = await client.db().listCollections().toArray()
+  const collectionNames = collections.map((c) => c.name)
+  const retname = await collectionNames.filter((name) => {
+    return name == clname
+  })
+  const ret = true
+  if (retname.length > 0) {
+    const ret = await myDB.collection(clname).drop() // có await AND successfully return true
+    if (!ret)
+      res.status(200).json({
+        success: 'Collection [' + clname + '] DELETE failed !!',
+      })
+    // Xóa xong collection --> Tiếp tục import
+  }
+  return ret
+}
 
 //---------------------------------
 router.get('/drop/:collect', async (req, res) => {
   var collect = req.path.replace('/drop/', '')
   const client = await mongoclient.connect(ur5, {})
-  const myDB = client.db(dbName)
-  const listColls = await myDB.listCollections().toArray()
-  let collexist = false
-  // await listColls.forEach( async (item, index) => {
-  for (let index = 0; index < listColls.length; index++) {
-    if (listColls[index].name == collect) {
-      collexist = true
-      myDB.collection(collect).drop(function (err, delOK) {
-        client.close()
-        if (!err) {
-          return res.status(200).json({
-            success: 'Collection [' + collect + '] DELETE Succesfully !!',
-          })
-        } else {
-          return res
-            .status(200)
-            .json({ success: 'Collection [' + collect + '] Delete ERROR !!' })
-        }
-      })
-    }
+  const ret = deleteCollection(client, collect, res)
+  if (ret)
+    return res.status(200).json({
+      success: 'Collection [' + collect + '] DELETE Succesfully !!',
+    })
 
-    if (listColls.length == index + 1 && !collexist) {
-      client.close()
-      return res.status(200).json({
-        success: 'Collection [' + collect + '] Not exist. Please RESTORE... ',
-      })
-    }
-  }
+  if (!ret)
+    return res.status(200).json({
+      success: 'Collection [' + collect + '] DELETE failed !!',
+    })
+  client.close()
+
+  // const client = await mongoclient.connect(ur5, {})
+  // const myDB = client.db(dbName)
+  // const listColls = await myDB.listCollections().toArray()
+  // let collexist = false
+  // // await listColls.forEach( async (item, index) => {
+  // for (let index = 0; index < listColls.length; index++) {
+  //   if (listColls[index].name == collect) {
+  //     collexist = true
+  //     myDB.collection(collect).drop(function (err, delOK) {
+  //       client.close()
+  //       if (!err) {
+  //         return res.status(200).json({
+  //           success: 'Collection [' + collect + '] DELETE Succesfully !!',
+  //         })
+  //       } else {
+  //         return res
+  //           .status(200)
+  //           .json({ success: 'Collection [' + collect + '] Delete ERROR !!' })
+  //       }
+  //     })
+  //   }
+
+  //   if (listColls.length == index + 1 && !collexist) {
+  //     client.close()
+  //     return res.status(200).json({
+  //       success: 'Collection [' + collect + '] Not exist. Please RESTORE... ',
+  //     })
+  //   }
+  // }
 })
 
 //---------------------------------
