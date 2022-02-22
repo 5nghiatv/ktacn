@@ -169,5 +169,11 @@ export default {
   border-radius: 6px;
   border: 3px solid var(--scrollbarBG);
 }
+:root {
+  --cui-body-font-size: 0.94rem;
+  table.vgt-table {
+    font-size: var(--cui-body-font-size);
+  }
+}
 </style>
 <style src="@vueform/multiselect/themes/default.css"></style>
