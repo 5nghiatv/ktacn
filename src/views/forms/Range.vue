@@ -77,6 +77,23 @@
               value="3"
             />
           </DocsExample>
+          <DocsExample href="forms/range.html#steps">
+            <CFormLabel for="customRange4"
+              >Thiết lập font-size (
+              <strong
+                >{{ nvalue == 0 ? 'Small' : nvalue == 5 ? 'Medium' : 'Large' }}
+              </strong>
+              )</CFormLabel
+            >
+            <CFormRange
+              @click="changeRange()"
+              v-model="nvalue"
+              id="customRange4"
+              :min="0"
+              :max="10"
+              :step="5"
+            />
+          </DocsExample>
         </CCardBody>
       </CCard>
     </CCol>
@@ -84,7 +101,20 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
   name: 'Range',
+  setup() {
+    let nvalue = ref(5)
+    const changeRange = () => {
+      console.log('Change value is : ' + nvalue.value)
+    }
+
+    return {
+      nvalue,
+      changeRange,
+    }
+  },
 }
 </script>

@@ -19,7 +19,8 @@ export default createStore({
     asideVisible: false,
     sidebarVisible: '',
     sidebarUnfoldable: false,
-    theme: 'default',
+    theme: 'lte',
+    fontsize: 'medium',
 
     // Ký tự đầu in Hoa - Truy xuất phải ghi chính xác tên biến
     settings: settings_default,
@@ -46,6 +47,10 @@ export default createStore({
     toggleTheme(state, payload) {
       state.theme = payload.value || payload // Phải có ||
       localStorage.setItem('user-theme', state.theme)
+    },
+    toggleFontsize(state, payload) {
+      state.fontsize = payload.value || payload // Phải có ||
+      localStorage.setItem('user-fontsize', state.fontsize)
     },
     toggleUnfoldable(state) {
       state.sidebarUnfoldable = !state.sidebarUnfoldable

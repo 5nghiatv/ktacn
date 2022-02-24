@@ -80,12 +80,18 @@ export default {
     const store = useStore()
     //console.log(111, 'setup:', store.state.loggedUser)
     store.state.theme = localStorage.getItem('user-theme') || 'default' // setItem in store.toggleTheme
+    store.state.fontsize = localStorage.getItem('user-fontsize') || 'medium' // setItem in store.toggleTheme
 
     watch(store.state, () => {
       store.state.theme === 'dark'
         ? document.body.classList.add('dark-theme')
         : document.body.classList.remove('dark-theme')
+
       document.documentElement.setAttribute('data-theme', store.state.theme) // sets the data-theme attribute
+      document.documentElement.setAttribute(
+        'data-font-size',
+        store.state.fontsize,
+      )
 
       /** Replace custom stylesheet */
       // if (document.querySelector('link[id="customStyle"]')) {
@@ -104,6 +110,12 @@ export default {
     store.state.theme === 'dark'
       ? document.body.classList.add('dark-theme')
       : document.body.classList.remove('dark-theme')
+
+    document.documentElement.setAttribute('data-theme', store.state.theme) // sets the data-theme attribute
+    document.documentElement.setAttribute(
+      'data-font-size',
+      store.state.fontsize,
+    ) // sets the data-theme attribute
   },
 }
 </script>
@@ -147,6 +159,7 @@ export default {
   --cui-sidebar-nav-link-hover-bg: #1e2124;
   --cui-sidebar-nav-link-active-bg: #3a3f44;
 }
+
 .sidebar-nav {
   --scrollbarBG: --cui-sidebar-nav-link-active-bg;
   --thumbBG: #90a4ae;
@@ -170,10 +183,28 @@ export default {
   border: 3px solid var(--scrollbarBG);
 }
 :root {
-  --cui-body-font-size: 0.94rem;
+  --ms-font-size: var(--cui-body-font-size);
+  --ms-option-font-size: var(--cui-body-font-size);
+  .form-control {
+    font-size: var(--cui-body-font-size);
+  }
   table.vgt-table {
     font-size: var(--cui-body-font-size);
   }
+}
+// Phải đặt sau <--:root {} <-- Đặt font-size theo biến hết để Set sau
+
+[data-font-size='small'] {
+  --cui-body-font-size: 0.9rem;
+  --ms-tag-font-size: 0.775rem;
+}
+[data-font-size='medium'] {
+  --cui-body-font-size: 0.94rem;
+  --ms-tag-font-size: 0.825rem;
+}
+[data-font-size='large'] {
+  --cui-body-font-size: 0.98rem;
+  --ms-tag-font-size: 0.875rem;
 }
 </style>
 <style src="@vueform/multiselect/themes/default.css"></style>

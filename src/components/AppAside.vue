@@ -204,6 +204,20 @@
       <CTabPane class="p-3" :visible="activeKey == 3">
         <h6>Settings</h6>
         <div>
+          <CFormLabel for="customRange4"
+            >Thiết lập font-size (
+            <strong>{{ fontsize }} </strong>
+            )</CFormLabel
+          >
+          <CFormRange
+            @click="changeFontsize()"
+            id="customRange4"
+            :min="0"
+            :max="10"
+            :step="5"
+            v-model="valueFontsize"
+          />
+
           <div class="clearfix mt-3">
             <CFormSwitch
               @change="settingSwitch('theme')"
@@ -323,8 +337,25 @@ import avatar8 from '@/assets/images/avatars/8.jpg'
 export default {
   name: 'AppAside',
   setup() {
+    const store = useStore()
+    //console.log(store.state.fontsize)
+    const valueFontsize = ref(
+      store.state.fontsize == 'small'
+        ? 0
+        : store.state.fontsize == 'medium'
+        ? 5
+        : 10,
+    )
+    const changeFontsize = () => {
+      store.state.fontsize =
+        valueFontsize.value == 0
+          ? 'small'
+          : valueFontsize.value == 5
+          ? 'medium'
+          : 'large'
+      store.commit('toggleFontsize', store.state.fontsize)
+    }
     const activeKey = ref(1)
-
     const settingSwitch = (opt) => {
       if (opt == 'theme') {
         store.state.theme = store.state.theme == 'dark' ? 'default' : 'dark'
@@ -342,12 +373,13 @@ export default {
       activeKey.value = key
     }
 
-    const store = useStore()
-
     return {
       asideVisible: computed(() => store.state.asideVisible),
       theme: computed(() => store.state.theme),
       settings: computed(() => store.state.settings),
+      fontsize: computed(() => store.state.fontsize),
+      valueFontsize,
+      changeFontsize,
       avatar1,
       avatar2,
       avatar3,

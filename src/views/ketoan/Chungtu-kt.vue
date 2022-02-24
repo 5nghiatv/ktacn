@@ -560,7 +560,7 @@
                       />
                     </CInputGroup>
                   </CCol>
-                  <CCol md="5">
+                  <CCol md="7">
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Ngày tháng</CInputGroupText>
                       <CFormInput
@@ -576,7 +576,7 @@
                   </CCol>
                 </CRow>
                 <CRow>
-                  <CCol md="10">
+                  <CCol md="12">
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Diển giãi</CInputGroupText>
                       <CFormInput
@@ -799,7 +799,7 @@
       >
       <a
         class="btn btn-outline-info btn-sm"
-        style="float: right"
+        style="float: right; margin-right: 5px"
         @click="tatoansodutk()"
       >
         Tất toán Số dư</a
@@ -838,7 +838,7 @@
             id="sotkhoan"
             v-model="sotkhoan"
             title="Số tài khoản"
-            :disabled="patern != 'TK'"
+            v-if="patern == 'TK'"
           />
         </CInputGroup>
       </CCol>
