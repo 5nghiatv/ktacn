@@ -85,12 +85,6 @@
         <CIcon /> Dark Mode
       </CDropdownItem>
 
-      <CDropdownDivider />
-      <CDropdownItem @click="routeExp()">
-        <CIcon name="cil-envelope-open" /> Express JS
-        <CBadge color="success" class="ml-auto">{{ itemsCount }}</CBadge>
-      </CDropdownItem>
-
       <!-- <CDropdownHeader class="bg-light">
         <strong>You have {{ itemsCount }} notifications</strong>
       </CDropdownHeader>

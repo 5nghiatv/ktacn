@@ -68,8 +68,15 @@
         </div>
         <CProgress thin color="success-gradient" :value="100" />
       </CDropdownItem>
-      <CDropdownItem class="text-center border-top">
+      <!-- <CDropdownItem class="text-center border-top">
         <strong>Ketoan.ACN</strong>
+      </CDropdownItem> -->
+      <CDropdownDivider />
+      <CDropdownItem @click="routeExp()">
+        <CIcon name="cil-envelope-open" /><strong> Back-End JS</strong>
+        <CBadge style="float: right" color="success" class="ml-auto">{{
+          itemsCount
+        }}</CBadge>
       </CDropdownItem>
     </CDropdownMenu>
   </CDropdown>
@@ -86,6 +93,10 @@ export default {
   setup() {
     const router = useRouter()
     const store = useStore()
+    const routeExp = () => {
+      // console.log(this);
+      location.href = location.origin + '/exp'
+    }
 
     const calRouter = (query) => {
       router.push(query)
@@ -104,6 +115,7 @@ export default {
     return {
       calRouter,
       editUserinfo,
+      routeExp,
     }
   },
 }

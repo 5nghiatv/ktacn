@@ -43,16 +43,12 @@
         <CIcon name="cil-basket" /> Dice game
         <CBadge color="secondary" class="ml-auto"></CBadge>
       </CDropdownItem> -->
+      <CDropdownHeader tag="div" class="text-center" color="light">
+        <strong>Games</strong>
+      </CDropdownHeader>
       <CDropdownItem href="#/games/peek-a-vue-main">
         <CIcon name="cil-basket" /> FipCard game
         <CBadge color="secondary" class="ml-auto"></CBadge>
-      </CDropdownItem>
-      <CDropdownItem
-        href="https://coreui.io/vue/docs/4.1/getting-started/introduction.html"
-        target="_blank"
-      >
-        <CIcon name="cil-User-Female" /> Coreui-Vue-Pro
-        <CBadge color="info" class="ml-auto">{{ itemsCount }}</CBadge>
       </CDropdownItem>
 
       <!-- <CDropdownItem href="#/games/dragonconquer">
