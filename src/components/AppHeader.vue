@@ -66,7 +66,7 @@
         <AppHeaderLanguage />
         <!-- <AppHeaderDropdownNotif /> -->
         <AppHeaderDropdownTasks />
-        <AppHeaderDropdownMssgs />
+        <!-- <AppHeaderDropdownMssgs /> -->
       </CHeaderNav>
       <CHeaderNav class="ms-3 me-4">
         <AppHeaderDropdownAccnt />
@@ -109,7 +109,7 @@
 <script>
 import AppBreadcrumb from './AppBreadcrumb'
 import AppHeaderDropdownAccnt from './AppHeaderDropdownAccnt'
-import AppHeaderDropdownMssgs from './AppHeaderDropdownMssgs'
+// import AppHeaderDropdownMssgs from './AppHeaderDropdownMssgs'
 // import AppHeaderDropdownNotif from './AppHeaderDropdownNotif'
 import AppHeaderDropdownTasks from './AppHeaderDropdownTasks'
 import AppHeaderLanguage from './AppHeaderLanguage'
@@ -122,7 +122,7 @@ export default {
   components: {
     AppBreadcrumb,
     AppHeaderDropdownAccnt,
-    AppHeaderDropdownMssgs,
+    // AppHeaderDropdownMssgs,
     // AppHeaderDropdownNotif,
     AppHeaderDropdownTasks,
     AppHeaderLanguage,

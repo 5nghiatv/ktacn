@@ -8,7 +8,7 @@
         <strong>Shopping</strong>
       </CDropdownHeader>
       <CDropdownItem href="#/e-commerce/cart">
-        <CIcon name="cil-cart" /> Giỏ hàng
+        <CIcon class="text-warning" name="cil-cart" /> Giỏ hàng
         <CBadge color="info" class="ml-auto">{{
           this.$store.getters.cartProducts.length
         }}</CBadge>
@@ -17,15 +17,15 @@
       <CDropdownDivider />
 
       <CDropdownItem href="#/e-commerce/home">
-        <CIcon name="cil-bell" /> Home
+        <CIcon class="text-info" name="cil-bell" /> Home
         <CBadge color="info" class="ml-auto">{{ itemsCount }}</CBadge>
       </CDropdownItem>
       <CDropdownItem href="#/e-commerce/products">
-        <CIcon name="cil-Layers" /> All Products
+        <CIcon class="text-primary" name="cil-Layers" /> All Products
         <!-- <CBadge color="success" class="ml-auto">{{ itemsCount }}</CBadge> -->
       </CDropdownItem>
       <CDropdownItem href="#/e-commerce/transaction">
-        <CIcon name="cil-task" /> Transactions
+        <CIcon class="text-success" name="cil-task" /> Transactions
         <CBadge color="danger" class="ml-auto">{{ itemsCount }}</CBadge>
       </CDropdownItem>
       <CDropdownItem href="#/e-commerce/orders">
@@ -47,7 +47,7 @@
         <strong>Games</strong>
       </CDropdownHeader>
       <CDropdownItem href="#/games/peek-a-vue-main">
-        <CIcon name="cil-basket" /> FipCard game
+        <CIcon class="text-danger" name="cil-basket" /> FipCard game
         <CBadge color="secondary" class="ml-auto"></CBadge>
       </CDropdownItem>
 
@@ -58,7 +58,7 @@
 
       <CDropdownDivider />
       <CDropdownItem href="#/e-commerce/about">
-        <CIcon name="cil-User-Female" /> About
+        <CIcon class="text-warning" name="cil-User-Female" /> About
         <CBadge color="success" class="ml-auto">{{ itemsCount }}</CBadge>
       </CDropdownItem>
 

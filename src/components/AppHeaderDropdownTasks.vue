@@ -13,27 +13,23 @@
       <CDropdownHeader class="bg-light" style="text-align: center">
         <strong>Account</strong>
       </CDropdownHeader>
-      <CDropdownItem class="d-block">
-        <div class="small mb-1" @click="calRouter('/users/0')">
-          Thông tin người dùng
-          <span class="float-right"><strong></strong></span>
-        </div>
-        <CProgress thin color="info-gradient" />
+      <CDropdownItem class="d-block" @click="calRouter('/users/0')">
+        <CIcon icon="cil-user-follow" class="text-success" />
+        Thông tin người dùng
       </CDropdownItem>
-      <CDropdownItem class="d-block">
-        <div class="small mb-1" @click="editUserinfo()">
-          Sửa thông tin người dùng
-          <span class="float-right"><strong></strong></span>
-        </div>
-        <CProgress thin color="danger-gradient" :value="25" />
+      <CDropdownItem class="d-block" @click="editUserinfo()">
+        <CIcon icon="cil-user-follow" class="text-warning" />
+        Sửa thông tin người dùng
       </CDropdownItem>
-      <CDropdownItem class="d-block">
-        <div class="small mb-1" @click="calRouter('/ketoan/contact')">
-          Thông tin tác giả
-          <span class="float-right"><strong>45%</strong></span>
-        </div>
-        <CProgress thin color="warning-gradient" :value="45" />
+      <CDropdownItem class="d-block" @click="calRouter('/ketoan/contact')">
+        <CIcon icon="cil-user-follow" class="text-primary" />
+        Thông tin tác giả
       </CDropdownItem>
+
+      <CDropdownHeader class="bg-light" style="text-align: center">
+        <strong>Development</strong>
+      </CDropdownHeader>
+
       <CDropdownItem
         class="d-block"
         href="https://coreui.io/demo/4.0/index.html"
@@ -54,7 +50,7 @@
           CoreUI Vue Pro-Doc
           <span class="float-right"><strong>80%</strong></span>
         </div>
-        <CProgress thin color="info-gradient" :value="80" />
+        <CProgress thin color="warning-gradient" :value="80" />
       </CDropdownItem>
       <CDropdownItem
         class="d-block"
@@ -71,9 +67,16 @@
       <!-- <CDropdownItem class="text-center border-top">
         <strong>Ketoan.ACN</strong>
       </CDropdownItem> -->
-      <CDropdownDivider />
+      <!-- <CDropdownDivider /> -->
+      <hr />
+      <CDropdownHeader class="bg-light" style="text-align: center">
+        <strong>Server</strong>
+      </CDropdownHeader>
+
       <CDropdownItem @click="routeExp()">
-        <CIcon name="cil-envelope-open" /><strong> Back-End JS</strong>
+        <CIcon icon="cil-speedometer" class="text-danger" /><strong>
+          Back-End JS</strong
+        >
         <CBadge style="float: right" color="success" class="ml-auto">{{
           itemsCount
         }}</CBadge>
