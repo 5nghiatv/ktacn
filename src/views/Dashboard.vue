@@ -273,6 +273,7 @@ import { onMounted, onUpdated, onUnmounted } from 'vue'
 //import { onBeforeMount, onMounted, ref, inject } from "vue"
 import { mapState, mapActions } from 'vuex'
 //import dmtkhoan from '@/container/dmtkhoan'
+// import axios from 'axios'
 
 export default {
   name: 'Dashboard',
@@ -290,6 +291,19 @@ export default {
     }
   },
   async mounted() {
+    // const varToken = ''
+    // const result = axios({
+    //   method: 'post', //you can set what request you want to be
+    //   url: 'http://api-vinvoice.viettel.vn',
+    //   data: {
+    //     username: '0304529821',
+    //     password: 'Tranmeji@1',
+    //   },
+    //   headers: {
+    //     access_token: varToken,
+    //   },
+    // })
+    // console.log(111, result)
     // this.$refs.multiselect.$el.focus()
     // await this.GET_DM_TAIKHOAN()
     // await this.danhmucTaikhoan.forEach((element) => {

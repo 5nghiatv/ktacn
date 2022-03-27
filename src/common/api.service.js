@@ -124,22 +124,28 @@ const ApiService = {
     if (JwtService.getToken() !== null) {
       this.setHeader()
     }
+    // `responseType` indicates the type of data that the server will respond with
+    // options are: 'arraybuffer', 'document', 'json', 'text', 'stream'
+    //   browser only: 'blob'
+
     return axios({
       url: `${resource}`, //your url
       baseURL: axios.defaults.baseURL,
       params: params,
       method: 'GET',
-      responseType: 'blob', // important
+      responseType: params.responseType ? params.responseType : 'blob', // important
     }).then((response) => {
-      // var filename =response.headers["content-disposition"] ;
-      //filename = filename.substring(filename.search("filename=")+9);
-      var filename = params.filename //'Report-file.xlsx';
-      const url = window.URL.createObjectURL(new Blob([response.data]))
-      const link = document.createElement('a')
-      link.href = url
-      link.setAttribute('download', filename) //or any other extension
-      document.body.appendChild(link)
-      link.click()
+      if (!response.headers['content-type'].includes('application/json')) {
+        // var filename =response.headers["content-disposition"] ;
+        //filename = filename.substring(filename.search("filename=")+9);
+        var filename = params.filename //'Report-file.xlsx';
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', filename) //or any other extension
+        document.body.appendChild(link)
+        link.click()
+      }
       return response
     })
   },

@@ -10,13 +10,11 @@ exports.getAllUserSql = async function (req, res) {
       usersqls: kq,
     })
   } else {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: 'Server error. Please try again.',
-        error: '',
-      })
+    res.status(500).json({
+      success: false,
+      message: 'Server error. Please try again.',
+      error: '',
+    })
   }
 }
 
@@ -32,13 +30,11 @@ exports.getSingleUserSql = async function (req, res) {
       usersql: kq[0], // Tương thích
     })
   } else {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: 'Server error. Please try again.',
-        error: '',
-      })
+    res.status(500).json({
+      success: false,
+      message: 'Server error. Please try again.',
+      error: '',
+    })
   }
 }
 
@@ -53,13 +49,11 @@ exports.findOneUserSql = async function (req, res) {
       usersql: kq[0], // Tương thích
     })
   } else {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: 'Server error. Please try again.',
-        error: '',
-      })
+    res.status(500).json({
+      success: false,
+      message: 'Server error. Please try again.',
+      error: '',
+    })
   }
 }
 
@@ -101,13 +95,11 @@ exports.createUserSql = async function (req, res) {
       usersql: req.body,
     })
   } else {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: 'Server error. Please try again.',
-        error: '',
-      })
+    res.status(500).json({
+      success: false,
+      message: 'Server error. Please try again.',
+      error: '',
+    })
   }
 }
 
@@ -152,13 +144,11 @@ exports.updateUserSql = async function (req, res) {
       usersql: kq,
     })
   } else {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: 'Server error. Please try again.',
-        error: '',
-      })
+    res.status(500).json({
+      success: false,
+      message: 'Server error. Please try again.',
+      error: '',
+    })
   }
 }
 
@@ -173,12 +163,10 @@ exports.deleteUserSql = async function (req, res) {
       usersql: kq,
     })
   } else {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: 'Server error. Please try again.',
-        error: '',
-      })
+    res.status(500).json({
+      success: false,
+      message: 'Server error. Please try again.',
+      error: '',
+    })
   }
 }

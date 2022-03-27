@@ -21,6 +21,7 @@
                         class="form-control"
                         :class="{ 'is-valid': testValidator('sohd') }"
                         v-model="hoadon.sohd"
+                        title="Mẫu số HĐ chờ Upload: C22TVN-???"
                       />
                     </CInputGroup>
                   </CCol>
@@ -108,7 +109,7 @@
                   </CCol>
                 </CRow>
                 <CRow>
-                  <CCol md="7">
+                  <CCol md="6">
                     <CInputGroup class="mb-3">
                       <CInputGroupText>Diển giãi</CInputGroupText>
                       <CFormInput
@@ -118,14 +119,36 @@
                       />
                     </CInputGroup>
                   </CCol>
-                  <CCol md="2">
+                  <CCol md="3">
                     <CButton
                       class="btn btn-outline-info btn-sm"
                       @click="showModalForm()"
                       id="modal"
                       title="Bổ sung Khách hàng"
-                    >
-                      >> ++ Khách hàng
+                      ><i class="fa fa-user-plus" aria-hidden="true"></i>
+                      Cust..
+                    </CButton>
+                    <CButton
+                      style="float: right; margin-right: 0px"
+                      class="btn btn-outline-info btn-sm"
+                      @click="uploadPreviewInvoice(true)"
+                      title="Upload Hóa đơn lên Server"
+                      ><i class="fa fa-cloud-upload" aria-hidden="true"></i>Up
+                    </CButton>
+                    <CButton
+                      style="float: right; margin-right: 5px"
+                      class="btn btn-outline-info btn-sm"
+                      @click="downdInvoiceNumber(true)"
+                      title="Download và Cập nhật số Hóa đơn"
+                      ><i class="fa fa-cloud-download" aria-hidden="true"></i>
+                    </CButton>
+
+                    <CButton
+                      style="float: right; margin-right: 5px"
+                      class="btn btn-outline-warning btn-sm"
+                      @click="uploadPreviewInvoice(false)"
+                      title="Xem trước Hóa đơn"
+                      ><i class="fa fa-eye" aria-hidden="true"></i>View
                     </CButton>
                   </CCol>
                   <CCol md="3">
@@ -1282,7 +1305,7 @@ export default {
     },
 
     tinhTienThue() {
-      var thuesuat = this.hoadon.thuesuat.split('%').join('')
+      var thuesuat = parseInt('0' + this.hoadon.thuesuat)
       var thuegtgt =
         this.hoadon.giaban == 0
           ? 0
@@ -2515,6 +2538,49 @@ export default {
       'GET_DM_TENHANG',
       'GET_DM_KHOHANG',
     ]),
+    downdInvoiceNumber() {
+      alert('Đang thiết kế...')
+    },
+    uploadPreviewInvoice(upload) {
+      this.$store.commit('set', ['isLoading', true])
+      this.$apiAcn
+        .download('invoice', {
+          host: process.env.VUE_APP_VIETTEL_HOST,
+          username: process.env.VUE_APP_VIETTEL_USERNAME,
+          password: process.env.VUE_APP_VIETTEL_PASSWORD,
+          patern: process.env.VUE_APP_VIETTEL_PATERN,
+          Uuid: '',
+          fromDate: moment(
+            this.infoketoan.fromtodate.pd_fromdate,
+            'YYYY-MM-DD',
+          ).format('DD/MM/YYYY'),
+          toDate: moment(
+            this.infoketoan.fromtodate.pd_todate,
+            'YYYY-MM-DD',
+          ).format('DD/MM/YYYY'),
+          ctid: this.todo.ctid,
+          supplierTaxCode: process.env.VUE_APP_VIETTEL_USERNAME,
+          procedure1: 'createInvoiceDraft',
+          procedure3: 'createInvoiceDraftP',
+          procedure2: 'getListInvoice',
+          procedure4: 'transactionUuid',
+          procedure: upload ? 'createInvoiceDraft' : 'createInvoiceDraftP',
+          filename: 'Invoice-' + process.env.VUE_APP_VIETTEL_USERNAME + '.pdf', // Phải
+          responseType: upload ? 'json' : 'blob', // Liên quan api.service.js
+        })
+        .then((data) => {
+          //console.log(data.data)
+          this.$store.commit('set', ['isLoading', false])
+          this.$toastr.warning(
+            '',
+            data.data.message || 'Download thành công...',
+          )
+        })
+        .catch((err) => {
+          console.log(err)
+          this.$store.commit('set', ['isLoading', false])
+        })
+    },
   },
   created() {
     this.infoketoan = this.$jwtAcn.getKetoan()

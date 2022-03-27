@@ -278,7 +278,7 @@ Content-Type: application/json
 
 ### ========================= TEST
 GET http://localhost:8080/api/getVnDong/1234567890
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWYwNzVjOGQ2MDg1MjU5MWNlZjVmNzYiLCJ1c2VyIjp7InVzZXJuYW1lIjoiVHJvzKNuZyBUaHXMiXkiLCJyb2xlIjoiU3RhZmYiLCJzdGF0dXMiOiJQZW5kaW5nIiwiYWRtaW4iOmZhbHNlLCJkYXRhYmFzZXMiOlsibmdoaWFqc2Nfa2V0b2FuIiwibmdoaWFqc2NfYmFjaHRoYW5oIiwibmdoaWFqc2Nfa2luZ21pbmgiLCJuZ2hpYWpzY19uaGF0bmFtIl0sInNvY2lhbElkIjoiIiwiX2lkIjoiNWVmMDc1YzhkNjA4NTI1OTFjZWY1Zjc2IiwibmFtZSI6IlRyb8yjbmcgVGh1zIl5IiwicGFzc3dvcmQiOiIkMmEkMTAkbW9jNjNTcEtmYmJLSFI1ZVNwUnppLlpvUW10aVZJSkFoVjNCVUlBR2Q4a0l5ZFc1VXIwT0siLCJlbWFpbCI6IjVuZ2hpYXR2QGdtYWlsLmNvbSIsInJlZ2lzdGVyZWQiOiIyMDIwLTA2LTIyVDA5OjExOjM2LjMxN1oiLCJfX3YiOjAsImlzQWRtaW4iOmZhbHNlfSwiaWF0IjoxNjE4MDA4MTc5LCJleHAiOjE2MTgwOTQ1Nzl9.4Szft8wpHvMuAK5YGFMSSUvYLZfXlzhfQ9ZBFtWGM4Y
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjExZjNjZmM5ODNkOTFmZGMzMjA2NmEiLCJ1c2VyIjp7InVzZXJuYW1lIjoiVHLhuqduIFbEg24gTmdoxKlhIiwicm9sZSI6IkFkbWluIiwic3RhdHVzIjoiUGVuZGluZyIsImFkbWluIjp0cnVlLCJkYXRhYmFzZXMiOlsia2V0b2FuX3h1YW5tYWksa2V0b2FuX25oYXRuYW0sbmdoaWFqc2Nfa2V0b2FuLGZzd2J0bGw1dHFlaHZ6cDksaWczbWpsczVtdmdocGEydyxuZ2hpYWpzY191cGxvYWQsaGhiOWp0enh0MXNtYTJ6cixuZ2hpYWpzY19uaGF0bmFtLG5naGlhanNjX2JhY2h0aGFuaCxrZXRvYW5fa2luZ21pbmgsa2V0b2FuX3VwbG9hZCJdLCJzb2NpYWxJZCI6IiIsImltYWdlIjoiIiwiX2lkIjoiNjIxMWYzY2ZjOTgzZDkxZmRjMzIwNjZhIiwibmFtZSI6Ik5naGnMg2EiLCJlbWFpbCI6Im5naGlhdHZAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkYS5MZ3dYYnRYRkh4UjlrZ1MzNEV1ZTR2eTRDRlJQWC5abnVWMXVESTc2ZGd3Rlh2TzF5L1MiLCJyZWdpc3RlcmVkIjoiMjAyMi0wMi0xNlQxMDo0NzoxNi4wMDBaIn0sImlhdCI6MTY0NzQ3OTE3NSwiZXhwIjoxNjQ3NTY1NTc1fQ.FNVIyumd4flJRMyFnLkey26hqYCnDnlp2C8xHWEaUYg
 Content-Type: application/json
 
 {
@@ -301,7 +301,7 @@ Content-Type: application/json
 ## http://localhost:8081/#/ketoan/reports/inphieunhapxuat/01600609
 # POST http://localhost:8080/api/query
 POST http://localhost:8080/api/query
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWYwNzVjOGQ2MDg1MjU5MWNlZjVmNzYiLCJ1c2VyIjp7InVzZXJuYW1lIjoiVHJvzKNuZyBUaHXMiXkiLCJyb2xlIjoiU3RhZmYiLCJzdGF0dXMiOiJQZW5kaW5nIiwiYWRtaW4iOmZhbHNlLCJkYXRhYmFzZXMiOlsibmdoaWFqc2Nfa2V0b2FuIiwibmdoaWFqc2NfYmFjaHRoYW5oIiwibmdoaWFqc2Nfa2luZ21pbmgiLCJuZ2hpYWpzY19uaGF0bmFtIl0sInNvY2lhbElkIjoiIiwiX2lkIjoiNWVmMDc1YzhkNjA4NTI1OTFjZWY1Zjc2IiwibmFtZSI6IlRyb8yjbmcgVGh1zIl5IiwicGFzc3dvcmQiOiIkMmEkMTAkbW9jNjNTcEtmYmJLSFI1ZVNwUnppLlpvUW10aVZJSkFoVjNCVUlBR2Q4a0l5ZFc1VXIwT0siLCJlbWFpbCI6IjVuZ2hpYXR2QGdtYWlsLmNvbSIsInJlZ2lzdGVyZWQiOiIyMDIwLTA2LTIyVDA5OjExOjM2LjMxN1oiLCJfX3YiOjAsImlzQWRtaW4iOmZhbHNlfSwiaWF0IjoxNjE4MDA4MTc5LCJleHAiOjE2MTgwOTQ1Nzl9.4Szft8wpHvMuAK5YGFMSSUvYLZfXlzhfQ9ZBFtWGM4Y
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjExZjNjZmM5ODNkOTFmZGMzMjA2NmEiLCJ1c2VyIjp7InVzZXJuYW1lIjoiVHLhuqduIFbEg24gTmdoxKlhIiwicm9sZSI6IkFkbWluIiwic3RhdHVzIjoiUGVuZGluZyIsImFkbWluIjp0cnVlLCJkYXRhYmFzZXMiOlsia2V0b2FuX3h1YW5tYWksa2V0b2FuX25oYXRuYW0sbmdoaWFqc2Nfa2V0b2FuLGZzd2J0bGw1dHFlaHZ6cDksaWczbWpsczVtdmdocGEydyxuZ2hpYWpzY191cGxvYWQsaGhiOWp0enh0MXNtYTJ6cixuZ2hpYWpzY19uaGF0bmFtLG5naGlhanNjX2JhY2h0aGFuaCxrZXRvYW5fa2luZ21pbmgsa2V0b2FuX3VwbG9hZCJdLCJzb2NpYWxJZCI6IiIsImltYWdlIjoiIiwiX2lkIjoiNjIxMWYzY2ZjOTgzZDkxZmRjMzIwNjZhIiwibmFtZSI6Ik5naGnMg2EiLCJlbWFpbCI6Im5naGlhdHZAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkYS5MZ3dYYnRYRkh4UjlrZ1MzNEV1ZTR2eTRDRlJQWC5abnVWMXVESTc2ZGd3Rlh2TzF5L1MiLCJyZWdpc3RlcmVkIjoiMjAyMi0wMi0xNlQxMDo0NzoxNi4wMDBaIn0sImlhdCI6MTY0ODE3MTA5MSwiZXhwIjoxNjQ4MjU3NDkxfQ.F0jwx4v9gC_rsNQu8WM93iSLcREwHBynrQRQvVqTxMA
 Content-Type: application/json
 
 {
@@ -316,14 +316,14 @@ Content-Type: application/json
       "dnlon": false
     },
     "query0": "CALL DelChungtuNam('2009-01-01')",
-    "query": " CALL ChuyenSoDuTaiKhoan('2021-01-01', '2021-12-31', 0 )",
+    "query_": " CALL ChuyenSoDuTaiKhoan('2021-01-01', '2021-12-31', 0 )",
     "query2": "CALL CopyChungtuID('01611079')",
     "query3": "UPDATE ctuktoan SET sotien = 89113372 WHERE id=205923",
     "query4": "select * from hoadon where ctid = '00700001' ",
     "query5": "select * from chitiet where id = '186838' ",
     "query6": "CALL GanTienHangHoadon(?,?,?,?)",
     "query9": "CALL CopyChungtuKt('2016-01-01','2016-03-31','2024-12-31')",
-    "query_": "CALL getHoadon('2016-01-01','2016-01-31','20','','01600239')",
+    "query": "CALL getHoadon('2020-01-01','2020-06-30','20','','')",
     "query10": "select * from dmtiente",
     "params_": ["07397289","98765002","9876522","1331"],
     "params1": ["09463130","12000000","0","3331"],
@@ -351,7 +351,7 @@ Content-Type: application/json
 # GET http://localhost:8080/api/users
 # GET http://localhost:8080/api/usersqls
 GET http://localhost:8080/api/hoadons/93740453
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZWVlYjhiOGJhNTQyMTUwMDQwYjY3YTgiLCJ1c2VyIjp7InVzZXJuYW1lIjoiVHLhuqduIFbEg24gTmdoacyDYSIsInJvbGUiOiJBZG1pbiIsInN0YXR1cyI6IkFjdGl2ZSIsImFkbWluIjp0cnVlLCJkYXRhYmFzZXMiOlsia2V0b2FuX3h1YW5tYWkiLCJrZXRvYW5fbmhhdG5hbSIsIm5naGlhanNjX2tldG9hbiIsImZzd2J0bGw1dHFlaHZ6cDkiLCJpZzNtamxzNW12Z2hwYTJ3IiwibmdoaWFqc2Nfa2luZ21pbmgiLCJoaGI5anR6eHQxc21hMnpyIiwibmdoaWFqc2NfbmhhdG5hbSIsIm5naGlhanNjX2JhY2h0aGFuaCIsImtldG9hbl9raW5nbWluaCJdLCJzb2NpYWxJZCI6IiIsImltYWdlIjoiaW1nL2F2YXRhcnMvMS5qcGciLCJfaWQiOiI1ZWVlYjhiOGJhNTQyMTUwMDQwYjY3YTgiLCJuYW1lIjoibmdoaWF0diIsImVtYWlsIjoibmdoaWF0dkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQ4Sy9ZMU5TWHlmRk9OR3V1ZnNwSDJ1ZXdKLk95bnZHWkJKV2ZlRXRxMXFrUXYyZ2o4azk2MiIsInJlZ2lzdGVyZWQiOiIyMDIwLTA2LTIxVDAxOjMyOjQwLjcyMVoiLCJfX3YiOjAsImlzQWRtaW4iOnRydWV9LCJpYXQiOjE2MTkxNjA1ODMsImV4cCI6MTYxOTI0Njk4M30._yaTUAFNsTHayN22Pbx0_8E2-T4Xxd1OPww2jR3hSQc
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjExZjNjZmM5ODNkOTFmZGMzMjA2NmEiLCJ1c2VyIjp7InVzZXJuYW1lIjoiVHLhuqduIFbEg24gTmdoxKlhIiwicm9sZSI6IkFkbWluIiwic3RhdHVzIjoiUGVuZGluZyIsImFkbWluIjp0cnVlLCJkYXRhYmFzZXMiOlsia2V0b2FuX3h1YW5tYWksa2V0b2FuX25oYXRuYW0sbmdoaWFqc2Nfa2V0b2FuLGZzd2J0bGw1dHFlaHZ6cDksaWczbWpsczVtdmdocGEydyxuZ2hpYWpzY191cGxvYWQsaGhiOWp0enh0MXNtYTJ6cixuZ2hpYWpzY19uaGF0bmFtLG5naGlhanNjX2JhY2h0aGFuaCxrZXRvYW5fa2luZ21pbmgsa2V0b2FuX3VwbG9hZCJdLCJzb2NpYWxJZCI6IiIsImltYWdlIjoiIiwiX2lkIjoiNjIxMWYzY2ZjOTgzZDkxZmRjMzIwNjZhIiwibmFtZSI6Ik5naGnMg2EiLCJlbWFpbCI6Im5naGlhdHZAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkYS5MZ3dYYnRYRkh4UjlrZ1MzNEV1ZTR2eTRDRlJQWC5abnVWMXVESTc2ZGd3Rlh2TzF5L1MiLCJyZWdpc3RlcmVkIjoiMjAyMi0wMi0xNlQxMDo0NzoxNi4wMDBaIn0sImlhdCI6MTY0NzQ3OTA0NCwiZXhwIjoxNjQ3NTY1NDQ0fQ.Vk34ybfchI2GXHBliYyLnIk0C92IklZwSGvauq34kUo
 Content-Type: application/json
 
 {
@@ -374,7 +374,7 @@ Content-Type: application/json
 # GET http://localhost:8080/api/setcolor/_variables1.scss
 # GET http://localhost:8080/api/test/{file: "Tran Van ",dropbox: false}
 # POST http://localhost:8080/api/vfpupload
-GET http://localhost:8080/api/dmtkhoans
+GET http://localhost:3000/hoadon/0304529821
 Content-Type: application/json
 
 {
@@ -384,3 +384,27 @@ Content-Type: application/json
       "path": "./data/vfp/dataxx"
 } 
 
+
+### Tran Văn Nghĩa
+POST http://localhost:8080/api/invoice
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjExZjNjZmM5ODNkOTFmZGMzMjA2NmEiLCJ1c2VyIjp7InVzZXJuYW1lIjoiVHLhuqduIFbEg24gTmdoxKlhIiwicm9sZSI6IkFkbWluIiwic3RhdHVzIjoiUGVuZGluZyIsImFkbWluIjp0cnVlLCJkYXRhYmFzZXMiOlsia2V0b2FuX3h1YW5tYWksa2V0b2FuX25oYXRuYW0sbmdoaWFqc2Nfa2V0b2FuLGZzd2J0bGw1dHFlaHZ6cDksaWczbWpsczVtdmdocGEydyxuZ2hpYWpzY191cGxvYWQsaGhiOWp0enh0MXNtYTJ6cixuZ2hpYWpzY19uaGF0bmFtLG5naGlhanNjX2JhY2h0aGFuaCxrZXRvYW5fa2luZ21pbmgsa2V0b2FuX3VwbG9hZCJdLCJzb2NpYWxJZCI6IiIsImltYWdlIjoiIiwiX2lkIjoiNjIxMWYzY2ZjOTgzZDkxZmRjMzIwNjZhIiwibmFtZSI6Ik5naGnMg2EiLCJlbWFpbCI6Im5naGlhdHZAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMTAkYS5MZ3dYYnRYRkh4UjlrZ1MzNEV1ZTR2eTRDRlJQWC5abnVWMXVESTc2ZGd3Rlh2TzF5L1MiLCJyZWdpc3RlcmVkIjoiMjAyMi0wMi0xNlQxMDo0NzoxNi4wMDBaIn0sImlhdCI6MTY0ODI1Njc0MCwiZXhwIjoxNjQ4MzQzMTQwfQ.8xh3t_9IcqAorrMMhxcrbtCeVi_0X0_TfeetM-hkrHw
+Content-Type: application/json
+
+{
+  "host" :"https://api-vinvoice.viettel.vn",
+  "username" :"0304529821",
+  "password" : "Tranmeji@1",
+  "patern" : "C22TVN",
+  "Uuid": "859f390a-1e59-4a05-9663-1e9ec7afdb8f",
+  "fromDate": "31/12/2020",
+  "toDate": "31/12/2020",
+  "ctid": "",
+  "supplierTaxCode":"0304529821",
+  "procedure1" : "createInvoiceDraft",
+  "procedure3" : "createInvoiceDraftP",
+  "procedure2" : "getListInvoice",
+  "procedure4" : "transactionUuid",
+  "procedure" : "createInvoiceDraftP"
+}
+
+### router.post('/invoice',invoice)

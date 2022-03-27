@@ -449,7 +449,7 @@ var req = {
 // var aa= _.findIndex(users, function(o) { return o.user == ss; });
 // console.log(aa,users[aa].user);
 
-testRead('./data/vfp/data/data20')
+//testRead('./data/vfp/data/data20')
 async function testRead(dir) {
   var dbf = await DBFFile.open(`${dir}/ctuktoan.dbf`)
   console.log(dbf)
@@ -501,3 +501,191 @@ async function test(dir) {
 // const { nav2 } = require('./src/_nav2.js')
 // const nav = [...nav1, ...nav2]
 // console.log(nav)
+
+//=========================================== Trần Văn Nghĩa
+exports.test = async function (req, res) {
+  // let mess = 'Dùng cho test khác - api/testdb thì có sẵn trong main-api.js'
+  // res.status(200).json({ message: mess }).end()
+  createInvoiceDraft(true, req, res)
+}
+//==================================================
+
+async function getToken() {
+  return await axios({
+    method: 'post', //you can set what request you want to be
+    url: 'https://api-vinvoice.viettel.vn/auth/login',
+    data: {
+      username: '0304529821',
+      password: 'Tranmeji@1',
+    },
+    headers: {},
+  }).then((data) => {
+    return data.data
+  })
+  //console.log(111, result.data)
+}
+
+async function getListInvoice() {
+  const token = await getToken()
+  const config = {
+    method: 'post', //you can set what request you want to be
+    url: 'https://api-vinvoice.viettel.vn/services/einvoiceapplication/api/InvoiceAPI/InvoiceUtilsWS/getListInvoiceDataControl',
+    data: {
+      supplierTaxCode: '0304529821',
+      fromDate: '01/03/2022',
+      toDate: '02/03/2022',
+    },
+    headers: {
+      Cookie: `access_token=${token.access_token}`,
+    },
+  }
+  //console.log(0000, config)
+
+  const listInvoice = await axios(config)
+    .then((data) => {
+      return data.data
+    })
+    .catch((error) => {
+      console.log(111, error)
+    })
+  console.log(222, listInvoice)
+}
+
+async function createInvoiceDraft(lPreview, req, res) {
+  let cUrl =
+    'https://api-vinvoice.viettel.vn/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/0304529821'
+  if (lPreview) {
+    cUrl =
+      'https://api-vinvoice.viettel.vn/services/einvoiceapplication/api/InvoiceAPI/InvoiceUtilsWS/createInvoiceDraftPreview/0304529821'
+  }
+  const token = await getToken()
+  const config = {
+    method: 'post', //you can set what request you want to be
+    url: cUrl,
+    data: {
+      generalInvoiceInfo: {
+        invoiceType: '1',
+        templateCode: '1/001',
+        invoiceSeries: 'C22TVN',
+        currencyCode: 'VND',
+        adjustmentType: '1',
+        paymentStatus: true,
+        cusGetInvoiceRight: true,
+      },
+      sellerInfo: {
+        sellerLegalName: 'DNTN tin học Xuân Mai',
+        sellerTaxCode: '0304529821',
+        sellerAddressLine: '118/63 Bạch Đằng, P24, Bình Thạnh - HCM - Việt Nam',
+        sellerPhoneNumber: '0903917963',
+        sellerFaxNumber: '',
+        sellerEmail: 'Nghiatv@gmail.com',
+        sellerBankName: 'Ngân hàng Đông Á - Sở giao dịch ',
+        sellerBankAccount: '003947450002',
+        sellerDistrictName: '',
+        sellerCityName: 'Thành Phố HCM',
+        sellerCountryCode: '84',
+        sellerWebsite: 'nghiatv.googlepages.com',
+      },
+      buyerInfo: {
+        buyerName: 'Trần Văn Nghĩa',
+        buyerLegalName: 'Tin học Xuân Mai Corpt',
+        buyerTaxCode: '0304633928',
+        buyerAddressLine: '208 Nguyễn Hữu Cảnh, P22, Q.Bình Thạnh - HCM',
+        buyerPostalCode: '700000',
+        buyerDistrictName: 'Q.Bình thạnh',
+        buyerCityName: 'Thành Phố HCM',
+        buyerCountryCode: '84',
+        buyerPhoneNumber: '0947501512',
+        buyerFaxNumber: '',
+        buyerEmail: '5nghiatv@gmail.vn',
+        buyerBankName: 'Ngân hàng VietCombank TP HCM',
+        buyerBankAccount: '0531002130846',
+        buyerIdType: '1',
+        buyerIdNo: '080061000211',
+        buyerCode: '0947501512',
+        buyerBirthDay: '',
+      },
+      payments: [
+        {
+          paymentMethod: '3',
+          paymentMethodName: 'TM/CK',
+        },
+      ],
+      itemInfo: [
+        {
+          lineNumber: 1,
+          itemCode: 'PCDELLV3653_i56400_R4H10DVDRW',
+          itemName:
+            'Máy tính để bàn DELL VOSTRO 3653 Desktop Core i5-6400 upto3.30Ghz/ 4GB/1TB HDD/DVDRW/NVIDIA Geforce 705 2Gb/ Wireless-Bluetooth/ K/ M/1Yr Pro',
+          unitName: 'Cái',
+          itemNote: '',
+          unitPrice: 10000000,
+          quantity: 1,
+          itemTotalAmountWithoutTax: 10000000,
+          itemTotalAmountWithTax: 11000000,
+          itemTotalAmountAfterDiscount: 0,
+          taxPercentage: 10,
+          taxAmount: 1000000,
+          customTaxAmount: '0',
+          discount: 0,
+          itemDiscount: 0,
+          batchNo: '',
+          expDate: '',
+        },
+      ],
+      taxBreakdowns: [
+        {
+          taxPercentage: 10,
+          taxableAmount: 11000000,
+          taxAmount: 1000000,
+        },
+      ],
+    },
+
+    headers: {
+      Cookie: `access_token=${token.access_token}`,
+    },
+  }
+  //console.log(0000, config)
+  const createInvoice = await axios(config)
+    .then((data) => {
+      return data.data
+    })
+    .catch((error) => {
+      console.log(111, error)
+    })
+  //console.log(222, createInvoice)
+  if (lPreview) {
+    let buff = new Buffer(createInvoice.fileToBytes, 'base64')
+    let filename = 'Invoice-' + createInvoice.fileName
+    if (typeof res != 'undefined') {
+      var zip = new JSZip()
+      zip.file(filename, buff)
+      res.setHeader('Content-Disposition', 'attachment; filename=' + filename)
+      res.setHeader('Content-Type', 'application/pdf') // 'application/zip'
+      zip
+        .generateNodeStream({
+          type: 'nodebuffer',
+          streamFiles: true,
+        }) // Nén thì Phải có compression: 'DEFLATE'
+        .pipe(res)
+        .on('finish', function () {
+          console.log('filename: ' + filename)
+        })
+      // //res.download(tmpfile)
+      // const rs = fs.createReadStream(tmpfile)
+      // res.setHeader('Content-Disposition', 'attachment; john-resume.pdf')
+      // rs.pipe(res)
+    } else {
+      let tmpfile = tmp.tmpNameSync() + '_' + filename
+      fs.writeFileSync(tmpfile, buff)
+      console.log('Save file to : ' + tmpfile)
+    }
+    // let mess = 'Dùng cho test khác - api/testdb thì có sẵn trong main-api.js'
+    // res.status(200).json({ message: mess }).end()
+  }
+}
+
+//getListInvoice()
+//createInvoiceDraft()
+createInvoiceDraft(true)

@@ -96,7 +96,7 @@ exports.BaocaoBctcXML = function (req, res) {
             result.HSoThueDTu.HSoKhaiThue[0].PLuc[0].PL_KQHDSXKD[0].NamNay //PL_LCTTGT //PL_KQHDSXKD
           var cdtk_ =
             result.HSoThueDTu.HSoKhaiThue[0].PLuc[0].PL_KQHDSXKD[0].NamTruoc //PL_LCTTGT //PL_KQHDSXKD
-          Object.keys(cdtk[0]).forEach((ctma, index) => {
+          Object.key2s(cdtk[0]).forEach((ctma, index) => {
             var maso = ctma.substr(2, 2) // Tách ct01 => 01 lấy trị kynay của ketquakd có kyhieu1 = 01
             response.data.ketquakd.forEach((kq, index) => {
               if (kq.maso == maso) {
@@ -311,7 +311,6 @@ exports.BaocaoBctcXLSX = function (req, res) {
             ws.getCell('F' + sott).value = kq.psco
             ws.getCell('G' + sott).value = kq.nock
             ws.getCell('H' + sott).value = kq.cock
-
             ;[
               'A' + sott,
               'B' + sott,
@@ -923,13 +922,11 @@ exports.query = function (req, res, fn) {
             query: rows,
           })
         } else {
-          res
-            .status(500)
-            .json({
-              success: false,
-              message: 'Server error. Please try again.',
-              error: err.message,
-            })
+          res.status(500).json({
+            success: false,
+            message: 'Server error. Please try again.',
+            error: err.message,
+          })
         }
       })
     } else {
@@ -958,13 +955,11 @@ exports.tinhcandoips = function (req, res) {
             tinhcandoips: rows,
           })
         } else {
-          res
-            .status(500)
-            .json({
-              success: false,
-              message: 'Server error. Please try again.',
-              error: err.message,
-            })
+          res.status(500).json({
+            success: false,
+            message: 'Server error. Please try again.',
+            error: err.message,
+          })
         }
       })
     } else {
@@ -992,13 +987,11 @@ exports.tinhcandoihang = function (req, res) {
             tinhcandoihang: rows,
           })
         } else {
-          res
-            .status(500)
-            .json({
-              success: false,
-              message: 'Server error. Please try again.',
-              error: err.message,
-            })
+          res.status(500).json({
+            success: false,
+            message: 'Server error. Please try again.',
+            error: err.message,
+          })
         }
       })
     } else {
@@ -1051,13 +1044,11 @@ exports.chuyensodutk = function (req, res) {
                             },
                           })
                         } else {
-                          res
-                            .status(500)
-                            .json({
-                              success: false,
-                              message: 'Server error. Please try again.',
-                              error: err.message,
-                            })
+                          res.status(500).json({
+                            success: false,
+                            message: 'Server error. Please try again.',
+                            error: err.message,
+                          })
                         }
                       },
                     )
@@ -1067,13 +1058,11 @@ exports.chuyensodutk = function (req, res) {
             }
           })
         } else {
-          res
-            .status(500)
-            .json({
-              success: false,
-              message: 'Server error. Please try again.',
-              error: err.message,
-            })
+          res.status(500).json({
+            success: false,
+            message: 'Server error. Please try again.',
+            error: err.message,
+          })
         }
       })
     } else {
@@ -1127,13 +1116,11 @@ exports.chuyensoduhang = function (req, res) {
                             },
                           })
                         } else {
-                          res
-                            .status(500)
-                            .json({
-                              success: false,
-                              message: 'Server error. Please try again.',
-                              error: err.message,
-                            })
+                          res.status(500).json({
+                            success: false,
+                            message: 'Server error. Please try again.',
+                            error: err.message,
+                          })
                         }
                       },
                     )
@@ -1143,13 +1130,11 @@ exports.chuyensoduhang = function (req, res) {
             }
           })
         } else {
-          res
-            .status(500)
-            .json({
-              success: false,
-              message: 'Server error. Please try again.',
-              error: err.message,
-            })
+          res.status(500).json({
+            success: false,
+            message: 'Server error. Please try again.',
+            error: err.message,
+          })
         }
       })
     } else {
@@ -2418,7 +2403,6 @@ exports.candoipsXLSX = function (req, res) {
             ws.getCell('F' + sott).value = kq.psco
             ws.getCell('G' + sott).value = kq.nock
             ws.getCell('H' + sott).value = kq.cock
-
             ;[
               'A' + sott,
               'B' + sott,
@@ -2553,7 +2537,6 @@ exports.candoihhXLSX = function (req, res) {
               ws.getCell('L' + sott).value = kq.tienxuat
               ws.getCell('M' + sott).value = kq.luongck
               ws.getCell('N' + sott).value = kq.tienck
-
               ;[
                 'B' + sott,
                 'C' + sott,
@@ -2893,7 +2876,6 @@ exports.thuegtgtXLSX = function (req, res) {
           ws.getCell('M' + sott).value = kq.tkco
           ws.getCell('N' + sott).value = kq.soct
           ws.getCell('O' + sott).value = moment(kq.ngayct).format('DD-MM-YYYY')
-
           ;[
             'B' + sott,
             'C' + sott,
@@ -4101,4 +4083,335 @@ exports.uynhiemchi = async function (req, res) {
       console.log(mess)
       res.status(500).json({ success: false, message: mess, error: error })
     })
+}
+
+//=================================== Trần Văn Nghĩa
+exports.invoice = async function (req, res) {
+  req.body = req.query
+  // Quan trọng khi dùng  this.$apiAcn.download()
+  // res.status(200).json({ message: 'Không có phát sinh Hóa đơn trong kỳ...' })
+
+  switch (req.body.procedure) {
+    case 'getListInvoice':
+      getListInvoice(req, res)
+      break
+    case 'createInvoiceDraft':
+      createInvoiceDraft(false, req, res)
+      break
+    case 'createInvoiceDraftP':
+      createInvoiceDraft(true, req, res)
+      break
+    case 'transactionUuid':
+      transactionUuid(req, res)
+      break
+    default:
+  }
+}
+//==================================================
+
+async function getToken(req, res) {
+  return await axios({
+    method: 'post', //you can set what request you want to be
+    url: 'https://api-vinvoice.viettel.vn/auth/login',
+    data: req.body,
+    headers: {},
+  }).then((data) => {
+    return data.data
+  })
+  //console.log(111, result.data)
+}
+async function transactionUuid(req, res) {
+  const token = await getToken(req, res)
+  const config = {
+    method: 'post', //you can set what request you want to be
+    url: 'https://api-vinvoice.viettel.vn/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/searchInvoiceByTransactionUuid/',
+    data: req.body,
+    headers: {
+      Cookie: `access_token=${token.access_token}`,
+    },
+  }
+  config.url =
+    config.url +
+    'supplierTaxCode=' +
+    req.body.supplierTaxCode +
+    '&transactionUuid=' +
+    req.body.Uuid
+
+  // console.log(0000, config)
+  const listInvoice = await axios(config)
+    .then((data) => {
+      return data.data
+    })
+    .catch((error) => {
+      console.log(111, 'error', config.url)
+    })
+  console.log(222, listInvoice)
+}
+
+async function getListInvoice(req, res) {
+  const token = await getToken(req, res)
+  const config = {
+    method: 'post', //you can set what request you want to be
+    url: 'https://api-vinvoice.viettel.vn/services/einvoiceapplication/api/InvoiceAPI/InvoiceUtilsWS/getListInvoiceDataControl',
+    data: req.body,
+    headers: {
+      Cookie: `access_token=${token.access_token}`,
+    },
+  }
+  //console.log(0000, config)
+
+  const listInvoice = await axios(config)
+    .then((data) => {
+      return data.data
+    })
+    .catch((error) => {
+      console.log(111, error)
+    })
+  console.log(222, listInvoice)
+}
+
+async function createInvoiceDraft(lPreview, req, res) {
+  let cUrl =
+    'https://api-vinvoice.viettel.vn/services/einvoiceapplication/api/InvoiceAPI/InvoiceWS/createOrUpdateInvoiceDraft/'
+  if (lPreview) {
+    cUrl =
+      'https://api-vinvoice.viettel.vn/services/einvoiceapplication/api/InvoiceAPI/InvoiceUtilsWS/createInvoiceDraftPreview/'
+  }
+  cUrl = cUrl + req.body.username
+  //console.log(req.body, cUrl)
+
+  const token = await getToken(req, res)
+  const config = {
+    method: 'post', //you can set what request you want to be
+    url: cUrl,
+    data: {
+      generalInvoiceInfo: {
+        transactionUuid: '',
+        invoiceType: '1',
+        templateCode: '1/001',
+        invoiceSeries: req.body.patern,
+        currencyCode: 'VND',
+        adjustmentType: '1',
+        paymentStatus: true,
+        cusGetInvoiceRight: true,
+      },
+      sellerInfo: {},
+      buyerInfo: {
+        buyerName: '',
+        buyerLegalName: 'Trần Văn Nghĩa',
+        buyerTaxCode: '0304633928',
+        buyerAddressLine: '208 Nguyễn Hữu Cảnh, P22, Q.Bình Thạnh - HCM',
+        buyerPostalCode: '',
+        buyerDistrictName: '',
+        buyerCityName: '',
+        buyerCountryCode: '',
+        buyerPhoneNumber: '',
+        buyerFaxNumber: '',
+        buyerEmail: '',
+        buyerBankName: '',
+        buyerBankAccount: '',
+        buyerIdType: '',
+        buyerIdNo: '',
+        buyerCode: '',
+        buyerBirthDay: '',
+      },
+      payments: [
+        {
+          paymentMethod: '3',
+          paymentMethodName: 'TM/CK',
+        },
+      ],
+      itemInfo: [
+        {
+          lineNumber: 1,
+          itemCode: 'PM001',
+          itemName: 'Phần mềm Kế toán',
+          unitName: 'Bộ',
+          itemNote: '',
+          unitPrice: 10000000,
+          quantity: 1,
+          itemTotalAmountWithoutTax: 10000000,
+          itemTotalAmountWithTax: 11000000,
+          itemTotalAmountAfterDiscount: 0,
+          taxPercentage: 10,
+          taxAmount: 1000000,
+          customTaxAmount: '0',
+          discount: 0,
+          itemDiscount: 0,
+          batchNo: '',
+          expDate: '',
+        },
+      ],
+      taxBreakdowns: [
+        {
+          taxPercentage: 10,
+          taxableAmount: 11000000,
+          taxAmount: 1000000,
+        },
+      ],
+    },
+
+    headers: {
+      Cookie: `access_token=${token.access_token}`,
+    },
+  }
+  //console.log(0000, config)
+
+  // CALL getHoadon('2020-01-01','2020-06-30','20','','')
+  let uploaded = 0
+  let fromDate = moment(req.body.fromDate, 'DD/MM/YYYY').format('YYYY-MM-DD')
+  let toDate = moment(req.body.toDate, 'DD/MM/YYYY').format('YYYY-MM-DD')
+  let query =
+    "CALL getHoadon('" +
+    fromDate +
+    "','" +
+    toDate +
+    "','20','ngay','" +
+    req.body.ctid +
+    "')"
+
+  runQuery(query, [], req, res, async function (cdps) {
+    cdps = cdps[0]
+    //console.log(888, query, cdps.length, cdps)
+    if (!cdps || cdps.length == 0) {
+      return res
+        .status(200)
+        .json({ message: 'Không có phát sinh Hóa đơn trong kỳ...' })
+    }
+    for (var key = 0; key < cdps.length; key++) {
+      //console.log(key, cdps[key])
+      let strhd = cdps[key].sohd
+      strhd = parseInt('0' + strhd.substring(strhd.indexOf('-') + 1))
+      if (!lPreview && strhd > 0) {
+        // Đã upload & Có số Hóa đơn rồi - LOẠI RA
+        // Trường hợp HD không upload nằm cuối cùng NÊN PHẢI CHECK Ở ĐÂY
+        uploaded++
+        if (key == cdps.length - 1) {
+          // Phải có để chạy hết for(key) mới Kết thúc
+          let mess =
+            'Số hóa đơn Upload :  ' +
+            (cdps.length - uploaded) +
+            ' / ' +
+            cdps.length
+          console.log(mess)
+          return res.status(200).json({ message: mess })
+        } else continue
+      }
+
+      config.data.generalInvoiceInfo.transactionUuid =
+        cdps[key].ctid + '-' + cdps[key].id
+      config.data.buyerInfo.buyerLegalName = cdps[key].company
+      config.data.buyerInfo.buyerTaxCode = cdps[key].maso
+      config.data.buyerInfo.buyerAddressLine = cdps[key].address
+
+      await loadInvoiceDetaild(config.data, cdps[key], fromDate, toDate)
+      //console.log(key, config.data)
+      const createInvoice = await axios(config)
+        .then((data) => {
+          return data.data
+        })
+        .catch((error) => {
+          console.log(111, error)
+          return res.status(400).json({ error: error })
+        })
+
+      if (!createInvoice)
+        return res
+          .status(200)
+          .json({ message: 'Không có phát sinh Hóa đơn trong kỳ...' })
+      if (lPreview) {
+        key = cdps.length - 1 // CHỈ XEM 1 HÓA ĐƠN
+        let buff = new Buffer(createInvoice.fileToBytes, 'base64')
+        let filename = 'Invoice-' + createInvoice.fileName
+        if (typeof res != 'undefined') {
+          var zip = new JSZip()
+          zip.file(filename, buff)
+          res.setHeader(
+            'Content-Disposition',
+            'attachment; filename=' + filename,
+          )
+          res.setHeader('Content-Type', 'application/pdf') // 'application/zip'
+          zip
+            .generateNodeStream({
+              type: 'nodebuffer',
+              streamFiles: true,
+            }) // Nén thì Phải có compression: 'DEFLATE'
+            .pipe(res)
+            .on('finish', function () {
+              console.log(
+                'filename: ' + filename,
+                'transactionUuid: ' +
+                  config.data.generalInvoiceInfo.transactionUuid,
+              )
+            })
+
+          // test ===========================
+          // let tmpfile = tmp.tmpNameSync() + '_' + filename
+          // fs.writeFileSync(tmpfile, buff)
+          // console.log('Save file to : ' + tmpfile)
+          // test ===========================
+        }
+      } else {
+        if (key == cdps.length - 1) {
+          // Phải có để chạy hết for(key) mới Kết thúc
+          let mess =
+            'Số hóa đơn Upload :  ' +
+            (cdps.length - uploaded) +
+            ' / ' +
+            cdps.length
+          console.log(mess)
+          return res.status(200).json({ message: mess })
+        }
+      }
+    } // for
+  })
+}
+
+async function loadInvoiceDetaild(config, cdps, fromDate, toDate) {
+  config.itemInfo[0].lineNumber = 1
+  config.itemInfo[0].itemCode = ''
+  config.itemInfo[0].itemName = cdps.diengiai // OR mathang
+  config.itemInfo[0].unitName = '-'
+  config.itemInfo[0].unitPrice = cdps.sotien
+  config.itemInfo[0].quantity = 1
+  config.itemInfo[0].itemTotalAmountWithoutTax = cdps.sotien
+  config.itemInfo[0].itemTotalAmountWithTax = cdps.sotien + cdps.thuegtgt
+  config.itemInfo[0].itemTotalAmountAfterDiscount = 0
+  config.itemInfo[0].taxPercentage = parseInt('0' + cdps.thuesuat)
+  config.itemInfo[0].taxAmount = cdps.thuegtgt
+  // Chỉ 1 thuế suất chung cho các dòng ( Nếu có )
+  config.taxBreakdowns[0].taxPercentage = parseInt('0' + cdps.thuesuat)
+  config.taxBreakdowns[0].taxableAmount = cdps.sotien + cdps.thuegtgt
+  config.taxBreakdowns[0].taxAmount = cdps.thuegtgt
+  let query =
+    "CALL Create_CtuvattuHoadon('" +
+    fromDate +
+    "','" +
+    toDate +
+    "','" +
+    cdps.ctid +
+    "')"
+
+  let result = await runQuerySync(query, [], '', '')
+  if (result && result.length > 0 && result[0].length > 0) {
+    let taxPercentage = config.itemInfo[0].taxPercentage
+    for (var key2 = 0; key2 < result[0].length; key2++) {
+      let ctvt = result[0][key2]
+
+      if (key2 > 0) config.itemInfo.push({}) // add thêm object phải TRỐNG mới được
+      config.itemInfo[key2].lineNumber = key2 + 1
+      config.itemInfo[key2].itemCode = ctvt.mahang
+      config.itemInfo[key2].itemName = ctvt.tenhang
+      config.itemInfo[key2].unitName = ctvt.donvi
+      config.itemInfo[key2].unitPrice = parseInt(ctvt.sotien / ctvt.soluong)
+      config.itemInfo[key2].quantity = ctvt.soluong
+      config.itemInfo[key2].itemTotalAmountWithoutTax = ctvt.sotien
+      config.itemInfo[key2].itemTotalAmountWithTax =
+        ctvt.sotien + (ctvt.sotien * taxPercentage) / 100
+      config.itemInfo[key2].itemTotalAmountAfterDiscount = 0
+      config.itemInfo[key2].taxPercentage = taxPercentage
+      config.itemInfo[key2].taxAmount = (ctvt.sotien * taxPercentage) / 100
+    }
+  }
+  //console.log(111, query, config.itemInfo, config.taxBreakdowns )
 }
